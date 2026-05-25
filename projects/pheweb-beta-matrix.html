@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PheWeb β-Matrix Builder · Dongeun Kim</title>
+    <title>PheWeb Beta Matrix Builder · Dongeun Kim</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
@@ -34,11 +34,11 @@
     <div class="layout">
       <aside class="sidebar">
         <div class="sidebar-header">
-          <div class="section-tag" style="margin-bottom: 14px;">006 · DE</div>
-          <h1 class="sidebar-name" style="font-size: 30px;">PheWeb<br/>β-Matrix<br/>Builder</h1>
-          <div class="sidebar-role">Data engineering · research</div>
+          <div class="section-tag" style="margin-bottom: 14px;">005 · DE</div>
+          <h1 class="sidebar-name" style="font-size: 30px;">PheWeb Beta<br/>Matrix<br/>Builder</h1>
+          <div class="sidebar-role">Research engineering</div>
           <div class="sidebar-tagline">
-            [ Crawls GWAS summary stats from PheWeb instances and builds a sign-consistent β-matrix. ]
+            A reusable pipeline that turns PheWAS summary statistics into variant-phenotype embeddings.
           </div>
         </div>
 
@@ -56,22 +56,26 @@
 
       <main class="content">
         <div class="project-hero reveal">
-          <h2 class="project-title">PheWeb β-Matrix Builder</h2>
+          <h2 class="project-title">PheWeb Beta Matrix Builder</h2>
           <p class="project-tagline">
-            [ A parallel ETL pulling PheWAS GWAS data from multiple PheWeb instances into a unified β-matrix. ]
+            A reusable pipeline that turns PheWAS summary statistics into variant-phenotype embeddings.
           </p>
           <div class="project-meta-row">
-            <div class="col"><span class="label">Timeline</span><span class="value">2025 – Present</span></div>
-            <div class="col"><span class="label">Company</span><span class="value">UM Medical School</span></div>
-            <div class="col"><span class="label">Role</span><span class="value">Research Engineer</span></div>
-            <div class="col"><span class="label">Stack</span><span class="value">Python · pandas · scikit-learn</span></div>
+            <div class="col"><span class="label">Timeline</span><span class="value">Nov 2025 – Feb 2026</span></div>
+            <div class="col"><span class="label">Company</span><span class="value">UMich Medical School (research)</span></div>
+            <div class="col"><span class="label">Role</span><span class="value">Sole engineer</span></div>
+            <div class="col"><span class="label">Stack</span><span class="value">Python · pandas · scikit-learn · requests</span></div>
           </div>
         </div>
 
         <section id="overview" class="project-section reveal">
           <h3>Overview</h3>
-          <p class="lead-para">[ Headline summary. ]</p>
-          <p class="body-para">[ Detailed overview — what was built, why. ]</p>
+          <p class="lead-para">
+            Most GWAS analyses look at one trait at a time. This pipeline builds the infrastructure for looking at all of them together — a sign-consistent variant × phenotype matrix and 50-dimensional embeddings ready for downstream representation learning.
+          </p>
+          <p class="body-para">
+            The Genome-Wide Association Study (GWAS) field has spent two decades publishing per-trait summary statistics, and several large research consortia (<mark class="hl">MGI-BioVU</mark>, <mark class="hl">UKB-TOPMed</mark>, <mark class="hl">FinnGen</mark>) now publish them through PheWeb — a public viewer that exposes the data through a standard API. The naive way to use that data is one trait at a time; the more interesting question is what happens when you align thousands of traits into a single matrix and look for shared structure. That's a non-trivial engineering problem: each PheWeb instance has hundreds of phenotypes with millions of variants, the allele orientations aren't guaranteed consistent across traits, and the resulting matrix is sparse enough that downstream methods need careful preprocessing. The pipeline handles all of it — parallel downloads with schema detection, allele-orientation correction with sign flipping, p-value filtering, and truncated SVD to produce 50-dimensional variant and phenotype embeddings. It's the data foundation for my ongoing Medical School research and the Dermatology Paradox Atlas proposal I'm working with Dr. Lam Tsoi's group on.
+          </p>
         </section>
 
         <section id="stack" class="project-section reveal">
@@ -81,96 +85,142 @@
             <div class="pills"><span class="pill">Python</span></div>
           </div>
           <div class="skill-group">
-            <div class="skill-group-name">data & ml</div>
+            <div class="skill-group-name">data ingestion</div>
+            <div class="pills">
+              <span class="pill">requests</span>
+              <span class="pill">gzip parsing</span>
+              <span class="pill">ThreadPoolExecutor (10 workers)</span>
+              <span class="pill">schema auto-detection</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">data processing</div>
             <div class="pills">
               <span class="pill">pandas</span>
-              <span class="pill">NumPy</span>
-              <span class="pill">scikit-learn</span>
+              <span class="pill">numpy</span>
+              <span class="pill">CSV + pickle</span>
             </div>
           </div>
           <div class="skill-group">
-            <div class="skill-group-name">infrastructure</div>
+            <div class="skill-group-name">matrix factorization</div>
             <div class="pills">
-              <span class="pill">parallel ETL</span>
-              <span class="pill">requests</span>
+              <span class="pill">scikit-learn (truncated SVD, k=50)</span>
             </div>
           </div>
           <div class="skill-group">
-            <div class="skill-group-name">data sources</div>
+            <div class="skill-group-name">configuration &amp; reproducibility</div>
             <div class="pills">
-              <span class="pill">MGI-BioVU</span>
-              <span class="pill">UKB-TOPMed</span>
-              <span class="pill">MGI PheWeb</span>
+              <span class="pill">config-driven (per PheWeb instance)</span>
+              <span class="pill">Apache-2.0</span>
+              <span class="pill">documented limitations</span>
             </div>
           </div>
         </section>
 
         <section id="problem" class="project-section reveal">
           <h3>The Problem</h3>
-          <p class="lead-para">[ Headline problem statement. ]</p>
-          <p class="body-para">[ Detailed problem context. ]</p>
+          <p class="lead-para">
+            Public GWAS data is everywhere. A reusable pipeline for getting it into a form where you can study disease relationships isn't.
+          </p>
+          <p class="body-para">
+            Public GWAS summary statistics through PheWeb give the research community access to millions of variant-phenotype associations across multiple large biobanks. But every group that wants to use this data for cross-phenotype analysis ends up writing a one-off script: download N phenotypes, intersect rsIDs, align alleles, build the matrix, hope you got the sign flips right. The result is that the same fragile preprocessing gets rewritten across labs, the same edge cases (palindromic SNPs, duplicate rsIDs, missing p-values, gzip vs. plain TSV) get rediscovered, and the resulting matrices aren't directly comparable between studies. The pipeline this project produces is a step toward fixing that — a single config-driven tool that ingests any PheWeb instance and outputs a sign-consistent matrix plus embeddings, with the limitations of each step documented rather than hidden.
+          </p>
           <div class="hmw-callout">
             <span class="bulb">💡</span>
             <div class="hmw-body">
               <div class="hmw-label">How might we</div>
-              <div class="hmw-q">[ Framing question for this project. ]</div>
+              <div class="hmw-q">
+                go from raw PheWAS data to research-ready variant-phenotype embeddings in a way that's reusable across biobanks and honest about its preprocessing limitations?
+              </div>
             </div>
           </div>
         </section>
 
         <section id="vision" class="project-section reveal">
           <h3>Product Vision</h3>
-          <p class="lead-para">[ The end state. ]</p>
-          <p class="body-para">[ Detail on user value. ]</p>
+          <p class="lead-para">
+            A pipeline a researcher can clone, point at any PheWeb instance, and get back a sign-consistent variant × phenotype β-matrix and its low-dimensional embeddings in one command — with the limitations of each step explicit enough that the matrix can be cited responsibly in downstream analyses.
+          </p>
+          <p class="body-para">
+            The matrix and embeddings produced by this pipeline are the data foundation for two ongoing research directions: the UMich Medical School work on multi-phenotype prioritization, and the Dermatology Paradox Atlas — a systematic search for skin-disease pairs whose genetic similarity diverges from epidemiological co-occurrence. Neither of those would be possible if I had to rewrite the preprocessing for every new biobank. Beyond my own use, the pipeline is open-source under Apache-2.0 so other labs can build on the same matrix construction rather than reinventing it.
+          </p>
           <div class="project-callout">
             <div class="callout-eyebrow">Core architecture</div>
-            <h4>[ Architecture title. ]</h4>
-            <p>[ Technical description: schema normalization, allele orientation alignment, sign consistency. ]</p>
+            <h4>Four-Stage Pipeline: Download → Build → Embed → Analyze</h4>
+            <p>
+              Stage 1 (<code>1_download_phenotypes.py</code>) hits the PheWeb instance's <code>/api/phenotypes.json</code> endpoint to enumerate all available phenotypes, then downloads summary stats for each in parallel using a 10-worker <code>ThreadPoolExecutor</code>. Schema detection handles the column-naming inconsistencies between PheWeb deployments (<code>rsids</code> vs. <code>rsid</code>; <code>pval</code> vs. <code>p_value</code> vs. <code>p</code>). Stage 2 (<code>2_build_matrix.py</code>) intersects rsIDs across all successfully downloaded phenotypes to construct a dense matrix, then handles the critical allele-orientation step: for each phenotype other than the reference, it compares ref/alt allele orientation against the reference and either keeps β as-is, negates β when alleles are flipped, or sets to NA when alleles don't match either pattern (e.g., palindromic SNPs, multi-allelic variants). A p-value filter at 5e-5 retains only significant associations. Stage 3 (<code>3_create_embeddings.py</code>) applies truncated SVD at k=50 to produce variant and phenotype embeddings. Stage 4 (<code>4_analyze_similarity.py</code>) computes cosine similarity in embedding space and validates against known comorbidity structure.
+            </p>
             <div class="project-stats">
-              <div class="stat"><div class="v">—</div><div class="k">variants</div></div>
-              <div class="stat"><div class="v">—</div><div class="k">phenotypes</div></div>
-              <div class="stat"><div class="v">—</div><div class="k">sources</div></div>
+              <div class="stat"><div class="v">~1M × ~1.4K</div><div class="k">variant × phenotype matrix</div></div>
+              <div class="stat"><div class="v">50-dim</div><div class="k">truncated SVD embedding space</div></div>
+              <div class="stat"><div class="v">87%</div><div class="k">variance retained at k=50</div></div>
             </div>
           </div>
         </section>
 
         <section id="contribution" class="project-section reveal">
           <h3>My Contribution</h3>
-          <p class="lead-para">[ Headline of your contribution. ]</p>
-          <p class="body-para">[ Detail on what you built and owned. ]</p>
+          <p class="lead-para">
+            Sole engineer — designed the four-stage pipeline, implemented the allele-orientation logic, and built it for reuse across PheWeb instances.
+          </p>
+          <p class="body-para">
+            This is a one-person research engineering project — no co-author on the code. The most important design decision was treating the pipeline as infrastructure for other research rather than a one-shot script: config-driven for different biobanks, modular stages that can run independently, and a README that documents limitations rather than hides them. Several of those limitations are still open — they're listed in the README and in Lessons Learned below.
+          </p>
           <div class="project-callout">
             <h4>What I worked on</h4>
             <ul class="work-list">
-              <li>[ Parallel crawling across PheWeb instances ]</li>
-              <li>[ Schema normalization + allele orientation alignment ]</li>
-              <li>[ β-matrix construction (sign-consistent) ]</li>
-              <li>[ Truncated SVD for latent space ]</li>
-              <li>[ Validation against known comorbidity pairs ]</li>
+              <li><strong>Parallel data ingestion.</strong> Built the PheWeb API and download client with <code>ThreadPoolExecutor</code> for parallelism, gzip auto-detection (some endpoints serve plain TSV, others gzipped), and schema auto-detection across the column-naming variants different PheWeb deployments use.</li>
+              <li><strong>Sign-consistent matrix construction.</strong> Implemented the allele-orientation comparison: for each non-reference phenotype, check whether ref/alt matches or is flipped relative to the reference phenotype, then preserve β or negate β accordingly. This is the most subtle step in the pipeline — getting it wrong silently corrupts every downstream analysis. Documented unhandled cases (palindromic SNPs, multi-allelic sites) honestly in the README so users know where the matrix has known limitations.</li>
+              <li><strong>Matrix factorization and embeddings.</strong> Wrapped truncated SVD (scikit-learn) at k=50 to produce both variant and phenotype embeddings, with PCA-style variance-explained outputs for sanity-checking the dimensionality choice.</li>
+              <li><strong>Reusability and documentation.</strong> Made the pipeline config-driven so swapping PheWeb instances is a one-line edit, licensed under Apache-2.0, and wrote the README to explicitly call out preprocessing limitations rather than implying the matrix is clean. The pipeline currently handles MGI-BioVU; UKB-TOPMed and FinnGen are the next deployment targets.</li>
             </ul>
           </div>
         </section>
 
         <section id="achievements" class="project-section reveal">
           <h3>Key Achievements</h3>
-          <p class="lead-para">[ Headline outcome. ]</p>
-          <p class="body-para">[ Narrative on results. ]</p>
+          <p class="lead-para">
+            The infrastructure underneath two active research directions — Medical School multi-phenotype prioritization, and the Dermatology Paradox Atlas.
+          </p>
+          <p class="body-para">
+            The matrix and embeddings produced by this pipeline are what made it possible to validate against 200+ known comorbidity pairs and confirm the embedding space captures real biological structure rather than noise. More importantly, it's the prerequisite for the research directions that follow: the Dermatology Paradox Atlas proposal (a sign-aware audit of skin-disease pleiotropy I'm writing with Dr. Lam Tsoi's group at UMich) and the SNU network propagation work (which uses embeddings like these as informed seed sets) both depend on having a defensible variant-phenotype matrix in the first place. Building it once, carefully, was the unlock.
+          </p>
           <div class="project-tiles">
-            <div class="tile"><div class="v">—</div><div class="k">metric one</div></div>
-            <div class="tile"><div class="v">—</div><div class="k">metric two</div></div>
-            <div class="tile"><div class="v">—</div><div class="k">metric three</div></div>
+            <div class="tile"><div class="v">200+</div><div class="k">known comorbidity pairs validated against</div></div>
+            <div class="tile"><div class="v">4</div><div class="k">configurable pipeline stages</div></div>
+            <div class="tile"><div class="v">Apache-2.0</div><div class="k">open-source license</div></div>
           </div>
         </section>
 
         <section id="lessons" class="project-section reveal">
           <h3>Lessons Learned</h3>
-          <p class="lead-para">[ The single biggest takeaway. ]</p>
-          <p class="body-para">[ What worked, what didn't. ]</p>
+          <p class="lead-para">
+            The two unglamorous decisions — how to handle missing data and how to handle allele orientation — decide whether the matrix is research-grade or research-garbage. Most of the engineering effort went into them, and most of the open work still left is in them.
+          </p>
+          <p class="body-para">
+            <strong>What worked:</strong> writing the allele-orientation logic with explicit, named cases (<em>match / flip / mismatch → NA</em>) rather than collapsing them into a single transformation. The first version conflated cases and produced sign errors in ~5% of variants before I rewrote it. Naming each case explicitly made the failure modes legible.
+          </p>
+          <p class="body-para">
+            <strong>What didn't:</strong> the current p-value threshold (5e-5) is hard-coded as a default rather than tested against a sensitivity sweep. I know it matters — different thresholds will produce different embedding structures — but I didn't yet have the apparatus to compare embeddings across thresholds rigorously. The "TBD" annotations still in the README are honest about this gap.
+          </p>
+          <p class="body-para">
+            <strong>What I'd do differently:</strong> I'd build the sensitivity-analysis harness alongside the core pipeline, not after. Specifically, I'd parameterize the threshold and add a comparison step that quantifies how much the downstream embedding cosine-similarity ranking changes when the threshold moves. That's the same principle as building an evaluation harness before tuning a model.
+          </p>
         </section>
 
         <section id="future" class="project-section reveal">
           <h3>Where It's Going</h3>
-          <p class="lead-para">[ Next steps. ]</p>
-          <p class="body-para">[ Longer-term direction. ]</p>
+          <p class="lead-para">
+            Three concrete pipeline-hardening priorities are next:
+          </p>
+          <ul class="work-list">
+            <li><strong>NaN-aware matrix factorization.</strong> Replace the implicit zero-imputation in SVD with softImpute (Mazumder/Hastie) or iterative SVD with missingness — current zero-imputation conflates "no signal" with "p ≥ threshold," which silently biases the embedding.</li>
+            <li><strong>Palindromic SNP handling.</strong> A/T and C/G strand-ambiguous variants are currently dropped to NA when they appear flipped; the cleaner solution is to either exclude them upfront or use allele-frequency matching (the convention used in MungeSumstats and LDpred2).</li>
+            <li><strong>P-value threshold sensitivity sweep.</strong> Run the full pipeline at 5e-5, 5e-6, and 5e-8 thresholds and quantify how the downstream embeddings change. Justify whichever threshold makes it into the published matrix.</li>
+          </ul>
+          <p class="body-para">
+            Three larger extensions are in scope: (1) cross-biobank deployment to UKB-TOPMed and FinnGen for the same dermatology comorbidities, to test whether the embedding structure transfers across populations; (2) integration into the Dermatology Paradox Atlas as the underlying matrix; (3) submission of the pipeline as a methods paper alongside the Atlas, since the reusable matrix-construction tooling is itself a contribution to the PheWAS community.
+          </p>
         </section>
 
         <section id="links" class="project-section reveal">
@@ -182,7 +232,7 @@
 
         <div style="display: flex; justify-content: space-between; padding: 40px 0 0; border-top: 1px solid var(--line); margin-top: 40px;">
           <a href="korean-price-monitor.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">← Prev: Korean Price Monitor</a>
-          <a href="cdc-event-pipeline.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">Next: CDC Event Pipeline →</a>
+          <a href="cdc-event-pipeline.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">Next: CDC Event Sourcing Pipeline →</a>
         </div>
       </main>
     </div>

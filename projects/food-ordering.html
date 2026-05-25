@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Real-Time Food Ordering · Dongeun Kim</title>
+    <title>Kyareureuk Party · Dongeun Kim</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
@@ -34,11 +34,11 @@
     <div class="layout">
       <aside class="sidebar">
         <div class="sidebar-header">
-          <div class="section-tag" style="margin-bottom: 14px;">008 · SWE</div>
-          <h1 class="sidebar-name" style="font-size: 30px;">food_ordering<br/>_platform.tsx</h1>
-          <div class="sidebar-role">Full-stack engineering</div>
+          <div class="section-tag" style="margin-bottom: 14px;">009 · SWE</div>
+          <h1 class="sidebar-name" style="font-size: 30px;">Kyareureuk<br/>Party<br/>꺄르륵 파티</h1>
+          <div class="sidebar-role">Full-stack · client work</div>
           <div class="sidebar-tagline">
-            Real-time ordering system for pop-up events, built from scratch.
+            A private event-coordination platform built for a single Seoul bar's recurring matchmaking nights.
           </div>
         </div>
 
@@ -56,63 +56,55 @@
 
       <main class="content">
         <div class="project-hero reveal">
-          <h2 class="project-title">Real-Time Food Ordering</h2>
+          <h2 class="project-title">Kyareureuk Party <span style="font-weight: 400; opacity: 0.7;">(꺄르륵 파티)</span></h2>
           <p class="project-tagline">
-            From order to kitchen to pickup, live. Built solo for pop-up events that couldn't afford a 5-figure POS.
+            A private event-coordination platform built for a single Seoul bar's recurring matchmaking nights.
           </p>
           <div class="project-meta-row">
-            <div class="col"><span class="label">Timeline</span><span class="value">2024</span></div>
-            <div class="col"><span class="label">Company</span><span class="value">Pop-up event</span></div>
-            <div class="col"><span class="label">Role</span><span class="value">Full-stack Engineer</span></div>
-            <div class="col"><span class="label">Stack</span><span class="value">Next.js · Flask · Stripe · Socket.io</span></div>
+            <div class="col"><span class="label">Timeline</span><span class="value">Dec 2025 – Feb 2026</span></div>
+            <div class="col"><span class="label">Company</span><span class="value">Yeonrim Bar (client)</span></div>
+            <div class="col"><span class="label">Role</span><span class="value">Sole full-stack engineer</span></div>
+            <div class="col"><span class="label">Stack</span><span class="value">Next.js · TypeScript · Firebase · Kakao OAuth</span></div>
           </div>
         </div>
 
         <section id="overview" class="project-section reveal">
           <h3>Overview</h3>
           <p class="lead-para">
-            150+ concurrent users. 3,000+ orders. 600+ live Stripe transactions. Zero downtime.
+            A mobile-first web platform that handles the full lifecycle of a small recurring private event — invitation, gender-balanced registration, payment, admin approval, and real-time roster updates — built for a specific bar in Seoul and used roughly twice a week.
           </p>
           <p class="body-para">
-            A full-stack ordering platform built from scratch for pop-up food events — Next.js
-            front-end, Flask back-end, Stripe for payments, Socket.io for real-time order status
-            from kitchen to customer. Cut manual labor on the operations side ~50%.
+            <mark class="hl">Yeonrim</mark> is a small bar in Seoul that hosts private matchmaking parties — guests pay to attend an evening designed around meeting other people, with a gender-balanced roster and an admin-curated guest list. The bar was running this entirely manually: invitations through KakaoTalk groups, payment tracking in a notebook, gender balance enforced by counting messages, and questionnaire responses collected on paper. Kyareureuk Party is the platform that replaced all of that. It handles invitation-only access (single shared bar password), Kakao OAuth onboarding, a structured questionnaire for participant context, gender-quota tracking with real-time roster updates via Firestore, a manual bank-transfer payment workflow with admin verification, and an admin dashboard for the bar to approve or reject registrants. The platform has been actively used for roughly two events per week, averaging ~10 successful registrations per session.
           </p>
         </section>
 
         <section id="stack" class="project-section reveal">
           <h3>Technologies</h3>
           <div class="skill-group">
-            <div class="skill-group-name">front-end</div>
+            <div class="skill-group-name">frontend</div>
             <div class="pills">
-              <span class="pill">Next.js</span>
-              <span class="pill">React</span>
+              <span class="pill">Next.js 16 (App Router)</span>
+              <span class="pill">React 19</span>
               <span class="pill">TypeScript</span>
+              <span class="pill">Tailwind CSS 4</span>
+              <span class="pill">Radix UI</span>
             </div>
           </div>
           <div class="skill-group">
-            <div class="skill-group-name">back-end</div>
+            <div class="skill-group-name">backend &amp; data</div>
             <div class="pills">
-              <span class="pill">Flask</span>
-              <span class="pill">Python</span>
+              <span class="pill">Firebase Authentication</span>
+              <span class="pill">Firestore (real-time listeners)</span>
+              <span class="pill">Next.js API routes</span>
+              <span class="pill">Firestore security rules</span>
             </div>
           </div>
           <div class="skill-group">
-            <div class="skill-group-name">payments</div>
+            <div class="skill-group-name">auth &amp; payments</div>
             <div class="pills">
-              <span class="pill">Stripe</span>
-            </div>
-          </div>
-          <div class="skill-group">
-            <div class="skill-group-name">real-time</div>
-            <div class="pills">
-              <span class="pill">Socket.io</span>
-            </div>
-          </div>
-          <div class="skill-group">
-            <div class="skill-group-name">database</div>
-            <div class="pills">
-              <span class="pill">PostgreSQL</span>
+              <span class="pill">Kakao OAuth</span>
+              <span class="pill">manual bank-transfer + admin verify</span>
+              <span class="pill">(TossPayments attempted, rolled back)</span>
             </div>
           </div>
           <div class="skill-group">
@@ -126,21 +118,17 @@
         <section id="problem" class="project-section reveal">
           <h3>The Problem</h3>
           <p class="lead-para">
-            Pop-up events can't afford an enterprise POS. So they run on paper tickets and chaos.
+            Yeonrim was running its events entirely manually — KakaoTalk groups, paper questionnaires, gender balance enforced by counting messages. It didn't scale, and it made the staff the bottleneck.
           </p>
           <p class="body-para">
-            Existing POS systems start at hundreds of dollars per terminal per month and assume a
-            permanent storefront. Pop-ups are 1–3 day events with 100+ peak-hour orders. Most
-            run on paper tickets, runners shouting between counter and kitchen, and a single
-            Square reader — which means lost orders, slow service, and money left on the table.
+            The bar's matchmaking events have a few hard constraints that make manual coordination brittle. Gender quotas need to be enforced in real time, because the event's premise depends on roughly balanced attendance. Payment needs to be confirmed before the spot is held, but bank-transfer reconciliation by hand is slow. The bar's admin has to approve registrants individually (the events depend on trust), but that approval step needs context — who is this person, what did they say in the questionnaire — that was sitting in different chat threads. Before this platform, the bar staff was effectively a single-threaded human queue handling all of it. The platform turns that into something the bar can run on the side while doing everything else they do.
           </p>
           <div class="hmw-callout">
             <span class="bulb">💡</span>
             <div class="hmw-body">
               <div class="hmw-label">How might we</div>
               <div class="hmw-q">
-                build a real-time ordering and kitchen-coordination system that stands up in a
-                day, costs near-zero, and handles a 150-person rush without losing a ticket?
+                replace a fully manual event-coordination workflow with a small, mobile-first platform that the bar can actually run themselves — including real-time gender balance, payment verification, admin approval, and onboarding — without overshooting into something more complex than the bar needs?
               </div>
             </div>
           </div>
@@ -149,26 +137,21 @@
         <section id="vision" class="project-section reveal">
           <h3>Product Vision</h3>
           <p class="lead-para">
-            A self-serve POS for events that exist for 48 hours.
+            A platform a single small business can operate without engineering support — one bar admin, mobile-first because every guest is on their phone, opinionated about the workflow so the staff doesn't have to make process decisions each event.
           </p>
           <p class="body-para">
-            Order from your phone. Pay with Apple Pay. See your spot in the queue in real time.
-            The kitchen sees the same queue, marks orders ready, and customers get pinged
-            automatically. No paper, no shouting, no lost tickets.
+            The platform's actual users are two distinct populations with very different needs. The bar admin needs an at-a-glance view of who's registered, who's paid, who's been approved, and what the current gender balance is — and a one-click action to approve or reject each registrant. Guests need a mobile-first flow that's fast and doesn't require account creation friction (Kakao OAuth covers this in one tap). Both sides need real-time state so the admin's approval shows up on the guest's screen immediately. The system has handled roughly two events per week since launch, averaging ~10 successful registrations per session — small numbers, but real users on real events.
           </p>
           <div class="project-callout">
             <div class="callout-eyebrow">Core architecture</div>
-            <h4>Stateless front-end, Socket.io-backed queue, Stripe-managed payments</h4>
+            <h4>Mobile-first Next.js App with Firebase Real-time State and Admin-Approval Workflow</h4>
             <p>
-              Next.js serves the ordering UI and the kitchen display. Flask handles order
-              creation and payment confirmation via Stripe webhooks. Socket.io broadcasts queue
-              updates so every connected client (customer, kitchen, counter) sees the same state
-              within 100ms. Postgres is the source of truth; Socket.io is the delivery channel.
+              The frontend is a Next.js 16 App Router application written in TypeScript, mobile-first via Tailwind, with Radix UI primitives for accessibility on the components that matter (forms, dialogs, status indicators). The backend layer is Firebase Authentication + Firestore for storage, with Firestore security rules enforcing access control. The data flow is event-driven through Firestore real-time listeners: when the admin approves a registrant, the guest's status updates immediately on their device without a refresh. Authentication is Kakao OAuth (the dominant social login in Korea), handled through Next.js API routes for the OAuth code exchange. The payment workflow is manual bank-transfer with admin verification — initially a TossPayments integration was attempted, but it added more complexity than the bar needed for the volume, and the manual flow with admin verification turned out to be the right fit. Route protection enforces flow ordering (you have to complete the questionnaire before the payment page, etc.) through session-based state checks, not bypassable through URL manipulation.
             </p>
             <div class="project-stats">
-              <div class="stat"><div class="v">150+</div><div class="k">concurrent users</div></div>
-              <div class="stat"><div class="v">3,000+</div><div class="k">orders processed</div></div>
-              <div class="stat"><div class="v">600+</div><div class="k">Stripe transactions</div></div>
+              <div class="stat"><div class="v">~10 / session</div><div class="k">average successful registrations</div></div>
+              <div class="stat"><div class="v">~2 / week</div><div class="k">events the platform runs</div></div>
+              <div class="stat"><div class="v">5</div><div class="k">workflow stages (auth → questionnaire → quota → payment → approval)</div></div>
             </div>
           </div>
         </section>
@@ -176,70 +159,78 @@
         <section id="contribution" class="project-section reveal">
           <h3>My Contribution</h3>
           <p class="lead-para">
-            Built solo end-to-end, then ran ops at the event itself.
+            Sole full-stack engineer — designed the workflow with the bar, built the entire platform end-to-end, and iterated based on what actually worked at live events.
           </p>
           <p class="body-para">
-            I wrote every line — front-end, back-end, infra, Stripe integration, the kitchen
-            display — and was on-site during the rush to debug live. The system held up; the
-            kitchen freed a runner; ~50% of manual labor on the operations side went away.
+            This was a one-person build from sketches (the ideation jpeg is still in the repo) through deployed product. The most useful constraint was knowing the actual users: one admin, ~10 guests per event, mobile-only. That ruled out a lot of architectural over-engineering and pointed me toward decisions that fit the scale — Firebase over a custom backend, manual bank transfer over a payment processor, Radix primitives over a custom design system. Most of the engineering work was getting the small details right (race conditions on quota checks, OAuth state management, admin-approval visibility), not building something architecturally novel.
           </p>
           <div class="project-callout">
             <h4>What I worked on</h4>
             <ul class="work-list">
-              <li>Next.js customer-facing order flow with Stripe Apple Pay / card integration</li>
-              <li>Flask order service with webhook reconciliation against Stripe payment intents</li>
-              <li>Socket.io queue layer broadcasting order-status updates to all connected clients</li>
-              <li>Kitchen display app — separate Next.js view consuming the same socket stream</li>
-              <li>Live ops on event day — monitoring, hot-fixing edge cases, supporting the team</li>
+              <li><strong>Full-stack architecture.</strong> Next.js App Router structure, Firebase setup, Firestore data modeling for participant state (<code>registered → approved → paid → confirmed</code>) and event quota tracking, security rules to restrict admin endpoints.</li>
+              <li><strong>Auth and flow protection.</strong> Kakao OAuth integration via Next.js API routes, session-based state management, route guards that enforce flow ordering so guests can't skip past required steps by editing URLs.</li>
+              <li><strong>Real-time admin dashboard.</strong> Live participant list with status indicators, one-click approval/rejection actions, gender-quota counter that updates as registrations come in, payment-verification interface for the manual bank-transfer flow.</li>
+              <li><strong>Payment workflow iteration.</strong> Started with TossPayments (Korea's standard payment SDK), pivoted to manual bank transfer with admin verification after the integration complexity outweighed the benefit for the bar's actual volume. The pivot itself was the lesson — knowing when to drop a "more sophisticated" solution that fits the use case worse.</li>
             </ul>
           </div>
         </section>
 
         <section id="achievements" class="project-section reveal">
           <h3>Key Achievements</h3>
-          <p class="lead-para">[ Headline outcome — the one-line "this is what it delivered." ]</p>
-          <p class="body-para">[ Slightly longer narrative on the most meaningful results. ]</p>
+          <p class="lead-para">
+            A live platform handling real registrations for a real business — not a portfolio piece pretending to be a product.
+          </p>
+          <p class="body-para">
+            The strongest signal here isn't a technical metric; it's that the platform has been in use since launch, running events the bar's staff would otherwise coordinate manually. The platform handles end-to-end flow for ~10 registrants per event across roughly two events per week, with Kakao OAuth, real-time admin approval, and bank-transfer verification all working together. The bar admin uses the dashboard live during the event window; guests use the mobile flow on their phones. None of this is at "real-time-streaming-data-engineering" scale — but it's a small product, deployed, that someone other than the engineer uses every week to run their actual business.
+          </p>
           <div class="project-tiles">
-            <div class="tile"><div class="v">—</div><div class="k">metric one</div></div>
-            <div class="tile"><div class="v">—</div><div class="k">metric two</div></div>
-            <div class="tile"><div class="v">—</div><div class="k">metric three</div></div>
+            <div class="tile"><div class="v">~10 / session</div><div class="k">successful registrations per event</div></div>
+            <div class="tile"><div class="v">2× / week</div><div class="k">event frequency platform supports</div></div>
+            <div class="tile"><div class="v">Live</div><div class="k">production deployment on yeonrim.space</div></div>
           </div>
         </section>
 
         <section id="lessons" class="project-section reveal">
           <h3>Lessons Learned</h3>
-          <p class="lead-para">[ The single biggest takeaway from this project. ]</p>
-          <p class="body-para">[ What worked, what didn't, what you'd do differently next time. ]</p>
+          <p class="lead-para">
+            The right architecture for a 10-user system is not a smaller version of the right architecture for a 10,000-user system. Picking simpler tools (Firebase over a custom backend, manual bank transfer over TossPayments) wasn't a compromise — it was the correct fit.
+          </p>
+          <p class="body-para">
+            <strong>What worked:</strong> committing to mobile-first from the very first sketch. Every guest is on their phone — there's no "desktop user" segment to consider — and designing the layouts mobile-first meant I never had to retrofit responsiveness later. Tailwind + Radix made this fast.
+          </p>
+          <p class="body-para">
+            <strong>What didn't:</strong> the initial TossPayments integration. I assumed the bar would want a real payment processor; the bar actually wanted less infrastructure to manage, not more. The integration was building toward a complexity level the use case didn't justify. I rolled it back and built the manual bank-transfer workflow with admin verification, which fit the scale better and shipped sooner.
+          </p>
+          <p class="body-para">
+            <strong>What I'd do differently:</strong> I'd validate the workflow with the bar admin in a paper prototype or low-fidelity Figma before writing the auth code. Several iterations on the admin dashboard happened only because I'd built features the admin didn't actually use the way I'd expected. Walking through the user flow with them before any code would have caught those misalignments earlier.
+          </p>
         </section>
 
         <section id="future" class="project-section reveal">
           <h3>Where It's Going</h3>
           <p class="lead-para">
-            From one-off event tool to repeatable pop-up platform.
+            The platform is in stable use by the bar with current features sufficient for their workload. Two open extensions if the bar's needs grow:
           </p>
+          <ul class="work-list">
+            <li><strong>Automated payment verification via TossPayments callback.</strong> The integration I previously rolled back, now justified if event volume grows.</li>
+            <li><strong>Returning-guest profile system.</strong> So participants don't have to re-enter the questionnaire for every event.</li>
+          </ul>
           <p class="body-para">
-            Next: extract the event-specific config into a tenant model so a new pop-up can spin
-            up in 5 minutes. Add inventory cutoffs (so items disappear when sold out), SMS
-            pickup notifications, and a post-event sales report.
+            The honest answer is this platform is unlikely to scale beyond Yeonrim — it's deliberately scoped to one venue. But the pattern (small mobile-first platform with admin-approval workflow and OAuth + Firestore real-time state) generalizes to a wider class of small-business event-coordination problems, and a future version could be templated for other small venues running similar event formats.
           </p>
-          <div class="project-tiles">
-            <div class="tile"><div class="v">Multi-tenant</div><div class="k">5-min event setup</div></div>
-            <div class="tile"><div class="v">SMS</div><div class="k">pickup notifications</div></div>
-            <div class="tile"><div class="v">Reports</div><div class="k">post-event analytics</div></div>
-          </div>
         </section>
 
         <section id="links" class="project-section reveal">
           <h3>Links</h3>
           <div class="project-cta">
             <a href="https://github.com/dkim1112/Party-Organizer" class="cta-btn" target="_blank" rel="noreferrer">GitHub →</a>
-            <a href="#" class="cta-btn outline">Demo →</a>
+            <a href="https://yeonrim.space" class="cta-btn outline" target="_blank" rel="noreferrer">Live: yeonrim.space →</a>
           </div>
         </section>
 
         <div style="display: flex; justify-content: space-between; padding: 40px 0 0; border-top: 1px solid var(--line); margin-top: 40px;">
-          <a href="cdc-event-pipeline.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">← Prev: CDC Event Pipeline</a>
-          <a href="subway-route-optimization.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">Next: Subway Route Optimization →</a>
+          <a href="quantabot.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">← Prev: Quanta</a>
+          <a href="food-ordering-web.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">Next: Pocha Ordering Platform →</a>
         </div>
       </main>
     </div>

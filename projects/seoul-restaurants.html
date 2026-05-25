@@ -7,8 +7,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../assets/styles.css" />
     <script src="../assets/app.js" defer></script>
   </head>
@@ -34,11 +40,14 @@
     <div class="layout">
       <aside class="sidebar">
         <div class="sidebar-header">
-          <div class="section-tag" style="margin-bottom: 14px;">002 · DA</div>
-          <h1 class="sidebar-name" style="font-size: 30px;">seoul_restau<br/>rants.ipynb</h1>
+          <div class="section-tag" style="margin-bottom: 14px">001 · DA</div>
+          <h1 class="sidebar-name" style="font-size: 30px">
+            seoul_restau<br />rants.ipynb
+          </h1>
           <div class="sidebar-role">Data analytics</div>
           <div class="sidebar-tagline">
-            Survival analysis of 528K Seoul restaurant licenses across 25 districts.
+            Survival analysis of 528K Seoul restaurant licenses across 25
+            districts.
           </div>
         </div>
 
@@ -58,26 +67,47 @@
         <div class="project-hero reveal">
           <h2 class="project-title">Seoul Restaurant Survival</h2>
           <p class="project-tagline">
-            Of 528,000+ Seoul restaurants, only 35% reach 10 years. Where you open matters more than what you cook.
+            Survival analysis on 528K Seoul restaurant license records — how
+            long restaurants actually live, and what kills them.
           </p>
           <div class="project-meta-row">
-            <div class="col"><span class="label">Timeline</span><span class="value">2024</span></div>
-            <div class="col"><span class="label">Company</span><span class="value">Independent</span></div>
-            <div class="col"><span class="label">Role</span><span class="value">Analyst</span></div>
-            <div class="col"><span class="label">Stack</span><span class="value">Python · pandas · lifelines · Matplotlib</span></div>
+            <div class="col">
+              <span class="label">Timeline</span
+              ><span class="value">Apr - May 2026</span>
+            </div>
+            <div class="col">
+              <span class="label">Company</span
+              ><span class="value">Independent</span>
+            </div>
+            <div class="col">
+              <span class="label">Role</span><span class="value">Analyst</span>
+            </div>
+            <div class="col">
+              <span class="label">Stack</span
+              ><span class="value">Python · pandas · Jupyter</span>
+            </div>
           </div>
         </div>
 
         <section id="overview" class="project-section reveal">
           <h3>Overview</h3>
           <p class="lead-para">
-            Median Seoul restaurant lifespan is 6.1 years. Jongno-gu reaches 10. Yangcheon-gu hits 4.7.
+            Half of Seoul's restaurants close within 6.1 years — but the naive
+            "closure rate" everyone cites is statistically wrong.
           </p>
           <p class="body-para">
-            I pulled <mark class="hl">528,000+</mark> restaurant license records from Seoul's
-            open-data portal and treated business lifespan as a survival problem. Kaplan-Meier
-            curves, log-rank tests, and Cox proportional hazards regression isolated which
-            covariates actually predict survival — and the answer wasn't cuisine.
+            Most reporting on Seoul restaurant survival uses simple closure
+            rates: "X% of restaurants fail." That number ignores restaurants
+            still open (right-censoring) and treats a 1-year-old shop the same
+            as a 10-year-old one. This project applies survival analysis
+            (Kaplan-Meier, log-rank tests, Cox proportional hazards regression)
+            to 528K restaurant license records from all 25 Seoul districts,
+            spanning 1980 to 2026. The corrected estimate — median survival of
+            6.1 years — is more accurate than the naive "77% failure" framing,
+            and the analysis surfaces three findings that the naive rate hides:
+            where you open matters more than what you cook, the COVID-era cohort
+            is closing measurably faster, and restaurants that survive the first
+            three years tend to persist.
           </p>
         </section>
 
@@ -92,9 +122,10 @@
           <div class="skill-group">
             <div class="skill-group-name">analysis</div>
             <div class="pills">
-              <span class="pill">pandas</span>
-              <span class="pill">lifelines</span>
-              <span class="pill">NumPy</span>
+              <span class="pill">kaplan-meier estimator</span>
+              <span class="pill">log-rank tests</span>
+              <span class="pill">Cox proportional hazards regression</span>
+              <span class="pill">Cohort analysis</span>
             </div>
           </div>
           <div class="skill-group">
@@ -102,6 +133,7 @@
             <div class="pills">
               <span class="pill">Matplotlib</span>
               <span class="pill">seaborn</span>
+              <span class="pill">Jupyter</span>
             </div>
           </div>
           <div class="skill-group">
@@ -115,48 +147,84 @@
         <section id="problem" class="project-section reveal">
           <h3>The Problem</h3>
           <p class="lead-para">
-            "Don't open a Korean place in Gangnam, the market's saturated" — except is it?
+            "What percentage of restaurants fail?" is the wrong question.
           </p>
           <p class="body-para">
-            Restaurant survival advice in Korea is mostly folklore: cuisine choice, neighborhood
-            buzz, foot traffic. None of it is grounded in a long-tail dataset of actual
-            openings and closures. Without survival analysis (which handles right-censoring
-            properly), you can't separate "still open" from "lived a long life."
+            Public reporting on Seoul restaurant survival treats it like a
+            binary: a store either failed or didn't. That framing has two
+            specific statistical problems. First, it ignores right-censoring —
+            121K of the 528K restaurants in the dataset are still operating, and
+            we don't know how long they'll last. Counting them as "succeeded"
+            inflates the success rate; counting them as "failed" deflates it.
+            Second, treating a 1-year-old restaurant the same as a 10-year-old
+            one ignores exposure time entirely. The right question isn't "how
+            many failed?" — it's "at any given point in time, what's the
+            probability a restaurant is still open?" That's a survival analysis
+            question, not a closure-rate question.
           </p>
           <div class="hmw-callout">
             <span class="bulb">💡</span>
             <div class="hmw-body">
               <div class="hmw-label">How might we</div>
               <div class="hmw-q">
-                treat 528K Seoul restaurants as a survival cohort — and rank what actually
-                predicts longevity, with statistical rigor instead of intuition?
+                estimate restaurant survival in Seoul using the right
+                statistical tool — one that handles right-censoring and exposure
+                correctly — and surface what actually drives the differences?
               </div>
             </div>
           </div>
         </section>
 
         <section id="vision" class="project-section reveal">
-          <h3>Product Vision</h3>
+          <h3>Analytical Goal</h3>
           <p class="lead-para">
-            A district-and-cuisine survival explorer for anyone deciding where to open.
+            An honest, reproducible answer to "how long do Seoul restaurants
+            survive, and what factors actually matter?" — backed by methods
+            strong enough to defend against statisticians, not just
+            impressive-sounding to a casual reader.
           </p>
           <p class="body-para">
-            The end state is a public tool: pick a district + cuisine combination, see the
-            Kaplan-Meier curve, the median life, and how the hazard compares to alternatives.
+            The goal wasn't to build a dashboard or a predictive product. It was
+            to do the analysis correctly, communicate it clearly, and document
+            the decisions transparently enough that someone else could replicate
+            or challenge them. The deliverable is a pair of Jupyter notebooks
+            plus an Architecture Decision Record explaining every methodological
+            choice — why Kaplan-Meier over closure rates, why this dataset over
+            alternatives, why a 100K sample for Cox PH instead of the full 528K.
           </p>
           <div class="project-callout">
             <div class="callout-eyebrow">Core architecture</div>
-            <h4>Censoring-aware survival analysis on 528K licenses</h4>
+            <h4>
+              Kaplan-Meier + Cox PH with Cohort Stratification on 528K License
+              Records
+            </h4>
             <p>
-              Records are right-censored at the dataset cutoff (active restaurants). The pipeline
-              fits Kaplan-Meier per stratum (district × cuisine), runs log-rank tests for
-              between-group differences, and uses a Cox PH model to quantify hazard ratios while
-              controlling for confounders.
+              Raw data is the 행정안전부 일반음식점 (Ministry of Interior and
+              Safety general restaurant) license dataset from data.go.kr — 2.27M
+              nationwide records, filtered to 528K Seoul records after cleaning.
+              Kaplan-Meier estimators produce unbiased survival curves under
+              right-censoring; log-rank tests compare curves across districts
+              (n=25) and business types (n=15). Cox proportional hazards
+              regression quantifies the simultaneous effect of location and
+              cuisine on closure risk, run on a 100K random sample for memory
+              tractability (sufficient for stable estimates; full 528K caused
+              OOM issues). A cohort analysis splits restaurants by opening
+              decade to isolate the COVID effect — a finding I didn't set out to
+              look for but emerged from the data.
             </p>
             <div class="project-stats">
-              <div class="stat"><div class="v">528K+</div><div class="k">license records</div></div>
-              <div class="stat"><div class="v">25</div><div class="k">districts stratified</div></div>
-              <div class="stat"><div class="v">6.1 yr</div><div class="k">median lifespan</div></div>
+              <div class="stat">
+                <div class="v">528K+</div>
+                <div class="k">license records</div>
+              </div>
+              <div class="stat">
+                <div class="v">25</div>
+                <div class="k">districts stratified</div>
+              </div>
+              <div class="stat">
+                <div class="v">6.1 yr</div>
+                <div class="k">median lifespan</div>
+              </div>
             </div>
           </div>
         </section>
@@ -164,72 +232,176 @@
         <section id="contribution" class="project-section reveal">
           <h3>My Contribution</h3>
           <p class="lead-para">
-            End-to-end: data acquisition through statistical write-up.
+            Sole analyst — chose the methodology, found and validated the
+            dataset, ran the analysis, and documented every decision.
           </p>
           <p class="body-para">
-            Built the entire pipeline solo — from pulling raw open-data CSVs to fitting models
-            to producing the figures. The interesting work wasn't running the model; it was
-            cleaning license records that had inconsistent district codes, then designing
-            comparisons that actually answered the "where should I open" question.
+            I scoped the question, made the call to use survival analysis
+            instead of closure-rate framing, sourced the dataset (pivoting from
+            골목상권 OA-15577 after discovering it was aggregate-only), ran the
+            cleaning and statistical work, and authored the README, ADRs, and
+            journal. There's no team to credit — the project is end-to-end mine.
           </p>
           <div class="project-callout">
             <h4>What I worked on</h4>
             <ul class="work-list">
-              <li>Cleaning 528K license records with inconsistent district codes and date formats</li>
-              <li>Stratified Kaplan-Meier fits across district × cuisine combinations</li>
-              <li>Pairwise log-rank tests with Bonferroni correction across 25 districts</li>
-              <li>Cox proportional hazards regression controlling for cuisine, size, and opening year</li>
-              <li>Matplotlib visualizations of survival curves with confidence bands</li>
+              <li>
+                Methodology selection. Chose Kaplan-Meier + Cox PH over
+                closure-rate reporting after recognizing right-censoring bias
+                (121K still-open restaurants). Documented this as the first
+                Architecture Decision Record.
+              </li>
+              <li>
+                Data sourcing and ingestion. Started with 골목상권 (OA-15577)
+                before discovering it was aggregate-level. Pivoted to the
+                행정안전부 license dataset (658MB raw CSV) — the only public
+                source with store-level open/close dates. Cleaned 2.27M
+                nationwide records down to 528K Seoul records with quality
+                checks.
+              </li>
+              <li>
+                Statistical analysis. Built KM curves across districts, business
+                types, and opening cohorts; ran log-rank tests and Cox PH
+                regression. Used a 100K random sample for Cox PH after the full
+                dataset caused memory issues — verified sample size produced
+                stable estimates.
+              </li>
+              <li>
+                Communication and documentation. Wrote the README, four
+                ADR-style markdown files (CONTEXT, DECISIONS, JOURNAL, ROADMAP),
+                and a Limitations section listing what the data can't tell us —
+                owner experience, rent, revenue, competition density. The
+                limitations section was deliberate: the right way to defend the
+                analysis is to be explicit about what it doesn't cover.
+              </li>
             </ul>
           </div>
         </section>
 
         <section id="achievements" class="project-section reveal">
           <h3>Key Achievements</h3>
-          <p class="lead-para">[ Headline outcome — the one-line "this is what it delivered." ]</p>
-          <p class="body-para">[ Slightly longer narrative on the most meaningful results. ]</p>
+          <p class="lead-para">
+            A methodologically defensible answer to a question that's usually
+            answered wrong, with three findings that wouldn't appear in a naive
+            closure-rate analysis.
+          </p>
+          <p class="body-para">
+            The headline result — median 6.1-year survival — is more accurate
+            than the naive "77% closure rate" framing, but the more interesting
+            findings are downstream. Location effects are large and significant:
+            Jongno-gu restaurants have a 37% lower closure risk (HR = 0.63) than
+            the baseline, while Yangcheon-gu has 22% higher (HR = 1.22), and the
+            median-survival gap across districts (5.3 years) exceeds the gap
+            across cuisine types (4.6 years). The COVID cohort is closing
+            measurably faster: 2020–2024 entrants have a 3-year survival of
+            59.3% vs. 70.6% for the 2010–2014 cohort — an 11-percentage-point
+            drop that didn't appear in any of the headlines I'd read. Survival
+            is front-loaded: restaurants that make it past three years tend to
+            persist, suggesting the early period is where most of the risk
+            lives.
+          </p>
           <div class="project-tiles">
-            <div class="tile"><div class="v">—</div><div class="k">metric one</div></div>
-            <div class="tile"><div class="v">—</div><div class="k">metric two</div></div>
-            <div class="tile"><div class="v">—</div><div class="k">metric three</div></div>
+            <div class="tile">
+              <div class="v">2.13x</div>
+              <div class="k">survival gap across districts</div>
+            </div>
+            <div class="tile">
+              <div class="v">-11pp</div>
+              <div class="k">COVID cohort survival drop</div>
+            </div>
+            <div class="tile">
+              <div class="v">121K</div>
+              <div class="k">still-open restaurants</div>
+            </div>
           </div>
         </section>
 
         <section id="lessons" class="project-section reveal">
           <h3>Lessons Learned</h3>
-          <p class="lead-para">[ The single biggest takeaway from this project. ]</p>
-          <p class="body-para">[ What worked, what didn't, what you'd do differently next time. ]</p>
+          <p class="lead-para">
+            Picking the right statistical tool before running anything is worth
+            more than any amount of clever modeling afterward.
+          </p>
+          <p class="body-para">
+            Survival analysis was the unlock. If I'd reported "% closed," I
+            would have stated a ~77% failure rate — which sounds dramatic and is
+            statistically wrong, because it ignores 121K restaurants still being
+            observed. The Kaplan-Meier estimate of 55.9% at five years is both
+            more accurate and more useful for anyone actually deciding whether
+            to open a restaurant. The lesson generalizes: choosing the right
+            tool for the right question is upstream of all the analytical work
+            that follows it. The data-sourcing pivot was the other one. I
+            planned to use 골목상권 (OA-15577) and didn't realize until I'd
+            downloaded it that it was aggregate-level data — counts of stores by
+            district, not individual store records. The 행정안전부 license
+            dataset was the correct source. The lesson: verify what's in a
+            dataset before designing an analysis around it. What I'd do
+            differently: I'd run the Cox PH on the full 528K dataset using
+            chunked or out-of-core methods rather than falling back to a 100K
+            random sample. The sample is statistically defensible, but it's a
+            workaround I'd want to remove if I revisited this.
+          </p>
         </section>
 
         <section id="future" class="project-section reveal">
           <h3>Where It's Going</h3>
           <p class="lead-para">
-            From a static notebook into an interactive survival explorer.
+            Forward Path: The analysis itself is complete and reproducible — the
+            next steps would be extending the scope rather than continuing the
+            current work.
           </p>
           <p class="body-para">
-            Next: a Streamlit front-end where users pick district + cuisine and get the curve.
-            Past that: extend the methodology to other Korean metros and to non-restaurant
-            small-business categories — the survival framework generalizes.
+            Long Path: Three natural extensions: (1) add covariates the license
+            data doesn't include — rent prices by district, foot traffic, KOSIS
+            economic indicators — to attack the Cox PH concordance of 0.55 (the
+            model explains some variance, but unmeasured factors still drive a
+            lot of survival); (2) extend to other cities or other small-business
+            categories to see whether the location-over-cuisine finding
+            generalizes; (3) time-varying covariates — restaurants opened pre-
+            and post-COVID could be modeled with shock periods explicitly,
+            rather than treated as static cohorts. That said, the project is
+            structured as a self-contained analytical study. None of these
+            extensions are committed work — they're directions someone (me or
+            someone else) could take if the question is worth pushing further.
           </p>
-          <div class="project-tiles">
-            <div class="tile"><div class="v">Interactive</div><div class="k">Streamlit explorer</div></div>
-            <div class="tile"><div class="v">Multi-city</div><div class="k">extend beyond Seoul</div></div>
-            <div class="tile"><div class="v">Generalize</div><div class="k">other SMB categories</div></div>
-          </div>
         </section>
 
         <section id="links" class="project-section reveal">
           <h3>Links</h3>
           <div class="project-cta">
-            <a href="https://github.com/dkim1112/Seoul-Restaurant-Survival-Analysis" class="cta-btn" target="_blank" rel="noreferrer">GitHub →</a>
+            <a
+              href="https://github.com/dkim1112/Seoul-Restaurant-Survival-Analysis"
+              class="cta-btn"
+              target="_blank"
+              rel="noreferrer"
+              >GitHub →</a
+            >
             <a href="#" class="cta-btn outline">Notebook →</a>
             <a href="#" class="cta-btn outline">Write-up →</a>
           </div>
         </section>
 
-        <div style="display: flex; justify-content: space-between; padding: 40px 0 0; border-top: 1px solid var(--line); margin-top: 40px;">
-          <a href="quantabot.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">← Prev: Quanta</a>
-          <a href="military-career-analysis.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">Next: Military Career Analysis →</a>
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            padding: 40px 0 0;
+            border-top: 1px solid var(--line);
+            margin-top: 40px;
+          "
+        >
+          <a
+            href="../projects.html"
+            class="ulink magnetic"
+            style="font-family: var(--mono); font-size: 12px"
+            >← All projects</a
+          >
+          <a
+            href="military-career-analysis.html"
+            class="ulink magnetic"
+            style="font-family: var(--mono); font-size: 12px"
+            >Next: Veterans and Career Trajectories →</a
+          >
         </div>
       </main>
     </div>

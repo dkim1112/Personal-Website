@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Curator · Dongeun Kim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <script src="../assets/app.js" defer></script>
+  </head>
+  <body>
+    <div class="cur-ring"></div>
+    <div class="cur-dot"></div>
+
+    <header class="topnav">
+      <a href="../projects.html" class="topnav-home magnetic">
+        <span class="home-dot"></span>
+        <span class="home-arrow">←</span>
+        Projects
+      </a>
+      <nav class="topnav-links">
+        <a href="../about.html" class="magnetic">about</a>
+        <a href="../projects.html" class="magnetic active">projects</a>
+        <a href="../playground.html" class="magnetic">playground</a>
+        <a href="../blog.html" class="magnetic">writing</a>
+        <a href="../contact.html" class="magnetic">contact</a>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="section-tag" style="margin-bottom: 14px;">012 · SWE</div>
+          <h1 class="sidebar-name" style="font-size: 30px;">Job Curator</h1>
+          <div class="sidebar-role">Product · 6-person team</div>
+          <div class="sidebar-tagline">
+            A job curation platform for Korean international students seeking internships back in Korea.
+          </div>
+        </div>
+
+        <div class="subnav">
+          <a href="#overview" class="active">overview</a>
+          <a href="#stack">technologies</a>
+          <a href="#features">what it does</a>
+          <a href="#contribution">my contribution</a>
+        </div>
+      </aside>
+
+      <main class="content">
+        <div class="project-hero reveal">
+          <h2 class="project-title">Job Curator for International Students</h2>
+          <p class="project-tagline">
+            One feed for Korea-internship listings that match international students' actual constraints — visa, timeline, geography.
+          </p>
+          <div class="project-meta-row">
+            <div class="col"><span class="label">Timeline</span><span class="value">2024 – Present</span></div>
+            <div class="col"><span class="label">Company</span><span class="value">UMich KISA</span></div>
+            <div class="col"><span class="label">Role</span><span class="value">Lead engineer · 6-person team</span></div>
+            <div class="col"><span class="label">Stack</span><span class="value">Next.js · TypeScript · Wanted API · web scraping</span></div>
+          </div>
+        </div>
+
+        <section id="overview" class="project-section reveal">
+          <h3>Overview</h3>
+          <p class="lead-para">
+            A web-based platform tailored for Korean international students studying in the U.S. who want to apply to internships back in Korea — built to address misaligned recruiting timelines, visa limitations, and the lack of internationally targeted postings on Korean job boards.
+          </p>
+          <p class="body-para">
+            The system crawls major Korean job platforms, integrates the Wanted API, filters duplicate listings, removes expired postings, and standardizes multi-source job data into one consistent feed. After launching the initial version solo, I led a 6-member team to maintain and scale the platform — directing system maintenance, data validation workflows, and content expansion. We also coordinated alumni outreach to collect internship-preparation insights and integrated those into the platform as structured informational resources to help students prepare beyond just finding the listing.
+          </p>
+        </section>
+
+        <section id="stack" class="project-section reveal">
+          <h3>Technologies</h3>
+          <div class="skill-group">
+            <div class="skill-group-name">front-end</div>
+            <div class="pills">
+              <span class="pill">Next.js</span>
+              <span class="pill">TypeScript</span>
+              <span class="pill">React</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">data ingestion</div>
+            <div class="pills">
+              <span class="pill">Wanted API</span>
+              <span class="pill">web scraping</span>
+              <span class="pill">deduplication + expiration filtering</span>
+              <span class="pill">multi-source normalization</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">deployment</div>
+            <div class="pills"><span class="pill">Vercel</span></div>
+          </div>
+        </section>
+
+        <section id="features" class="project-section reveal">
+          <h3>What It Does</h3>
+          <ul class="work-list">
+            <li><strong>Aggregation.</strong> Crawls major Korean job platforms and integrates the Wanted API into a single curated feed.</li>
+            <li><strong>Cleaning.</strong> Filters duplicate listings, removes expired postings, and standardizes multi-source job data into one consistent schema.</li>
+            <li><strong>Prep resources.</strong> Alumni-sourced internship-preparation insights integrated as structured content alongside listings, so students get context, not just URLs.</li>
+            <li><strong>Targeted for the audience.</strong> Designed around the specific constraints international students face — recruiting timeline mismatches, visa limitations, and the gap in internationally targeted Korean postings.</li>
+          </ul>
+        </section>
+
+        <section id="contribution" class="project-section reveal">
+          <h3>My Contribution</h3>
+          <p class="lead-para">
+            Built the initial version solo. After launch, led a 6-member team to maintain and scale the platform.
+          </p>
+          <p class="body-para">
+            Owned end-to-end product management, technical oversight, and cross-functional coordination — directing system maintenance, data validation workflows, content expansion, and the alumni outreach that brought the prep resources into the platform.
+          </p>
+        </section>
+
+        <section id="links" class="project-section reveal">
+          <h3>Links</h3>
+          <div class="project-cta">
+            <a href="https://www.umichkisa.com/jobs" class="cta-btn" target="_blank" rel="noreferrer">Live: umichkisa.com/jobs →</a>
+          </div>
+        </section>
+
+        <div style="display: flex; justify-content: space-between; padding: 40px 0 0; border-top: 1px solid var(--line); margin-top: 40px;">
+          <a href="umich-kisa.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">← Prev: UMich KISA Website</a>
+          <a href="subway-route-optimization.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">Next: Incheon Line 2 Route Optimizer →</a>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const subnavLinks = document.querySelectorAll(".subnav a");
+      subnavLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          subnavLinks.forEach((l) => l.classList.toggle("active", l === link));
+        });
+      });
+    </script>
+  </body>
+</html>

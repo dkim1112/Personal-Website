@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Subway Route Optimization · Dongeun Kim</title>
+    <title>Incheon Line 2 Route Optimizer · Dongeun Kim</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
@@ -34,11 +34,11 @@
     <div class="layout">
       <aside class="sidebar">
         <div class="sidebar-header">
-          <div class="section-tag" style="margin-bottom: 14px;">009 · SWE</div>
-          <h1 class="sidebar-name" style="font-size: 30px;">Subway Route<br/>Optimization</h1>
-          <div class="sidebar-role">Software · graph algorithms</div>
+          <div class="section-tag" style="margin-bottom: 14px;">013 · SWE</div>
+          <h1 class="sidebar-name" style="font-size: 30px;">Incheon L2<br/>Route<br/>Optimizer</h1>
+          <div class="sidebar-role">Algorithms · web</div>
           <div class="sidebar-tagline">
-            [ Shortest-path optimization for a subway network, surfaced as a web app. ]
+            A time-dependent route planner that beats sequential ordering on a single subway line.
           </div>
         </div>
 
@@ -46,7 +46,7 @@
           <a href="#overview" class="active">overview</a>
           <a href="#stack">technologies</a>
           <a href="#problem">the problem</a>
-          <a href="#vision">product vision</a>
+          <a href="#architecture">core architecture</a>
           <a href="#contribution">my contribution</a>
           <a href="#achievements">key achievements</a>
           <a href="#lessons">lessons learned</a>
@@ -56,125 +56,162 @@
 
       <main class="content">
         <div class="project-hero reveal">
-          <h2 class="project-title">Subway Route Optimization</h2>
+          <h2 class="project-title">Incheon Line 2 Route Optimizer</h2>
           <p class="project-tagline">
-            [ Computing the optimal subway path with classic graph algorithms, served via a web UI. ]
+            A time-dependent route planner that beats sequential ordering on a single subway line.
           </p>
           <div class="project-meta-row">
-            <div class="col"><span class="label">Timeline</span><span class="value">2026</span></div>
-            <div class="col"><span class="label">Company</span><span class="value">Independent</span></div>
-            <div class="col"><span class="label">Role</span><span class="value">Engineer</span></div>
-            <div class="col"><span class="label">Stack</span><span class="value">TypeScript · Next.js</span></div>
+            <div class="col"><span class="label">Timeline</span><span class="value">Feb 2026 – Mar 2026</span></div>
+            <div class="col"><span class="label">Company</span><span class="value">Personal project</span></div>
+            <div class="col"><span class="label">Role</span><span class="value">Sole engineer</span></div>
+            <div class="col"><span class="label">Stack</span><span class="value">TypeScript · Vite · React</span></div>
           </div>
         </div>
 
         <section id="overview" class="project-section reveal">
           <h3>Overview</h3>
-          <p class="lead-para">[ Headline summary. ]</p>
-          <p class="body-para">[ Detailed overview — what was built, why. ]</p>
+          <p class="lead-para">
+            Mapping apps optimize the path between two points. But if you need to visit four stations on the same subway line and return, the order itself affects total time — because direction-specific headway gaps mean the "obviously shorter" geographic ordering can be slower than a longer one that lines up better with the timetable. This tool solves that.
+          </p>
+          <p class="body-para">
+            During my military service at Gajeong Station on Incheon Line 2, I regularly had to visit multiple stations along the line and return — a task none of the major mapping platforms (Naver Map, Kakao Map) handle, because they optimize point-to-point routes, not multi-stop sequences with return. The interesting observation that kept coming up was that the order of stops, not just the choice of stops, materially changed total time. Visiting station B before C might leave you waiting eight minutes for the train back; visiting C before B might give you a two-minute wait. I built this tool to model the real Incheon Line 2 timetable, search all visit orderings exhaustively, and return the one with minimum total time — what I call the <em>Wait-Time Paradox</em>: shorter geographic distance isn't shorter total time when headway gaps are large.
+          </p>
         </section>
 
         <section id="stack" class="project-section reveal">
           <h3>Technologies</h3>
           <div class="skill-group">
-            <div class="skill-group-name">front-end</div>
+            <div class="skill-group-name">language</div>
+            <div class="pills"><span class="pill">TypeScript</span></div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">frontend</div>
             <div class="pills">
-              <span class="pill">TypeScript</span>
-              <span class="pill">Next.js</span>
+              <span class="pill">Vite</span>
               <span class="pill">React</span>
+              <span class="pill">responsive SPA</span>
             </div>
           </div>
           <div class="skill-group">
-            <div class="skill-group-name">algorithms</div>
+            <div class="skill-group-name">algorithm</div>
             <div class="pills">
-              <span class="pill">Dijkstra</span>
-              <span class="pill">A*</span>
+              <span class="pill">brute-force permutation search</span>
+              <span class="pill">time-dependent edge weights</span>
             </div>
           </div>
           <div class="skill-group">
-            <div class="skill-group-name">data</div>
+            <div class="skill-group-name">deployment</div>
             <div class="pills">
-              <span class="pill">Subway GTFS</span>
+              <span class="pill">Vercel</span>
+              <span class="pill">subway-route-optimization.vercel.app</span>
             </div>
           </div>
         </section>
 
         <section id="problem" class="project-section reveal">
           <h3>The Problem</h3>
-          <p class="lead-para">[ Headline problem statement. ]</p>
-          <p class="body-para">[ Detailed problem context. ]</p>
+          <p class="lead-para">
+            Multi-stop transit is missing from mapping platforms — and on a single subway line, visit order alone can swing total time by 10+ minutes.
+          </p>
+          <p class="body-para">
+            The standard mapping-app abstraction is "shortest path between A and B." But the actual operational task — "visit A, B, C, and D, then return to start" — is a different problem, and one that nobody on Naver, Kakao, or Google Maps lets you solve. On a single subway line, the problem is sharper than it first appears: train headways aren't symmetric in both directions, off-peak gaps can stretch to 9 minutes, and peak frequencies drop to 3 minutes. That asymmetry means the optimal visit order depends on <em>when</em> you arrive, not just where you're going. A naive "nearest-neighbor" sequence routinely loses to an ordering that geographically backtracks but waits less.
+          </p>
           <div class="hmw-callout">
             <span class="bulb">💡</span>
             <div class="hmw-body">
               <div class="hmw-label">How might we</div>
-              <div class="hmw-q">[ Framing question for this project. ]</div>
+              <div class="hmw-q">
+                plan a multi-stop subway visit so the recommended order accounts for actual timetable headway gaps, not just nominal travel distance?
+              </div>
             </div>
           </div>
         </section>
 
-        <section id="vision" class="project-section reveal">
-          <h3>Product Vision</h3>
-          <p class="lead-para">[ The end state. ]</p>
-          <p class="body-para">[ Detail on outcome. ]</p>
+        <section id="architecture" class="project-section reveal">
+          <h3>Core Architecture</h3>
           <div class="project-callout">
-            <div class="callout-eyebrow">Core architecture</div>
-            <h4>[ Architecture title. ]</h4>
-            <p>[ Graph construction → shortest path → render. ]</p>
+            <h4>Time-Dependent Traveling Salesperson Problem (TD-TSP) with Brute-Force Search Over Real Timetable Data</h4>
+            <p>
+              The problem is a TD-TSP: minimize total time across a closed tour where each edge cost is the sum of (wait for next train) + (travel time to next stop) + (dwell time at next stop), and the wait component depends on arrival time at the previous stop. For the realistic operational case — up to ~6 stations to visit in one trip — brute-force enumeration of all permutations is computationally trivial (≤ 720 paths) and guarantees the optimum, which heuristics don't. Each candidate path is evaluated against the actual Incheon Line 2 timetable: at every stop transition, look up the next train in the relevant direction, compute the wait (with a 2-minute buffer for boarding), add travel time, add dwell time. Total time per path = sum of these across the closed tour. The best path is returned along with a breakdown of where time was spent.
+            </p>
             <div class="project-stats">
-              <div class="stat"><div class="v">—</div><div class="k">stations</div></div>
-              <div class="stat"><div class="v">—</div><div class="k">edges</div></div>
-              <div class="stat"><div class="v">—</div><div class="k">ms / query</div></div>
+              <div class="stat"><div class="v">≤ 720</div><div class="k">permutations per query (6-stop tour)</div></div>
+              <div class="stat"><div class="v">Real timetable</div><div class="k">Incheon Line 2, both directions</div></div>
+              <div class="stat"><div class="v">Optimum guaranteed</div><div class="k">exhaustive search, no heuristic</div></div>
             </div>
           </div>
         </section>
 
         <section id="contribution" class="project-section reveal">
           <h3>My Contribution</h3>
-          <p class="lead-para">[ Headline of your contribution. ]</p>
-          <p class="body-para">[ Detail on what you built and owned. ]</p>
+          <p class="lead-para">
+            Sole engineer — formulated the optimization problem, built the timetable model, implemented the search, and shipped the deployed UI.
+          </p>
+          <p class="body-para">
+            This was a one-person project, scoped to a problem I was actually living with at the time. The most useful design decision was matching the algorithm to the real input size. TD-TSP is NP-hard in general and there's a deep literature of approximation algorithms — but my actual use case was 4–6 stations per trip, where brute force is both faster to implement and provably optimal, while a heuristic would have been more code, fewer guarantees, and pointless overhead at this scale.
+          </p>
           <div class="project-callout">
             <h4>What I worked on</h4>
             <ul class="work-list">
-              <li>[ Workstream one ]</li>
-              <li>[ Workstream two ]</li>
-              <li>[ Workstream three ]</li>
+              <li><strong>Problem formulation.</strong> Defined the total-time objective as <em>wait + travel + dwell</em> summed over the closed tour, identified the time-dependent edge weights as the key difference from standard TSP, and picked brute force as the appropriate algorithm for the realistic input size.</li>
+              <li><strong>Timetable modeling.</strong> Built the data layer around the actual Incheon Line 2 schedule, including both-direction headways and edge cases (midnight crossings, where consecutive trains span the date boundary).</li>
+              <li><strong>Search engine.</strong> TypeScript implementation that enumerates permutations, evaluates each against the timetable, and returns the optimal ordering with a per-stop time breakdown.</li>
+              <li><strong>UI.</strong> Responsive single-page interface that lets the user pick origin and visit set, displays the optimized order with arrival/departure times for each leg, and surfaces the Wait-Time Paradox visually (showing how a different order would have changed total time).</li>
             </ul>
           </div>
         </section>
 
         <section id="achievements" class="project-section reveal">
           <h3>Key Achievements</h3>
-          <p class="lead-para">[ Headline outcome. ]</p>
-          <p class="body-para">[ Narrative on results. ]</p>
+          <p class="lead-para">
+            A working, deployed tool that demonstrably out-performs sequential ordering on the line I actually used it on.
+          </p>
+          <p class="body-para">
+            The Wait-Time Paradox isn't hypothetical — for real trips I needed to take during my service, the optimizer returned visit orders that were meaningfully faster than the nearest-neighbor sequence I'd have picked by intuition. The tool is deployed and usable today; it covers Incheon Line 2 specifically because that's the line I had the use case for, not because the algorithm is line-specific.
+          </p>
           <div class="project-tiles">
-            <div class="tile"><div class="v">—</div><div class="k">metric one</div></div>
-            <div class="tile"><div class="v">—</div><div class="k">metric two</div></div>
-            <div class="tile"><div class="v">—</div><div class="k">metric three</div></div>
+            <div class="tile"><div class="v">Live</div><div class="k">deployed on Vercel</div></div>
+            <div class="tile"><div class="v">Line 2</div><div class="k">coverage scope (Incheon Metro)</div></div>
+            <div class="tile"><div class="v">~720 paths</div><div class="k">search space at the realistic upper bound</div></div>
           </div>
         </section>
 
         <section id="lessons" class="project-section reveal">
           <h3>Lessons Learned</h3>
-          <p class="lead-para">[ The single biggest takeaway. ]</p>
-          <p class="body-para">[ What worked, what didn't. ]</p>
+          <p class="lead-para">
+            Matching algorithm to actual problem size matters more than choosing the most sophisticated algorithm. Brute force on 720 permutations gives provable optimality in milliseconds; a heuristic would have been more code, fewer guarantees, and no real speed benefit at this scale.
+          </p>
+          <p class="body-para">
+            <strong>What worked:</strong> writing out the time-dependent cost function explicitly before picking an algorithm. The TD-TSP framing made it obvious that ordering mattered (the cost depends on arrival time, not just adjacency), and once that was clear, the brute-force decision was easy to justify.
+          </p>
+          <p class="body-para">
+            <strong>What didn't:</strong> I initially modeled the timetable as a list of trains rather than as a sorted lookup structure. For a 6-station tour with 720 permutations × multiple stop transitions, the cost of unsorted lookup added up. Switching to a sorted-by-time representation with binary-search lookup was a small refactor that made the search noticeably snappier.
+          </p>
+          <p class="body-para">
+            <strong>What I'd do differently:</strong> I'd build a small comparison view from day one showing "your route under naive ordering" vs. "optimized order" with the time difference. That's what makes the Wait-Time Paradox visible to users; without it, the tool just shows an answer without showing why the answer is non-obvious.
+          </p>
         </section>
 
         <section id="future" class="project-section reveal">
           <h3>Where It's Going</h3>
-          <p class="lead-para">[ Next steps. ]</p>
-          <p class="body-para">[ Longer-term direction. ]</p>
+          <p class="lead-para">
+            The single concrete extension is integrating real-time train status — the current version uses the published static timetable, which is accurate but doesn't account for delays. The Incheon Transit Corporation's open data API would close that gap.
+          </p>
+          <p class="body-para">
+            The deeper extension is generalizing beyond a single line. Multi-line routing introduces transfers, which significantly complicates the cost function (transfer wait + walking time + line-switching delay), and the input size grows enough that brute force breaks down — at that point, a real TD-TSP heuristic (or a constraint solver) becomes necessary. This was deliberately scoped to single-line to keep the search exact; the multi-line version is a different project.
+          </p>
         </section>
 
         <section id="links" class="project-section reveal">
           <h3>Links</h3>
           <div class="project-cta">
             <a href="https://github.com/dkim1112/Subway-Route-Optimization" class="cta-btn" target="_blank" rel="noreferrer">GitHub →</a>
-            <a href="#" class="cta-btn outline">Demo →</a>
+            <a href="https://subway-route-optimization.vercel.app" class="cta-btn outline" target="_blank" rel="noreferrer">Live demo →</a>
           </div>
         </section>
 
         <div style="display: flex; justify-content: space-between; padding: 40px 0 0; border-top: 1px solid var(--line); margin-top: 40px;">
-          <a href="food-ordering.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">← Prev: Food Ordering</a>
+          <a href="job-curator.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">← Prev: Job Curator</a>
           <a href="../projects.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">All projects →</a>
         </div>
       </main>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Visa PERM Data Analysis · Dongeun Kim</title>
+    <title>What 8M PERM Applications Tell Us · Dongeun Kim</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
@@ -34,44 +34,48 @@
     <div class="layout">
       <aside class="sidebar">
         <div class="sidebar-header">
-          <div class="section-tag" style="margin-bottom: 14px;">004 · DA</div>
-          <h1 class="sidebar-name" style="font-size: 30px;">Visa PERM<br/>Analysis</h1>
-          <div class="sidebar-role">Data analytics</div>
+          <div class="section-tag" style="margin-bottom: 14px;">003 · DA</div>
+          <h1 class="sidebar-name" style="font-size: 30px;">8M PERM<br/>Applications</h1>
+          <div class="sidebar-role">Data engineering · analysis</div>
           <div class="sidebar-tagline">
-            [ Analyzing trends in U.S. PERM labor certification data. ]
+            A decade of US Department of Labor PERM filings, cleaned and analyzed to identify the factors most associated with approval.
           </div>
         </div>
 
         <div class="subnav">
           <a href="#overview" class="active">overview</a>
           <a href="#stack">technologies</a>
-          <a href="#problem">the problem</a>
-          <a href="#vision">product vision</a>
+          <a href="#problem">the question</a>
+          <a href="#vision">what i wanted to find out</a>
           <a href="#contribution">my contribution</a>
-          <a href="#achievements">key achievements</a>
+          <a href="#achievements">key findings</a>
           <a href="#lessons">lessons learned</a>
-          <a href="#future">where it's going</a>
+          <a href="#future">open questions</a>
         </div>
       </aside>
 
       <main class="content">
         <div class="project-hero reveal">
-          <h2 class="project-title">Visa PERM Data Analysis</h2>
+          <h2 class="project-title">What 8 Million PERM Applications Tell Us About Who Gets Approved</h2>
           <p class="project-tagline">
-            [ What U.S. labor certification data tells us about employer-sponsored work visas. ]
+            A data engineering + statistical analysis pipeline on a decade of US labor-certification data.
           </p>
           <div class="project-meta-row">
-            <div class="col"><span class="label">Timeline</span><span class="value">2025</span></div>
-            <div class="col"><span class="label">Company</span><span class="value">Independent</span></div>
-            <div class="col"><span class="label">Role</span><span class="value">Analyst</span></div>
-            <div class="col"><span class="label">Stack</span><span class="value">Python · pandas · Jupyter</span></div>
+            <div class="col"><span class="label">Timeline</span><span class="value">Feb 2025</span></div>
+            <div class="col"><span class="label">Company</span><span class="value">University of Michigan (hackathon)</span></div>
+            <div class="col"><span class="label">Role</span><span class="value">Sole engineer</span></div>
+            <div class="col"><span class="label">Stack</span><span class="value">Python · pandas · SciPy · RapidFuzz</span></div>
           </div>
         </div>
 
         <section id="overview" class="project-section reveal">
           <h3>Overview</h3>
-          <p class="lead-para">[ Headline summary of the project. ]</p>
-          <p class="body-para">[ Detailed overview — what was analyzed, why it matters. ]</p>
+          <p class="lead-para">
+            Cleaned, entity-resolved, and statistically analyzed a decade of US Department of Labor PERM filings — 8M+ applications, 1.5GB+ of raw data — to identify the factors most strongly associated with approval.
+          </p>
+          <p class="body-para">
+            The PERM (Permanent Labor Certification) dataset is the first step in the US employment-based green card process, and the Department of Labor publishes the full record annually with hundreds of fields per application. It's an unusually rich dataset for asking who actually gets approved and why — but it's also messy in the specific ways that matter most for analysis: institution names spelled inconsistently across years, missing wage fields, outliers from clerical errors, and no clean linkage to external reference data like university rankings. This project built a multi-stage Python pipeline to clean, harmonize, and entity-resolve the raw data, then ran statistical analyses to identify the factors most strongly associated with approval outcomes. Originally built for a 2025 hackathon centered on lender risk-modeling for international students; the empirical analysis itself is more broadly applicable, and this page focuses on that.
+          </p>
         </section>
 
         <section id="stack" class="project-section reveal">
@@ -81,17 +85,25 @@
             <div class="pills"><span class="pill">Python</span></div>
           </div>
           <div class="skill-group">
-            <div class="skill-group-name">analysis</div>
+            <div class="skill-group-name">data engineering</div>
             <div class="pills">
               <span class="pill">pandas</span>
-              <span class="pill">NumPy</span>
+              <span class="pill">RapidFuzz</span>
+              <span class="pill">CSV streaming (1.5GB+)</span>
             </div>
           </div>
           <div class="skill-group">
-            <div class="skill-group-name">visualization</div>
+            <div class="skill-group-name">statistics &amp; viz</div>
             <div class="pills">
+              <span class="pill">SciPy</span>
               <span class="pill">Matplotlib</span>
-              <span class="pill">seaborn</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">pipeline structure</div>
+            <div class="pills">
+              <span class="pill">Multi-stage scripts</span>
+              <span class="pill">clean → group → merge → analyze</span>
             </div>
           </div>
           <div class="skill-group">
@@ -101,69 +113,109 @@
         </section>
 
         <section id="problem" class="project-section reveal">
-          <h3>The Problem</h3>
-          <p class="lead-para">[ Headline problem statement. ]</p>
-          <p class="body-para">[ Detailed problem context. ]</p>
+          <h3>The Question</h3>
+          <p class="lead-para">
+            A decade of public PERM data exists, but it's messy enough that most ad-hoc analyses don't trust it.
+          </p>
+          <p class="body-para">
+            The Department of Labor publishes every PERM application annually, going back over a decade. In principle, that's enough data to answer concrete questions: which employers approve most consistently, how wage-offered relative to prevailing wage affects outcomes, whether applicant background correlates with approval, how trends shift across administrations. In practice, the dataset has three structural problems that make naive analysis unreliable: (1) institution and employer names are inconsistent across years and require entity resolution to compare meaningfully; (2) field schemas drift between years, so a column called the same thing in 2014 may not be the same thing in 2023; (3) outliers from data-entry errors are mixed with real outliers from unusual filings, and treating them the same biases results. Most public analyses of PERM data either ignore these problems or work around them at small scale. This project addressed them up front.
+          </p>
           <div class="hmw-callout">
             <span class="bulb">💡</span>
             <div class="hmw-body">
-              <div class="hmw-label">How might we</div>
-              <div class="hmw-q">[ Framing question for this project. ]</div>
+              <div class="hmw-label">Research question</div>
+              <div class="hmw-q">
+                Across a decade and 8M+ applications, what factors are most strongly associated with PERM approval — and how much of the apparent variation is real versus an artifact of messy raw data?
+              </div>
             </div>
           </div>
         </section>
 
         <section id="vision" class="project-section reveal">
-          <h3>Product Vision</h3>
-          <p class="lead-para">[ The end state. ]</p>
-          <p class="body-para">[ Detail on user value. ]</p>
+          <h3>What I Wanted To Find Out</h3>
+          <p class="lead-para">
+            A statistically defensible picture of which factors actually move PERM outcomes — not just "what's correlated in this year's filings," but what holds up across a decade once entity resolution and outlier handling are taken seriously.
+          </p>
+          <p class="body-para">
+            The PERM step is high-stakes for hundreds of thousands of people each year — and the assumptions about what "matters" (institutional prestige, employer size, wage offered, applicant country) circulate as folk wisdom in immigration-attorney forums and grad-school advising without much underlying data. A clean cross-decade view shifts that conversation from anecdote toward evidence. For the hackathon framing this was originally pitched to, the same analytical machinery has obvious applications in financial risk modeling — but the analysis stands on its own.
+          </p>
           <div class="project-callout">
             <div class="callout-eyebrow">Methodology</div>
-            <h4>[ Methodology title. ]</h4>
-            <p>[ Statistical approach. ]</p>
+            <h4>Multi-stage cleaning, fuzzy entity resolution, and statistical inference on a decade of DOL PERM filings</h4>
+            <p>
+              The pipeline is structured as a sequence of separable Python scripts rather than one notebook, which made it possible to iterate on individual stages without rerunning the full 1.5GB+ load. The cleaning stage (<code>clean_states.py</code>, <code>clean_rankings.py</code>) handled state-name normalization and prepared the US News institution-ranking reference data for joining. The entity-resolution stage (<code>grouper_inst_0.py</code>, <code>grouper_rank_1.py</code>) used RapidFuzz to match thousands of inconsistent institution-name spellings against a canonical list — necessary because the same university appears with dozens of variant spellings across the decade. The merge stage joined cleaned PERM filings to the resolved institutional metadata. Four parallel analysis scripts (<code>analysis_0</code> through <code>analysis_3</code>) then ran different statistical cuts: per-factor approval rate decomposition, year-over-year trend analysis, institutional and wage-bracket comparisons, and outlier-sensitive distribution checks.
+            </p>
             <div class="project-stats">
-              <div class="stat"><div class="v">—</div><div class="k">records</div></div>
-              <div class="stat"><div class="v">—</div><div class="k">years</div></div>
-              <div class="stat"><div class="v">—</div><div class="k">categories</div></div>
+              <div class="stat"><div class="v">8M+</div><div class="k">PERM applications analyzed</div></div>
+              <div class="stat"><div class="v">2014 – 2024</div><div class="k">years of data</div></div>
+              <div class="stat"><div class="v">1.5GB+</div><div class="k">raw CSV ingested</div></div>
             </div>
           </div>
         </section>
 
         <section id="contribution" class="project-section reveal">
           <h3>My Contribution</h3>
-          <p class="lead-para">[ Headline of your contribution. ]</p>
-          <p class="body-para">[ Detail on what you built and owned. ]</p>
+          <p class="lead-para">
+            Sole engineer — owned the full pipeline from raw DOL CSV to statistical findings, in a hackathon timeframe.
+          </p>
+          <p class="body-para">
+            The hackathon was a short, intensive window, which meant the design decisions had real cost: every stage had to either work or be cut. I chose to separate cleaning, entity resolution, merging, and analysis into independent scripts rather than a single notebook — slower to set up, but it meant I could iterate on the fuzzy-matching stage (the slowest and most error-prone part) without re-running the 1.5GB ingest each time.
+          </p>
           <div class="project-callout">
             <h4>What I worked on</h4>
             <ul class="work-list">
-              <li>[ Workstream one ]</li>
-              <li>[ Workstream two ]</li>
-              <li>[ Workstream three ]</li>
+              <li><strong>Cleaning and schema harmonization.</strong> Normalized state names, handled missing values and obvious data-entry outliers, and reconciled schema drift across years where the same logical field was renamed or restructured.</li>
+              <li><strong>Fuzzy entity resolution.</strong> Used RapidFuzz to match thousands of inconsistent institution-name spellings against a canonical US News ranking list — without this step, the institutional-prestige analyses would have been dominated by spelling variance rather than real signal.</li>
+              <li><strong>Statistical analysis.</strong> Ran four parallel cuts examining the relationships between approval outcomes and applicant/employer/institutional variables, with attention to whether observed differences held up after outlier handling.</li>
+              <li><strong>Hackathon write-up.</strong> Produced the supporting proposal documentation alongside the pipeline.</li>
             </ul>
           </div>
         </section>
 
         <section id="achievements" class="project-section reveal">
-          <h3>Key Achievements</h3>
-          <p class="lead-para">[ Headline outcome. ]</p>
-          <p class="body-para">[ Narrative on results. ]</p>
+          <h3>Key Findings</h3>
+          <p class="lead-para">
+            Institutional prestige and wage-offered structure emerged as among the factors most strongly associated with approval — though the cleanest signal was how much the raw dataset misleads if entity resolution and outlier handling are skipped.
+          </p>
+          <p class="body-para">
+            The substantive findings pointed to institutional prestige (after entity resolution to canonical names + ranking buckets) and the wage-offered field as strong correlates of approval outcomes, with notable variation across years. These are correlational findings, not causal — the dataset doesn't support claims about what causes approval in any individual case. The methodological finding ended up being equally interesting: a substantial fraction of the cross-year and cross-institution patterns that appear striking in the raw data are partly artifacts of inconsistent name spellings and outlier records. Naive analyses of PERM data that skip entity resolution risk reporting spelling noise as real signal.
+          </p>
           <div class="project-tiles">
-            <div class="tile"><div class="v">—</div><div class="k">metric one</div></div>
-            <div class="tile"><div class="v">—</div><div class="k">metric two</div></div>
-            <div class="tile"><div class="v">—</div><div class="k">metric three</div></div>
+            <div class="tile"><div class="v">8M+</div><div class="k">applications analyzed</div></div>
+            <div class="tile"><div class="v">Decade</div><div class="k">years of coverage</div></div>
+            <div class="tile"><div class="v">Pipeline-first</div><div class="k">cleaning + resolution before analysis</div></div>
           </div>
         </section>
 
         <section id="lessons" class="project-section reveal">
           <h3>Lessons Learned</h3>
-          <p class="lead-para">[ The single biggest takeaway. ]</p>
-          <p class="body-para">[ What worked, what didn't. ]</p>
+          <p class="lead-para">
+            On large, messy, public datasets, the cleaning and entity-resolution stage is usually where the analysis actually wins or loses — not the choice of statistical method.
+          </p>
+          <p class="body-para">
+            <strong>What worked:</strong> separating the pipeline into independent scripts rather than one monolithic notebook. The fuzzy-matching stage took dozens of iterations to tune the similarity threshold and the canonical reference list; if every iteration had required rerunning the 1.5GB CSV ingest, the project wouldn't have finished in the hackathon window.
+          </p>
+          <p class="body-para">
+            <strong>What didn't:</strong> the analysis stops at correlation. With 8M+ records I had enough data to attempt causal inference techniques (matching, instrumental variables, regression discontinuity around wage-offered thresholds), but I didn't have time in the hackathon window. The findings as-stated are useful as descriptive empirical work; they aren't enough to support claims about individual case outcomes.
+          </p>
+          <p class="body-para">
+            <strong>What I'd do differently:</strong> I'd write the entity-resolution step against a held-out test set of known matches from the start, rather than tuning the similarity threshold by eye on the live data. That's the same principle as building an evaluation harness before the model — you save days of guessing.
+          </p>
         </section>
 
         <section id="future" class="project-section reveal">
-          <h3>Where It's Going</h3>
-          <p class="lead-para">[ Next steps. ]</p>
-          <p class="body-para">[ Longer-term direction. ]</p>
+          <h3>Open Questions</h3>
+          <p class="lead-para">
+            No active continuation. The DOL releases new PERM data annually, so the underlying dataset has grown since this project was completed.
+          </p>
+          <p class="body-para">
+            Three natural extensions:
+          </p>
+          <ul class="work-list">
+            <li><strong>Refresh against 2024–2025 releases.</strong> Re-run the pipeline on the latest DOL drops and check whether the headline patterns hold.</li>
+            <li><strong>Move from correlational to causal.</strong> Use the wage-offered vs. prevailing-wage threshold as a potential regression-discontinuity boundary.</li>
+            <li><strong>Audit the entity-resolution step.</strong> Build a manually labeled gold-standard sample to get real precision/recall on the fuzzy matching, rather than estimating accuracy heuristically.</li>
+          </ul>
         </section>
 
         <section id="links" class="project-section reveal">
@@ -175,7 +227,7 @@
         </section>
 
         <div style="display: flex; justify-content: space-between; padding: 40px 0 0; border-top: 1px solid var(--line); margin-top: 40px;">
-          <a href="military-career-analysis.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">← Prev: Military Career Analysis</a>
+          <a href="military-career-analysis.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">← Prev: Veterans and Career Trajectories</a>
           <a href="korean-price-monitor.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">Next: Korean Price Monitor →</a>
         </div>
       </main>

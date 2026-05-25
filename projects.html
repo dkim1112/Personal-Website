@@ -46,10 +46,10 @@
         </div>
 
         <div class="subnav">
-          <a href="#all" class="active">all (9)</a>
-          <a href="#da">data analytics (4)</a>
-          <a href="#de">data engineering (3)</a>
-          <a href="#swe">software (2)</a>
+          <a href="#all" class="active">all (13)</a>
+          <a href="#da">data analytics (3)</a>
+          <a href="#de">data engineering (4)</a>
+          <a href="#swe">software (6)</a>
         </div>
 
         <div class="sidebar-socials">
@@ -99,59 +99,7 @@
           <h2 class="section-title">Pieces worth seeing.</h2>
 
           <div class="work-grid">
-            <!-- Project 1: QuantaBot (DA) -->
-            <a
-              href="projects/quantabot.html"
-              class="work-card reveal"
-              data-cat="da"
-            >
-              <div class="work-card-visual">
-                <span class="work-card-index">001 / quantabot.py</span>
-                <span class="work-card-cat">DA</span>
-                <svg
-                  viewBox="0 0 400 300"
-                  preserveAspectRatio="none"
-                  aria-hidden="true"
-                >
-                  <!-- Network graph: nodes and edges (RAG retrieval network) -->
-                  <g stroke="currentColor" stroke-width="0.8" opacity="0.4">
-                    <line x1="80" y1="80" x2="200" y2="150" />
-                    <line x1="200" y1="150" x2="320" y2="80" />
-                    <line x1="200" y1="150" x2="120" y2="220" />
-                    <line x1="200" y1="150" x2="280" y2="220" />
-                    <line x1="80" y1="80" x2="120" y2="220" />
-                    <line x1="320" y1="80" x2="280" y2="220" />
-                    <line x1="120" y1="220" x2="280" y2="220" />
-                  </g>
-                  <g fill="currentColor">
-                    <circle cx="80" cy="80" r="6" />
-                    <circle cx="320" cy="80" r="6" />
-                    <circle cx="200" cy="150" r="9" />
-                    <circle cx="120" cy="220" r="6" />
-                    <circle cx="280" cy="220" r="6" />
-                  </g>
-                </svg>
-              </div>
-              <div class="work-card-body">
-                <div class="work-card-meta">2024 – 2025 · UM Cutaneous Lab</div>
-                <h3 class="work-card-title">
-                  Quanta<span class="arrow">↗</span>
-                </h3>
-                <p class="work-card-teaser">
-                  A LangChain RAG system for source-grounded dermatology
-                  literature review. Layered retrieval (semantic + BM25 + MMR +
-                  cross-encoder), F1/NDCG gains over the vector-similarity
-                  baseline, ~97% memory reduction.
-                </p>
-                <div class="work-card-tags pills">
-                  <span class="pill">Python</span>
-                  <span class="pill">LangChain</span>
-                  <span class="pill">GPT-4</span>
-                  <span class="pill">ChromaDB</span>
-                </div>
-              </div>
-            </a>
-            <!-- Project 2: Seoul Restaurant Survival (DA) -->
+            <!-- Project 1: Seoul Restaurant Survival (DA) -->
             <a
               href="projects/seoul-restaurants.html"
               class="work-card reveal"
@@ -159,7 +107,7 @@
             >
               <div class="work-card-visual">
                 <span class="work-card-index"
-                  >002 / seoul_restaurants.ipynb</span
+                  >001 / seoul_restaurants.ipynb</span
                 >
                 <span class="work-card-cat">DA</span>
                 <svg
@@ -241,7 +189,7 @@
             >
               <div class="work-card-visual">
                 <span class="work-card-index"
-                  >003 / military_career_analysis.ipynb</span
+                  >002 / military_career_analysis.ipynb</span
                 >
                 <span class="work-card-cat">DA</span>
                 <svg
@@ -291,22 +239,21 @@
               </div>
               <div class="work-card-body">
                 <div class="work-card-meta">
-                  2026 · YP2021 panel · longitudinal
+                  May 2026 · KELS 2021 panel · longitudinal
                 </div>
                 <h3 class="work-card-title">
-                  Military Career Longitudinal Analysis<span class="arrow"
-                    >↗</span
-                  >
+                  Veterans and Career Trajectories<span class="arrow">↗</span>
                 </h3>
                 <p class="work-card-teaser">
-                  Examining how military service relates to career development
-                  and certainty using the multi-wave YP2021 panel —
-                  fixed-effects, group comparisons, trajectories over time.
+                  A 4-year longitudinal test of whether mandatory military service shifts career
+                  trajectories. Non-parametric significance testing on ~4,000 KELS 2021 panel
+                  participants — the result ran opposite to my prior.
                 </p>
                 <div class="work-card-tags pills">
                   <span class="pill">Python</span>
                   <span class="pill">pandas</span>
-                  <span class="pill">statsmodels</span>
+                  <span class="pill">SciPy</span>
+                  <span class="pill">Seaborn</span>
                 </div>
               </div>
             </a>
@@ -318,7 +265,7 @@
               data-cat="da"
             >
               <div class="work-card-visual">
-                <span class="work-card-index">004 / visa_perm_analysis.py</span>
+                <span class="work-card-index">003 / visa_perm_analysis.py</span>
                 <span class="work-card-cat">DA</span>
                 <svg
                   viewBox="0 0 400 300"
@@ -340,19 +287,20 @@
                 </svg>
               </div>
               <div class="work-card-body">
-                <div class="work-card-meta">2025 · DOL PERM disclosure</div>
+                <div class="work-card-meta">Feb 2025 · UMich hackathon · 8M+ records</div>
                 <h3 class="work-card-title">
-                  Visa PERM Data Analysis<span class="arrow">↗</span>
+                  What 8 Million PERM Applications Tell Us About Who Gets Approved<span class="arrow">↗</span>
                 </h3>
                 <p class="work-card-teaser">
-                  Slicing U.S. labor certification data to surface trends in
-                  employer-sponsored work visas — who sponsors, in which roles,
-                  at what wages, across years.
+                  A data engineering + statistical analysis pipeline on a decade of US
+                  Department of Labor PERM filings — 1.5GB+ of raw data, RapidFuzz-based
+                  entity resolution, four parallel statistical cuts.
                 </p>
                 <div class="work-card-tags pills">
                   <span class="pill">Python</span>
                   <span class="pill">pandas</span>
-                  <span class="pill">Matplotlib</span>
+                  <span class="pill">SciPy</span>
+                  <span class="pill">RapidFuzz</span>
                 </div>
               </div>
             </a>
@@ -365,7 +313,7 @@
             >
               <div class="work-card-visual">
                 <span class="work-card-index"
-                  >005 / korean_price_monitor.py</span
+                  >004 / korean_price_monitor.py</span
                 >
                 <span class="work-card-cat">DE</span>
                 <svg
@@ -407,21 +355,20 @@
                 </svg>
               </div>
               <div class="work-card-body">
-                <div class="work-card-meta">2025 · KOSTAT × ECOS · ongoing</div>
+                <div class="work-card-meta">Feb 2026 – Apr 2026 · KOSTAT × ECOS</div>
                 <h3 class="work-card-title">
-                  Korean Price Monitor Pipeline<span class="arrow">↗</span>
+                  Korean Price Monitor<span class="arrow">↗</span>
                 </h3>
                 <p class="work-card-teaser">
-                  Unified pipeline ingesting Korean consumer prices from KOSTAT
-                  (weekly XML) and ECOS (monthly JSON CPI). 6 quality checks per
-                  run, schema-drift detection, raw-data preservation — comparing
-                  what consumers actually pay vs. what the official inflation
-                  index reports.
+                  A data engineering pipeline that asks whether Korea's official CPI captures
+                  what people actually pay. Joins two government APIs, validates every run
+                  with 6 data-calibrated quality checks, and exposes the gap in a 4-page
+                  Streamlit dashboard.
                 </p>
                 <div class="work-card-tags pills">
                   <span class="pill">Python</span>
+                  <span class="pill">PostgreSQL</span>
                   <span class="pill">Docker</span>
-                  <span class="pill">cron</span>
                   <span class="pill">Streamlit</span>
                 </div>
               </div>
@@ -434,7 +381,7 @@
               data-cat="de"
             >
               <div class="work-card-visual">
-                <span class="work-card-index">006 / pheweb_beta_matrix.py</span>
+                <span class="work-card-index">005 / pheweb_beta_matrix.py</span>
                 <span class="work-card-cat">DE</span>
                 <svg
                   viewBox="0 0 400 300"
@@ -648,21 +595,21 @@
               </div>
               <div class="work-card-body">
                 <div class="work-card-meta">
-                  2025 · UM Medical School · genomics
+                  Nov 2025 – Feb 2026 · UMich Medical School · genomics
                 </div>
                 <h3 class="work-card-title">
-                  PheWeb β-Matrix Builder<span class="arrow">↗</span>
+                  PheWeb Beta Matrix Builder<span class="arrow">↗</span>
                 </h3>
                 <p class="work-card-teaser">
-                  Parallel ETL crawling GWAS summary statistics from PheWeb
-                  instances (MGI-BioVU, UKB-TOPMed, MGI) and constructing a
-                  sign-consistent variant × phenotype β-matrix for downstream
-                  comorbidity research.
+                  A reusable pipeline that turns PheWAS summary statistics into variant-phenotype
+                  embeddings — config-driven across PheWeb instances, with sign-consistent
+                  matrix construction and 50-dim truncated SVD embeddings.
                 </p>
                 <div class="work-card-tags pills">
                   <span class="pill">Python</span>
                   <span class="pill">pandas</span>
                   <span class="pill">scikit-learn</span>
+                  <span class="pill">requests</span>
                 </div>
               </div>
             </a>
@@ -674,7 +621,7 @@
               data-cat="de"
             >
               <div class="work-card-visual">
-                <span class="work-card-index">007 / cdc_event_pipeline.py</span>
+                <span class="work-card-index">006 / cdc_event_pipeline.py</span>
                 <span class="work-card-cat">DE</span>
                 <svg
                   viewBox="0 0 400 300"
@@ -747,34 +694,175 @@
                 </svg>
               </div>
               <div class="work-card-body">
-                <div class="work-card-meta">2026 · streaming · multi-DB</div>
+                <div class="work-card-meta">Feb 2026 – Apr 2026 · streaming · event sourcing</div>
                 <h3 class="work-card-title">
-                  CDC Event Pipeline<span class="arrow">↗</span>
+                  CDC Event Sourcing Pipeline<span class="arrow">↗</span>
                 </h3>
                 <p class="work-card-teaser">
-                  Change Data Capture event streaming with Kafka — real-time
-                  data synchronization from a source DB into multiple analytical
-                  sinks, with replay and idempotency.
+                  Streaming PostgreSQL WAL changes through Debezium + Kafka so intermediate
+                  states don't vanish between polls. Append-only event log, materialized
+                  snapshots, UUID5-deduped consumer, and a 5-page Streamlit dashboard.
                 </p>
                 <div class="work-card-tags pills">
-                  <span class="pill">Python</span>
-                  <span class="pill">Kafka</span>
                   <span class="pill">PostgreSQL</span>
-                  <span class="pill">Docker</span>
+                  <span class="pill">Debezium</span>
+                  <span class="pill">Kafka</span>
+                  <span class="pill">Python</span>
                 </div>
               </div>
             </a>
 
-            <!-- Project 8: Food Ordering Platform (SWE) -->
+            <!-- Project 8: LinkedIn Scraper (DE) -->
+            <a
+              href="projects/linkedin-scraper.html"
+              class="work-card reveal"
+              data-cat="de"
+            >
+              <div class="work-card-visual">
+                <span class="work-card-index">007 / linkedin_scraper</span>
+                <span class="work-card-cat">DE</span>
+                <svg
+                  viewBox="0 0 400 300"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <!-- Scraping flow: source → extract → store -->
+                  <g stroke="currentColor" stroke-width="1.2" fill="none">
+                    <line x1="80" y1="80" x2="80" y2="160" />
+                    <line
+                      x1="80"
+                      y1="120"
+                      x2="180"
+                      y2="120"
+                      marker-end="url(#ls-arrow)"
+                    />
+                    <line
+                      x1="220"
+                      y1="120"
+                      x2="320"
+                      y2="120"
+                      marker-end="url(#ls-arrow)"
+                    />
+                    <line
+                      x1="80"
+                      y1="200"
+                      x2="180"
+                      y2="200"
+                      marker-end="url(#ls-arrow)"
+                    />
+                    <line x1="80" y1="160" x2="80" y2="200" />
+                  </g>
+                  <defs>
+                    <marker
+                      id="ls-arrow"
+                      viewBox="0 0 10 10"
+                      refX="9"
+                      refY="5"
+                      markerWidth="5"
+                      markerHeight="5"
+                      orient="auto"
+                    >
+                      <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor" />
+                    </marker>
+                  </defs>
+                  <g fill="currentColor">
+                    <circle cx="80" cy="80" r="4" opacity="0.5" />
+                    <circle cx="80" cy="120" r="6" />
+                    <circle cx="80" cy="160" r="4" opacity="0.5" />
+                    <circle cx="80" cy="200" r="4" opacity="0.5" />
+                  </g>
+                  <g fill="currentColor">
+                    <rect x="184" y="106" width="40" height="28" />
+                    <rect
+                      x="184"
+                      y="186"
+                      width="40"
+                      height="28"
+                      opacity="0.4"
+                    />
+                    <rect x="324" y="106" width="40" height="28" />
+                  </g>
+                </svg>
+              </div>
+              <div class="work-card-body">
+                <div class="work-card-meta">May 2025 – Sep 2025 · Maetel · intern</div>
+                <h3 class="work-card-title">
+                  LinkedIn Scraper<span class="arrow">↗</span>
+                </h3>
+                <p class="work-card-teaser">
+                  Profile and post extraction to power persona capture inside Maetel's product —
+                  Playwright with persistent Chrome session, snowflake-ID upload-date decoding,
+                  and a normalized PostgreSQL schema with CSV fallback.
+                </p>
+                <div class="work-card-tags pills">
+                  <span class="pill">Python</span>
+                  <span class="pill">Playwright</span>
+                  <span class="pill">PostgreSQL</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- Project 8: Quanta (SWE) -->
+            <a
+              href="projects/quantabot.html"
+              class="work-card reveal"
+              data-cat="swe"
+            >
+              <div class="work-card-visual">
+                <span class="work-card-index">008 / quantabot.py</span>
+                <span class="work-card-cat">SWE</span>
+                <svg
+                  viewBox="0 0 400 300"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <!-- Network graph: nodes and edges (RAG retrieval network) -->
+                  <g stroke="currentColor" stroke-width="0.8" opacity="0.4">
+                    <line x1="80" y1="80" x2="200" y2="150" />
+                    <line x1="200" y1="150" x2="320" y2="80" />
+                    <line x1="200" y1="150" x2="120" y2="220" />
+                    <line x1="200" y1="150" x2="280" y2="220" />
+                    <line x1="80" y1="80" x2="120" y2="220" />
+                    <line x1="320" y1="80" x2="280" y2="220" />
+                    <line x1="120" y1="220" x2="280" y2="220" />
+                  </g>
+                  <g fill="currentColor">
+                    <circle cx="80" cy="80" r="6" />
+                    <circle cx="320" cy="80" r="6" />
+                    <circle cx="200" cy="150" r="9" />
+                    <circle cx="120" cy="220" r="6" />
+                    <circle cx="280" cy="220" r="6" />
+                  </g>
+                </svg>
+              </div>
+              <div class="work-card-body">
+                <div class="work-card-meta">2024 – 2025 · UM Cutaneous Lab</div>
+                <h3 class="work-card-title">
+                  Quanta<span class="arrow">↗</span>
+                </h3>
+                <p class="work-card-teaser">
+                  A LangChain RAG system for source-grounded dermatology
+                  literature review. Layered retrieval (semantic + BM25 + MMR +
+                  cross-encoder), F1/NDCG gains over the vector-similarity
+                  baseline, ~97% memory reduction.
+                </p>
+                <div class="work-card-tags pills">
+                  <span class="pill">Python</span>
+                  <span class="pill">LangChain</span>
+                  <span class="pill">GPT-4</span>
+                  <span class="pill">ChromaDB</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- Project 9: Kyareureuk Party (SWE) -->
             <a
               href="projects/food-ordering.html"
               class="work-card reveal"
               data-cat="swe"
             >
               <div class="work-card-visual">
-                <span class="work-card-index"
-                  >008 / food_ordering_platform.tsx</span
-                >
+                <span class="work-card-index">009 / party_organizer.tsx</span>
                 <span class="work-card-cat">SWE</span>
                 <svg
                   viewBox="0 0 400 300"
@@ -826,16 +914,80 @@
               </div>
               <div class="work-card-body">
                 <div class="work-card-meta">
-                  2024 · real-time · 600+ transactions
+                  Dec 2025 – Feb 2026 · Yeonrim Bar (client) · live
                 </div>
                 <h3 class="work-card-title">
-                  Real-Time Food Ordering Platform<span class="arrow">↗</span>
+                  Kyareureuk Party <span style="font-weight: 400; opacity: 0.7;">(꺄르륵 파티)</span><span class="arrow">↗</span>
                 </h3>
                 <p class="work-card-teaser">
-                  Full-stack ordering system built from scratch for pop-up
-                  events. Scalable backend supporting 150+ concurrent users and
-                  3,000+ orders; 600+ live Stripe transactions; real-time
-                  tracking via Socket.io cut manual labor ~50%.
+                  A private event-coordination platform for a Seoul bar's recurring matchmaking
+                  nights — Kakao OAuth, gender-quota enforcement, real-time admin approval,
+                  manual bank-transfer verification. Live at yeonrim.space, ~10 registrations
+                  per event, twice a week.
+                </p>
+                <div class="work-card-tags pills">
+                  <span class="pill">Next.js 16</span>
+                  <span class="pill">TypeScript</span>
+                  <span class="pill">Firebase</span>
+                  <span class="pill">Kakao OAuth</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- Project 10: Real-Time Food Ordering Platform (Web) (SWE) -->
+            <a
+              href="projects/food-ordering-web.html"
+              class="work-card reveal"
+              data-cat="swe"
+            >
+              <div class="work-card-visual">
+                <span class="work-card-index">010 / food_ordering_web.tsx</span>
+                <span class="work-card-cat">SWE</span>
+                <svg
+                  viewBox="0 0 400 300"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <!-- Stacked browser-like window frames -->
+                  <g
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                    fill="none"
+                    opacity="0.35"
+                  >
+                    <rect x="60" y="90" width="240" height="120" rx="4" />
+                    <rect x="80" y="110" width="240" height="120" rx="4" />
+                  </g>
+                  <g stroke="currentColor" stroke-width="1.4" fill="none">
+                    <rect x="100" y="130" width="240" height="120" rx="4" />
+                  </g>
+                  <g fill="currentColor">
+                    <circle cx="115" cy="145" r="3" />
+                    <circle cx="127" cy="145" r="3" />
+                    <circle cx="139" cy="145" r="3" />
+                    <rect x="115" y="170" width="120" height="6" />
+                    <rect
+                      x="115"
+                      y="185"
+                      width="180"
+                      height="6"
+                      opacity="0.5"
+                    />
+                    <rect x="115" y="200" width="80" height="6" opacity="0.5" />
+                    <rect x="240" y="220" width="60" height="20" />
+                  </g>
+                </svg>
+              </div>
+              <div class="work-card-body">
+                <div class="work-card-meta">2024 · UMich KISA · Pocha pop-up</div>
+                <h3 class="work-card-title">
+                  Real-Time Food Ordering Platform <span style="font-weight: 400; opacity: 0.7;">(Pocha)</span><span class="arrow">↗</span>
+                </h3>
+                <p class="work-card-teaser">
+                  A full-stack remote ordering system built for UMich KISA's Pocha pop-ups —
+                  150+ concurrent users, 3,000+ orders, Stripe + Apple Pay checkout, Socket.io
+                  live order tracking, and an admin dashboard for the restaurant. Live at
+                  umichkisa.com/pocha.
                 </p>
                 <div class="work-card-tags pills">
                   <span class="pill">Next.js</span>
@@ -846,7 +998,142 @@
               </div>
             </a>
 
-            <!-- Project 9: Subway Route Optimization (SWE) -->
+            <!-- Project 11: UMich KISA Website (SWE) -->
+            <a
+              href="projects/umich-kisa.html"
+              class="work-card reveal"
+              data-cat="swe"
+            >
+              <div class="work-card-visual">
+                <span class="work-card-index">011 / umich_kisa.tsx</span>
+                <span class="work-card-cat">SWE</span>
+                <svg
+                  viewBox="0 0 400 300"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <!-- Community network: ring of nodes around a hub -->
+                  <g
+                    stroke="currentColor"
+                    stroke-width="1"
+                    opacity="0.35"
+                    fill="none"
+                  >
+                    <line x1="200" y1="150" x2="120" y2="80" />
+                    <line x1="200" y1="150" x2="280" y2="80" />
+                    <line x1="200" y1="150" x2="100" y2="150" />
+                    <line x1="200" y1="150" x2="300" y2="150" />
+                    <line x1="200" y1="150" x2="120" y2="220" />
+                    <line x1="200" y1="150" x2="280" y2="220" />
+                  </g>
+                  <g fill="currentColor">
+                    <circle cx="200" cy="150" r="11" />
+                    <circle cx="120" cy="80" r="5" />
+                    <circle cx="280" cy="80" r="5" />
+                    <circle cx="100" cy="150" r="5" />
+                    <circle cx="300" cy="150" r="5" />
+                    <circle cx="120" cy="220" r="5" />
+                    <circle cx="280" cy="220" r="5" />
+                  </g>
+                </svg>
+              </div>
+              <div class="work-card-body">
+                <div class="work-card-meta">
+                  2024 – Present · UMich KISA · platform
+                </div>
+                <h3 class="work-card-title">
+                  UMich KISA Website<span class="arrow">↗</span>
+                </h3>
+                <p class="work-card-teaser">
+                  The official site for the University of Michigan Korean International Student
+                  Association and the umbrella platform that hosts Pocha event ordering and the
+                  Job Curator — shared sign-in, shared design system, one deployment. Live at
+                  umichkisa.com.
+                </p>
+                <div class="work-card-tags pills">
+                  <span class="pill">Next.js</span>
+                  <span class="pill">TypeScript</span>
+                  <span class="pill">Tailwind</span>
+                  <span class="pill">Vercel</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- Project 12: Job Curator for International Students (SWE) -->
+            <a
+              href="projects/job-curator.html"
+              class="work-card reveal"
+              data-cat="swe"
+            >
+              <div class="work-card-visual">
+                <span class="work-card-index">012 / job_curator.tsx</span>
+                <span class="work-card-cat">SWE</span>
+                <svg
+                  viewBox="0 0 400 300"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <!-- Stacked list rows representing curated job feed -->
+                  <g fill="currentColor">
+                    <rect x="80" y="60" width="240" height="22" opacity="0.9" />
+                    <rect x="80" y="92" width="200" height="22" opacity="0.7" />
+                    <rect
+                      x="80"
+                      y="124"
+                      width="240"
+                      height="22"
+                      opacity="0.55"
+                    />
+                    <rect
+                      x="80"
+                      y="156"
+                      width="180"
+                      height="22"
+                      opacity="0.4"
+                    />
+                    <rect
+                      x="80"
+                      y="188"
+                      width="220"
+                      height="22"
+                      opacity="0.3"
+                    />
+                    <rect
+                      x="80"
+                      y="220"
+                      width="160"
+                      height="22"
+                      opacity="0.2"
+                    />
+                  </g>
+                  <g fill="currentColor">
+                    <circle cx="92" cy="71" r="3" />
+                    <circle cx="92" cy="103" r="3" opacity="0.8" />
+                    <circle cx="92" cy="135" r="3" opacity="0.6" />
+                  </g>
+                </svg>
+              </div>
+              <div class="work-card-body">
+                <div class="work-card-meta">2024 – Present · UMich KISA · 6-person team</div>
+                <h3 class="work-card-title">
+                  Job Curator for International Students<span class="arrow">↗</span>
+                </h3>
+                <p class="work-card-teaser">
+                  A curation platform for Korean international students seeking internships back
+                  in Korea — crawls major Korean job boards, integrates the Wanted API,
+                  deduplicates and standardizes listings, and surfaces alumni-sourced prep
+                  resources. Live at umichkisa.com/jobs.
+                </p>
+                <div class="work-card-tags pills">
+                  <span class="pill">Next.js</span>
+                  <span class="pill">TypeScript</span>
+                  <span class="pill">Wanted API</span>
+                  <span class="pill">web scraping</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- Project 13: Subway Route Optimization (SWE) -->
             <a
               href="projects/subway-route-optimization.html"
               class="work-card reveal"
@@ -854,7 +1141,7 @@
             >
               <div class="work-card-visual">
                 <span class="work-card-index"
-                  >009 / subway_route_optimization.tsx</span
+                  >013 / subway_route_optimization.tsx</span
                 >
                 <span class="work-card-cat">SWE</span>
                 <svg
@@ -895,19 +1182,20 @@
               </div>
               <div class="work-card-body">
                 <div class="work-card-meta">
-                  2026 · graph algorithms · web app
+                  Feb 2026 – Mar 2026 · TD-TSP · live
                 </div>
                 <h3 class="work-card-title">
-                  Subway Route Optimization<span class="arrow">↗</span>
+                  Incheon Line 2 Route Optimizer<span class="arrow">↗</span>
                 </h3>
                 <p class="work-card-teaser">
-                  Computing the optimal subway path with classic graph
-                  algorithms (Dijkstra / A*), surfaced as a Next.js web app that
-                  visualizes the route over the live network.
+                  A time-dependent route planner that beats sequential ordering on a single
+                  subway line. Brute-force search over up to 720 permutations against the real
+                  Incheon Line 2 timetable — surfaces the Wait-Time Paradox at
+                  subway-route-optimization.vercel.app.
                 </p>
                 <div class="work-card-tags pills">
                   <span class="pill">TypeScript</span>
-                  <span class="pill">Next.js</span>
+                  <span class="pill">Vite</span>
                   <span class="pill">React</span>
                 </div>
               </div>

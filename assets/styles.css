@@ -661,7 +661,7 @@ mark.ink {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: 36px;
-  align-items: stretch;
+  align-items: center;
   text-decoration: none;
   color: inherit;
   cursor: none;
@@ -674,11 +674,14 @@ mark.ink {
 
 .work-card-visual {
   position: relative;
-  aspect-ratio: 4/3;
+  aspect-ratio: 16/10;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 0 28px 0 0;
   overflow: hidden;
+  align-self: center;
+  min-width: 0;
+  min-height: 0;
   transition: border-color 0.35s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .work-card:hover .work-card-visual {
@@ -721,6 +724,7 @@ mark.ink {
   flex-direction: column;
   justify-content: center;
   padding-right: 12px;
+  min-width: 0;
 }
 .work-card-meta {
   font-family: var(--mono);

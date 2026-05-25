@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UMich KISA Website · Dongeun Kim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <script src="../assets/app.js" defer></script>
+  </head>
+  <body>
+    <div class="cur-ring"></div>
+    <div class="cur-dot"></div>
+
+    <header class="topnav">
+      <a href="../projects.html" class="topnav-home magnetic">
+        <span class="home-dot"></span>
+        <span class="home-arrow">←</span>
+        Projects
+      </a>
+      <nav class="topnav-links">
+        <a href="../about.html" class="magnetic">about</a>
+        <a href="../projects.html" class="magnetic active">projects</a>
+        <a href="../playground.html" class="magnetic">playground</a>
+        <a href="../blog.html" class="magnetic">writing</a>
+        <a href="../contact.html" class="magnetic">contact</a>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="section-tag" style="margin-bottom: 14px;">011 · SWE</div>
+          <h1 class="sidebar-name" style="font-size: 30px;">UMich KISA<br/>Website</h1>
+          <div class="sidebar-role">Community · web</div>
+          <div class="sidebar-tagline">
+            The official site for the University of Michigan Korean International Student Association — and the platform that hosts Pocha ordering and Job Curator.
+          </div>
+        </div>
+
+        <div class="subnav">
+          <a href="#overview" class="active">overview</a>
+          <a href="#stack">technologies</a>
+          <a href="#features">what it does</a>
+          <a href="#contribution">my contribution</a>
+        </div>
+      </aside>
+
+      <main class="content">
+        <div class="project-hero reveal">
+          <h2 class="project-title">UMich KISA Website <span style="font-weight: 400; opacity: 0.7;">(미시간 한인 학생회)</span></h2>
+          <p class="project-tagline">
+            The umbrella platform for the University of Michigan Korean International Student Association — hosting events, resources, and the in-house product features.
+          </p>
+          <div class="project-meta-row">
+            <div class="col"><span class="label">Timeline</span><span class="value">2024 – Present</span></div>
+            <div class="col"><span class="label">Company</span><span class="value">UMich KISA</span></div>
+            <div class="col"><span class="label">Role</span><span class="value">Lead engineer</span></div>
+            <div class="col"><span class="label">Stack</span><span class="value">Next.js · TypeScript · Tailwind · Vercel</span></div>
+          </div>
+        </div>
+
+        <section id="overview" class="project-section reveal">
+          <h3>Overview</h3>
+          <p class="lead-para">
+            The official site for UMich KISA — 미시간 대학교 한인 학부생 학생회 — and the platform layer that the community's in-house product features (Pocha event ordering, Job Curator) are built on top of.
+          </p>
+          <p class="body-para">
+            UMich KISA is the student organization for Korean undergraduates at the University of Michigan. The website is the public face — event listings, board info, member resources — and also the application shell that authenticated members use to access the platform's product features. Building the platform once meant later projects (Pocha event ordering, the Job Curator for international students) could plug into a shared sign-in, shared design system, and shared deployment rather than each being a separate site.
+          </p>
+        </section>
+
+        <section id="stack" class="project-section reveal">
+          <h3>Technologies</h3>
+          <div class="skill-group">
+            <div class="skill-group-name">front-end</div>
+            <div class="pills">
+              <span class="pill">Next.js</span>
+              <span class="pill">React</span>
+              <span class="pill">TypeScript</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">styling</div>
+            <div class="pills">
+              <span class="pill">Tailwind CSS</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">auth &amp; data</div>
+            <div class="pills">
+              <span class="pill">member sign-in</span>
+              <span class="pill">shared session layer for sub-features</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">deployment</div>
+            <div class="pills">
+              <span class="pill">Vercel</span>
+              <span class="pill">umichkisa.com</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="features" class="project-section reveal">
+          <h3>What It Does</h3>
+          <ul class="work-list">
+            <li><strong>Public org site.</strong> Event listings, board info, member-facing resources for the UMich KISA community.</li>
+            <li><strong>Member authentication.</strong> Shared sign-in that gates the platform's product features (Pocha ordering, Job Curator) behind verified member access.</li>
+            <li><strong>Shared platform layer.</strong> A common design system, deployment, and session model that successor features plug into rather than reimplement.</li>
+            <li><strong>Bilingual presence.</strong> Korean and English copy throughout, matching the audience.</li>
+          </ul>
+        </section>
+
+        <section id="contribution" class="project-section reveal">
+          <h3>My Contribution</h3>
+          <p class="lead-para">
+            Lead engineer — built the platform and continue to own the technical layer the rest of the KISA product surface is built on.
+          </p>
+          <p class="body-para">
+            The most useful decision was designing this as a platform from the start, not a single-purpose site. The Pocha ordering system and the Job Curator both live as features inside this app rather than as standalone projects — they share the same sign-in, the same deployment, and the same component library. That's why a separate-by-feature, related-by-platform story is possible.
+          </p>
+        </section>
+
+        <section id="links" class="project-section reveal">
+          <h3>Links</h3>
+          <div class="project-cta">
+            <a href="https://www.umichkisa.com" class="cta-btn" target="_blank" rel="noreferrer">Live: umichkisa.com →</a>
+          </div>
+        </section>
+
+        <div style="display: flex; justify-content: space-between; padding: 40px 0 0; border-top: 1px solid var(--line); margin-top: 40px;">
+          <a href="food-ordering-web.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">← Prev: Pocha Ordering Platform</a>
+          <a href="job-curator.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">Next: Job Curator →</a>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const subnavLinks = document.querySelectorAll(".subnav a");
+      subnavLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          subnavLinks.forEach((l) => l.classList.toggle("active", l === link));
+        });
+      });
+    </script>
+  </body>
+</html>

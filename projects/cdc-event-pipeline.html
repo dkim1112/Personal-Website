@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CDC Event Pipeline · Dongeun Kim</title>
+    <title>CDC Event Sourcing Pipeline · Dongeun Kim</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
@@ -34,11 +34,11 @@
     <div class="layout">
       <aside class="sidebar">
         <div class="sidebar-header">
-          <div class="section-tag" style="margin-bottom: 14px;">007 · DE</div>
-          <h1 class="sidebar-name" style="font-size: 30px;">CDC Event<br/>Pipeline</h1>
-          <div class="sidebar-role">Data engineering</div>
+          <div class="section-tag" style="margin-bottom: 14px;">006 · DE</div>
+          <h1 class="sidebar-name" style="font-size: 30px;">CDC Event<br/>Sourcing<br/>Pipeline</h1>
+          <div class="sidebar-role">Data engineering · streaming</div>
           <div class="sidebar-tagline">
-            [ Change Data Capture event streaming pipeline with Kafka and multi-database analytics. ]
+            Streaming database changes through Kafka so intermediate states don't vanish between polls.
           </div>
         </div>
 
@@ -56,117 +56,168 @@
 
       <main class="content">
         <div class="project-hero reveal">
-          <h2 class="project-title">CDC Event Pipeline</h2>
+          <h2 class="project-title">CDC Event Sourcing Pipeline</h2>
           <p class="project-tagline">
-            [ Real-time data synchronization across multiple databases with Kafka CDC. ]
+            Streaming database changes through Kafka so intermediate states don't vanish between polls.
           </p>
           <div class="project-meta-row">
-            <div class="col"><span class="label">Timeline</span><span class="value">2026</span></div>
-            <div class="col"><span class="label">Company</span><span class="value">Independent</span></div>
-            <div class="col"><span class="label">Role</span><span class="value">Data Engineer</span></div>
-            <div class="col"><span class="label">Stack</span><span class="value">Python · Kafka · PostgreSQL</span></div>
+            <div class="col"><span class="label">Timeline</span><span class="value">Feb 2026 – Apr 2026</span></div>
+            <div class="col"><span class="label">Company</span><span class="value">Personal project</span></div>
+            <div class="col"><span class="label">Role</span><span class="value">Sole engineer</span></div>
+            <div class="col"><span class="label">Stack</span><span class="value">PostgreSQL · Debezium · Kafka · Python</span></div>
           </div>
         </div>
 
         <section id="overview" class="project-section reveal">
           <h3>Overview</h3>
-          <p class="lead-para">[ Headline summary. ]</p>
-          <p class="body-para">[ Detailed overview — what was built, why. ]</p>
+          <p class="lead-para">
+            Most data pipelines poll on a schedule. This one reads PostgreSQL's Write-Ahead Log directly, capturing every row-level change at the moment it happens — so the full lifecycle of an order (created → paid → shipped → delivered) survives instead of collapsing into whatever state happened to be there when the poll ran.
+          </p>
+          <p class="body-para">
+            A scheduled pipeline that <code>SELECT</code>s every 10 minutes has three structural blind spots: intermediate states vanish between polls (CREATED → PAID → SHIPPED in 8 minutes shows up only as SHIPPED), deletes are invisible (you can't see a row that's no longer there), and source-DB load is paid every cycle even when nothing changed. Change Data Capture solves all three by reading the database's own log instead of polling it. This pipeline implements the full CDC pattern end-to-end: PostgreSQL with logical replication, <mark class="hl">Debezium</mark> as the connector reading the WAL, <mark class="hl">Apache Kafka</mark> as the durable event stream, and a Python consumer that writes both an append-only event log and materialized snapshots of current state. It's built around a simulated e-commerce dataset (orders, products, inventory, customers), runs locally via Docker Compose, and includes a 5-page Streamlit dashboard for visualizing event flow, processing lag, and reconstructed snapshots. The repo includes 8 documented Architecture Decision Records, 21 unit tests, and an AWS deployment cost analysis (~$83/month).
+          </p>
         </section>
 
         <section id="stack" class="project-section reveal">
           <h3>Technologies</h3>
           <div class="skill-group">
+            <div class="skill-group-name">data infrastructure</div>
+            <div class="pills">
+              <span class="pill">PostgreSQL 16</span>
+              <span class="pill">Apache Kafka 2.7</span>
+              <span class="pill">Debezium 2.7 (Kafka Connect)</span>
+              <span class="pill">Docker Compose (5-service stack)</span>
+            </div>
+          </div>
+          <div class="skill-group">
             <div class="skill-group-name">language</div>
-            <div class="pills"><span class="pill">Python</span></div>
+            <div class="pills"><span class="pill">Python 3.9+</span></div>
           </div>
           <div class="skill-group">
-            <div class="skill-group-name">streaming</div>
+            <div class="skill-group-name">streaming consumer</div>
             <div class="pills">
-              <span class="pill">Kafka</span>
-              <span class="pill">Debezium</span>
+              <span class="pill">confluent-kafka</span>
+              <span class="pill">UUID5 deduplication</span>
+              <span class="pill">JSONB event log</span>
+              <span class="pill">materialized snapshots</span>
             </div>
           </div>
           <div class="skill-group">
-            <div class="skill-group-name">databases</div>
+            <div class="skill-group-name">front-end</div>
             <div class="pills">
-              <span class="pill">PostgreSQL</span>
-              <span class="pill">MongoDB</span>
+              <span class="pill">Streamlit (5 pages)</span>
+              <span class="pill">Plotly</span>
             </div>
           </div>
           <div class="skill-group">
-            <div class="skill-group-name">infrastructure</div>
+            <div class="skill-group-name">ops &amp; testing</div>
             <div class="pills">
-              <span class="pill">Docker</span>
-              <span class="pill">docker-compose</span>
+              <span class="pill">monitor.py CLI</span>
+              <span class="pill">verify_consistency.sh</span>
+              <span class="pill">pytest (21 tests)</span>
             </div>
           </div>
         </section>
 
         <section id="problem" class="project-section reveal">
           <h3>The Problem</h3>
-          <p class="lead-para">[ Headline problem statement. ]</p>
-          <p class="body-para">[ Detailed problem context. ]</p>
+          <p class="lead-para">
+            Polling-based pipelines silently lose information every cycle. CDC is the right tool — but the right tool is rarely the easiest one to set up.
+          </p>
+          <p class="body-para">
+            The intermediate-state problem is the clearest motivator. If an order transitions CREATED → PAID → SHIPPED within a single polling interval, every downstream analysis sees only SHIPPED. The full lifecycle — how long payment took, which orders stalled at PAID, what percentage were cancelled before shipping — is invisible. That's not just analytical loss; it's the difference between knowing your funnel and guessing at it. CDC fixes the problem at the source, but setting it up correctly is non-trivial: Debezium runs inside Kafka Connect (not standalone), decimal columns come through as base64 by default, the source DB's WAL can bloat if the consumer stops, and out-of-order events show up even on a single Kafka partition because Debezium batches transactions. This project's value isn't that CDC is novel — it's that it's the correctly-set-up version with the production gotchas already discovered, documented, and worked around.
+          </p>
           <div class="hmw-callout">
             <span class="bulb">💡</span>
             <div class="hmw-body">
               <div class="hmw-label">How might we</div>
-              <div class="hmw-q">[ Framing question for this project. ]</div>
+              <div class="hmw-q">
+                build a CDC pipeline that captures every state transition, handles real production gotchas (decimal encoding, out-of-order events, failed events), and produces both an append-only event history and queryable current-state snapshots — with the entire architecture reproducible from a single <code>docker compose up</code>?
+              </div>
             </div>
           </div>
         </section>
 
         <section id="vision" class="project-section reveal">
           <h3>Product Vision</h3>
-          <p class="lead-para">[ The end state. ]</p>
-          <p class="body-para">[ Detail on outcome. ]</p>
+          <p class="lead-para">
+            A reference implementation of CDC that anyone can clone, start with one command, and use to understand both the pattern (WAL → Kafka → consumer → snapshots) and the production realities (where exactly each gotcha lives and how to handle it).
+          </p>
+          <p class="body-para">
+            The pipeline is built around a simulated e-commerce workload — order lifecycles with 10% cancellations, 5% refunds, realistic timing — because the value is in seeing the CDC pattern work end-to-end, not in the specific business data. The 5-page Streamlit dashboard surfaces every piece of the system: per-event processing lag, the lifecycle transitions reconstructed from raw events, current snapshot state derived from those transitions, dead-letter events that failed processing, and pipeline-ops monitoring. The entire architecture comes up clean from a single <code>docker compose up</code> and is verifiable end-to-end with a consistency-check script that compares snapshots back against the source DB.
+          </p>
           <div class="project-callout">
             <div class="callout-eyebrow">Core architecture</div>
-            <h4>[ Architecture title. ]</h4>
-            <p>[ CDC source → Kafka topics → consumers → multi-DB sinks. ]</p>
+            <h4>WAL-Sourced CDC with Append-Only Event Log and Materialized Snapshots</h4>
+            <p>
+              PostgreSQL is configured with logical replication and <code>REPLICA IDENTITY FULL</code> on all source tables so every row change emits the full before/after state to the WAL. Debezium (running inside Kafka Connect) reads the WAL and publishes JSON change events to five Kafka topics — one per source table. A Python consumer (<code>confluent-kafka</code>) reads these events and does three things: (1) writes them to an append-only <code>event_log</code> table with UUID5-based deduplication (event ID = hash of table + LSN + txId + key, so the same event always gets the same ID, and a re-delivered event is idempotently skipped), (2) updates materialized <code>order_snapshots</code> and <code>inventory_snapshots</code> tables that represent current state derived from the event stream, and (3) records per-minute processing metrics for monitoring. Failed events land in a <code>dead_letter_events</code> table rather than being dropped. The snapshots are derived from events rather than copied from the source, which means they can be rebuilt from the event log at any time — that's what makes this <em>event sourcing</em>, not just CDC. Eight Architecture Decision Records document the major design choices in <code>02-DECISIONS.md</code>.
+            </p>
             <div class="project-stats">
-              <div class="stat"><div class="v">—</div><div class="k">events/sec</div></div>
-              <div class="stat"><div class="v">—</div><div class="k">topics</div></div>
-              <div class="stat"><div class="v">—</div><div class="k">sinks</div></div>
+              <div class="stat"><div class="v">5</div><div class="k">Kafka topics, one per source table</div></div>
+              <div class="stat"><div class="v">8</div><div class="k">Architecture Decision Records</div></div>
+              <div class="stat"><div class="v">21</div><div class="k">unit tests passing</div></div>
             </div>
           </div>
         </section>
 
         <section id="contribution" class="project-section reveal">
           <h3>My Contribution</h3>
-          <p class="lead-para">[ Headline of your contribution. ]</p>
-          <p class="body-para">[ Detail on what you built and owned. ]</p>
+          <p class="lead-para">
+            Sole engineer — designed the architecture, navigated the production gotchas, and built the demo end-to-end with the same documentation discipline as a small production service.
+          </p>
+          <p class="body-para">
+            This is one of two streaming/batch sister projects I built to develop the data engineering muscles needed for production ETL work — the batch counterpart is the <a href="korean-price-monitor.html" class="ulink">Korean Price Monitor</a> pipeline. CDC was the harder of the two to set up correctly, less because the conceptual pattern is complex (WAL → Kafka → consumer is a few words) and more because the productionization details (Debezium's connector lifecycle, decimal encoding, WAL bloat under consumer stalls, out-of-order events) are the kind of thing you discover by hitting them rather than by reading docs. Documenting each as it came up, in <code>02-JOURNAL.md</code> and the 8 ADRs, was the way I made sure I'd actually internalized the lessons rather than just gotten the pipeline to "work."
+          </p>
           <div class="project-callout">
             <h4>What I worked on</h4>
             <ul class="work-list">
-              <li>[ Workstream one ]</li>
-              <li>[ Workstream two ]</li>
-              <li>[ Workstream three ]</li>
+              <li><strong>CDC pipeline architecture.</strong> Designed the WAL → Debezium → Kafka → consumer → analytics-DB flow. Made the deliberate decision to derive snapshots from events (event sourcing) rather than mirror the source DB, so the analytics layer can always be rebuilt from the event log.</li>
+              <li><strong>Idempotent event processing.</strong> Implemented UUID5-based deduplication keyed on (table, LSN, txId, primary key), so a re-delivered event always gets the same ID and is silently skipped on second insert. Verified zero duplicates across a 533-event burst test.</li>
+              <li><strong>Failure-mode handling.</strong> Built the dead-letter queue for failed events (rather than dropping or crashing the consumer), per-table out-of-order detection using event timestamps, and end-to-end lag monitoring (event-creation-time vs. event-processing-time per minute). 21 unit + integration tests cover the core processing logic.</li>
+              <li><strong>Operability.</strong> Built the 5-page Streamlit dashboard, a CLI monitor (<code>monitor.py --watch</code>), a consistency-verification script (<code>verify_consistency.sh</code>) that compares snapshots against the source DB, and the Docker Compose stack with 5 services that come up clean from one command.</li>
             </ul>
           </div>
         </section>
 
         <section id="achievements" class="project-section reveal">
           <h3>Key Achievements</h3>
-          <p class="lead-para">[ Headline outcome. ]</p>
-          <p class="body-para">[ Narrative on results. ]</p>
+          <p class="lead-para">
+            An end-to-end CDC reference implementation that captures every state transition, handles real production gotchas, and runs reproducibly from a single command.
+          </p>
+          <p class="body-para">
+            The dashboard's Order Snapshots page is the clearest demonstration of why CDC matters: from raw row-level events alone, the pipeline reconstructs the full order-lifecycle flow — 65 CREATED events, 60 CREATED→PAID transitions, 48 SHIPPED→DELIVERED transitions, 5 CREATED→CANCELLED — none of which would be visible in a polling pipeline that sampled every 10 minutes. The pipeline survived a 533-event burst test with zero duplicates (UUID5 dedup working as designed) and out-of-order events were caught by per-table timestamp tracking. The repo's 8 ADRs, 21 tests, schema design doc, decision journal, and AWS cost breakdown all exist because the goal wasn't just to build a working pipeline — it was to leave a complete enough record that someone else (or future me) could understand <em>why</em> each choice was made, not just what it was.
+          </p>
           <div class="project-tiles">
-            <div class="tile"><div class="v">—</div><div class="k">metric one</div></div>
-            <div class="tile"><div class="v">—</div><div class="k">metric two</div></div>
-            <div class="tile"><div class="v">—</div><div class="k">metric three</div></div>
+            <div class="tile"><div class="v">0</div><div class="k">duplicate events across a 533-event burst test</div></div>
+            <div class="tile"><div class="v">~50 / min</div><div class="k">demo throughput (single consumer)</div></div>
+            <div class="tile"><div class="v">~$83 / mo</div><div class="k">estimated AWS production cost</div></div>
           </div>
         </section>
 
         <section id="lessons" class="project-section reveal">
           <h3>Lessons Learned</h3>
-          <p class="lead-para">[ The single biggest takeaway. ]</p>
-          <p class="body-para">[ What worked, what didn't. ]</p>
+          <p class="lead-para">
+            CDC's value proposition is easy to state and surprisingly hard to set up. The gap between "I understand the pattern" and "I have a working CDC pipeline with production-correct behavior" is mostly populated by gotchas that aren't in the docs.
+          </p>
+          <p class="body-para">
+            <strong>What worked:</strong> writing an ADR for each major decision <em>as I made it</em>, not retroactively. ADRs written after the fact tend to read like marketing for a choice that's already been made; ADRs written in the moment of the decision force you to articulate the tradeoff you're weighing — and to come back later and notice when the tradeoff changed.
+          </p>
+          <p class="body-para">
+            <strong>What didn't:</strong> I underestimated how many of the gotchas were configuration details rather than design problems. The Debezium decimal-encoding issue (base64 by default, needs <code>decimal.handling.mode: "string"</code>) is a one-line config change — but I lost most of a day to it because the failure mode (silently mangled financial values) doesn't look like a config issue from the symptoms. The general lesson: when something in a managed connector is producing weirdly-shaped data, check the connector's config docs before writing custom transformation code.
+          </p>
+          <p class="body-para">
+            <strong>What I'd do differently:</strong> I'd write a "first principles sanity check" step into the pipeline from day one — a script that compares raw connector output against the source-DB ground truth, flagging any field where the round-trip doesn't match. The decimal-encoding bug, the out-of-order event issue, and a couple of other small ones would have been caught by this in minutes rather than hours. That's the streaming-equivalent of the data-quality validation pattern from the Price Monitor pipeline.
+          </p>
         </section>
 
         <section id="future" class="project-section reveal">
           <h3>Where It's Going</h3>
-          <p class="lead-para">[ Next steps. ]</p>
-          <p class="body-para">[ Longer-term direction. ]</p>
+          <p class="lead-para">
+            Three concrete extensions are documented in <code>02-ROADMAP.md</code>. The first is partitioned consumption with consumer groups so the pipeline can scale beyond demo throughput (~50 events/min) — this is the single biggest gap between the current design and a real production system. The second is schema registry integration (Confluent Schema Registry with Avro or Protobuf) so events get validated at ingest rather than relying on JSONB flexibility. The third is KRaft mode to drop the Zookeeper dependency (Kafka 3.x+).
+          </p>
+          <p class="body-para">
+            The deeper extension is connecting this CDC pipeline to the <a href="korean-price-monitor.html" class="ulink">Price Monitor</a> pipeline as two sides of the same data-engineering pattern: real-time event sourcing for transactional workloads, batch ETL with quality validation for analytical workloads. They share the same documentation discipline (ADRs, schema design docs, journals, cost analysis), and the goal is to develop a coherent two-project answer to "can you build the data infrastructure layer?" for any future DE/SWE role I'm applying to.
+          </p>
         </section>
 
         <section id="links" class="project-section reveal">
@@ -177,8 +228,8 @@
         </section>
 
         <div style="display: flex; justify-content: space-between; padding: 40px 0 0; border-top: 1px solid var(--line); margin-top: 40px;">
-          <a href="pheweb-beta-matrix.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">← Prev: PheWeb β-Matrix Builder</a>
-          <a href="food-ordering.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">Next: Food Ordering →</a>
+          <a href="pheweb-beta-matrix.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">← Prev: PheWeb Beta Matrix Builder</a>
+          <a href="linkedin-scraper.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">Next: LinkedIn Scraper →</a>
         </div>
       </main>
     </div>

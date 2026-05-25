@@ -34,11 +34,11 @@
     <div class="layout">
       <aside class="sidebar">
         <div class="sidebar-header">
-          <div class="section-tag" style="margin-bottom: 14px;">005 · DE</div>
-          <h1 class="sidebar-name" style="font-size: 30px;">korean_price<br/>_monitor.py</h1>
+          <div class="section-tag" style="margin-bottom: 14px;">004 · DE</div>
+          <h1 class="sidebar-name" style="font-size: 30px;">Korean Price<br/>Monitor</h1>
           <div class="sidebar-role">Data engineering</div>
           <div class="sidebar-tagline">
-            Ingestion pipeline comparing what Korean consumers actually pay vs. official CPI.
+            Asking whether Korea's official CPI captures what people actually pay — by joining two government APIs and validating every run.
           </div>
         </div>
 
@@ -58,27 +58,23 @@
         <div class="project-hero reveal">
           <h2 class="project-title">Korean Price Monitor</h2>
           <p class="project-tagline">
-            What Korean consumers actually pay vs. what the official inflation index reports.
+            A data engineering pipeline that asks whether Korea's official CPI captures what people actually pay.
           </p>
           <div class="project-meta-row">
-            <div class="col"><span class="label">Timeline</span><span class="value">2025 – Present</span></div>
-            <div class="col"><span class="label">Company</span><span class="value">Independent</span></div>
-            <div class="col"><span class="label">Role</span><span class="value">Data Engineer</span></div>
-            <div class="col"><span class="label">Stack</span><span class="value">Python · Docker · cron · Streamlit</span></div>
+            <div class="col"><span class="label">Timeline</span><span class="value">Feb 2026 – Apr 2026</span></div>
+            <div class="col"><span class="label">Company</span><span class="value">Personal project</span></div>
+            <div class="col"><span class="label">Role</span><span class="value">Sole engineer</span></div>
+            <div class="col"><span class="label">Stack</span><span class="value">Python · PostgreSQL · Docker · Streamlit</span></div>
           </div>
         </div>
 
         <section id="overview" class="project-section reveal">
           <h3>Overview</h3>
           <p class="lead-para">
-            CPI is a national average. It hides what households actually pay at the checkout.
+            Two government APIs publish Korean consumer price data in different formats at different frequencies. This pipeline joins them, validates the data quality of every run, and answers a single question: when official CPI says inflation is X%, is that what consumers are actually paying?
           </p>
           <p class="body-para">
-            Korean Price Monitor is a unified ingestion pipeline that pulls
-            <mark class="hl">KOSTAT</mark> retail prices (weekly XML) and
-            <mark class="hl">ECOS</mark> CPI (monthly JSON) into a single, comparable store. It
-            runs 6 quality checks per run, detects schema drift, and preserves raw payloads
-            so historical analyses stay reproducible.
+            I noticed grocery bills weren't tracking with the official inflation numbers and wanted to know whether my impression was actually true at scale. Statistics Korea (<mark class="hl">KOSTAT</mark>) publishes product-level e-commerce prices weekly in XML — about 600K product listings per collection across 124 item categories. The Bank of Korea (<mark class="hl">ECOS</mark>) publishes monthly CPI indices in JSON, with 1,743 hierarchical items keyed to a base year of 2020. They share classification codes, which means the comparison is possible — but neither source produces a joined view, neither is robust against the other's schema drift, and neither validates its own freshness or completeness. The pipeline I built handles all of that: defensive API integration, raw-data preservation, six data quality checks with thresholds calibrated against real distributions rather than textbook defaults, and a four-page Streamlit dashboard that produces the "Price vs. CPI" view that started the question in the first place.
           </p>
         </section>
 
@@ -87,20 +83,47 @@
           <div class="skill-group">
             <div class="skill-group-name">language</div>
             <div class="pills">
-              <span class="pill">Python</span>
+              <span class="pill">Python 3.10+</span>
             </div>
           </div>
           <div class="skill-group">
-            <div class="skill-group-name">infrastructure</div>
+            <div class="skill-group-name">data engineering</div>
             <div class="pills">
-              <span class="pill">Docker</span>
+              <span class="pill">PostgreSQL 16 (Docker)</span>
+              <span class="pill">raw → mart architecture</span>
+              <span class="pill">monthly-partitioned tables</span>
+              <span class="pill">UPSERT idempotent ingestion</span>
+              <span class="pill">XML &amp; JSON parsers</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">quality &amp; monitoring</div>
+            <div class="pills">
+              <span class="pill">6-check validation suite</span>
+              <span class="pill">schema drift detection</span>
+              <span class="pill">Slack webhook alerting</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">orchestration</div>
+            <div class="pills">
               <span class="pill">cron</span>
+              <span class="pill">structured logging</span>
+              <span class="pill">chosen over Airflow (ADR-004)</span>
             </div>
           </div>
           <div class="skill-group">
             <div class="skill-group-name">front-end</div>
             <div class="pills">
-              <span class="pill">Streamlit</span>
+              <span class="pill">Streamlit (4 pages)</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">testing &amp; ops</div>
+            <div class="pills">
+              <span class="pill">pytest (23 tests)</span>
+              <span class="pill">Docker Compose</span>
+              <span class="pill">env-keyed config</span>
             </div>
           </div>
           <div class="skill-group">
@@ -115,21 +138,17 @@
         <section id="problem" class="project-section reveal">
           <h3>The Problem</h3>
           <p class="lead-para">
-            Official inflation numbers don't match what's on the receipt.
+            The official inflation index and the prices in front of consumers come from the same government but don't talk to each other.
           </p>
           <p class="body-para">
-            CPI smooths over category-level shocks (eggs, gasoline, fresh produce) by basket
-            weighting. Households experience inflation at the product level, where weekly price
-            volatility is much larger. There's no public, low-friction way to compare the two —
-            so the gap stays invisible.
+            Korean consumer price data is published by two agencies in incompatible formats. KOSTAT publishes the granular reality — actual e-commerce prices, product by product, ~600K listings per collection cycle — in XML, weekly, with a ~2-week lag. ECOS publishes the official inflation summary — CPI indices, 1,743 categories, base year 2020 — in JSON, monthly. The two sources share classification codes, so the comparison is technically possible: for any given category, you could check whether product prices are tracking the official CPI for that category or drifting from it. But nobody had built that joined view, and crucially, nobody was validating that either source had returned good data on any given run. KOSTAT in particular has undocumented API behaviors — successful responses omit the result code that the documentation says is always present, item codes are 6 characters where docs say 7, etc. — which means a naive pipeline silently produces garbage on a bad day.
           </p>
           <div class="hmw-callout">
             <span class="bulb">💡</span>
             <div class="hmw-body">
               <div class="hmw-label">How might we</div>
               <div class="hmw-q">
-                build a pipeline that surfaces the gap between official CPI and real consumer prices,
-                weekly, at the category level — and keeps it honest enough to trust?
+                build a pipeline that not only joins the two sources but is honest with itself about when either source has returned data it shouldn't trust?
               </div>
             </div>
           </div>
@@ -138,26 +157,21 @@
         <section id="vision" class="project-section reveal">
           <h3>Product Vision</h3>
           <p class="lead-para">
-            Inflation, but visible at the basket level — refreshed weekly.
+            A locally runnable pipeline that any analyst, journalist, or curious consumer could clone, point at the two government APIs, and use to ask: in the categories I actually buy, is the official inflation index tracking reality?
           </p>
           <p class="body-para">
-            Anyone curious about why their grocery bill keeps climbing should be able to see the
-            answer in two clicks: a per-category trend, a CPI overlay, and a clear delta.
+            The dashboard's "Price vs. CPI" page is the answer to the original question. For each of 124 mapped categories, it overlays median product price (KRW) against the CPI index for that category. When the lines diverge — product prices rising faster than the CPI for the same category — that's an empirically visible gap between official inflation and what consumers in that category are paying. Below the chart, an inline callout calculates the divergence: "Product prices changed +X% while CPI changed +Y%." The data-quality and pipeline-ops pages exist because that comparison is only worth something if the underlying collections are themselves trustworthy.
           </p>
           <div class="project-callout">
             <div class="callout-eyebrow">Core architecture</div>
-            <h4>A reproducible 2-source pipeline with QC as a first-class citizen</h4>
+            <h4>Raw-Preserving ETL with First-Class Data Quality and Schema Drift Detection</h4>
             <p>
-              Schema-validated ingestion of KOSTAT XML and ECOS JSON, normalized into a single
-              category × week schema. Raw payloads are preserved by hash. 6 quality checks run
-              per execution (row counts, schema fingerprints, allele/category coverage, null
-              ratios, monotonicity, source-source reconciliation) and any failure halts the
-              downstream warehouse write.
+              Two collectors hit the source APIs on independent schedules — KOSTAT weekly via cron, ECOS monthly. Every run begins with a schema drift check that compares the current response shape against a baseline; deviations flag for review before they corrupt the raw store. All raw data lands unaggregated in PostgreSQL (<code>raw</code> schema, monthly-partitioned for the high-volume KOSTAT table, with UPSERT deduplication for ECOS). A separate aggregation stage runs SQL-based raw-to-mart transformations: <code>mart.daily_price_summary</code> with median and IQR, <code>mart.monthly_cpi_index</code> with latest-wins semantics, and <code>mart.price_vs_cpi</code> as the joined analytical view. After aggregation, six quality checks run against the mart, with thresholds calibrated against observed distributions rather than textbook defaults — for example, the CPI range check was initially set to [80, 130] based on "CPI ≈ 100" and produced 143 false positives in the first run; the corrected range of [30, 250] reflects how widely real sub-indices actually vary. Eight Architecture Decision Records document the rationale behind each major choice.
             </p>
             <div class="project-stats">
-              <div class="stat"><div class="v">~600K</div><div class="k">products / run</div></div>
-              <div class="stat"><div class="v">124</div><div class="k">categories tracked</div></div>
-              <div class="stat"><div class="v">6</div><div class="k">QC checks per run</div></div>
+              <div class="stat"><div class="v">~600K</div><div class="k">product listings per run</div></div>
+              <div class="stat"><div class="v">124</div><div class="k">categories mapped KOSTAT ↔ ECOS</div></div>
+              <div class="stat"><div class="v">6</div><div class="k">data-calibrated quality checks</div></div>
             </div>
           </div>
         </section>
@@ -165,59 +179,61 @@
         <section id="contribution" class="project-section reveal">
           <h3>My Contribution</h3>
           <p class="lead-para">
-            Built end-to-end as a solo engineer — from API contracts to dashboard.
+            Sole engineer — designed the architecture, wrote every component, calibrated the quality thresholds against real data, and documented the decisions.
           </p>
           <p class="body-para">
-            I owned every layer: schema design, ingestion, validation, storage, and the
-            Streamlit front-end. The challenge wasn't any single component — it was making the
-            seams between KOSTAT and ECOS honest, so a comparison between them is actually
-            apples-to-apples.
+            The work was solo from first commit to final dashboard. The most useful discipline I imposed on myself was writing an Architecture Decision Record (ADR) for each significant choice — pivoting away from KAMIS, choosing Postgres over DuckDB, storing raw and aggregating later, choosing cron over Airflow, calibrating thresholds against data. The ADRs are short, but they meant that every time I considered changing something later, I had to engage with the prior reasoning rather than just override it. That habit kept the pipeline more coherent than a single-author project usually ends up.
           </p>
           <div class="project-callout">
-            <h4>What I work on</h4>
+            <h4>What I worked on</h4>
             <ul class="work-list">
-              <li>Schema design for a sign-consistent, source-agnostic category × week store</li>
-              <li>Dockerized ingestion + cron scheduling for KOSTAT (weekly) and ECOS (monthly)</li>
-              <li>Quality-check suite: 6 invariants that block bad data from reaching the warehouse</li>
-              <li>Raw-payload preservation so any historical run can be reproduced from disk</li>
-              <li>Streamlit dashboard exposing per-category CPI-vs-retail deltas</li>
+              <li><strong>Defensive API integration.</strong> Built KOSTAT and ECOS collectors with adaptive date probing, retry logic, and discovery-driven parsing — necessary because KOSTAT's documented behavior diverges from actual API behavior in multiple places (item code length, presence of result codes on success).</li>
+              <li><strong>Schema drift detection and data quality.</strong> Designed the six-check validation suite (freshness, completeness, null ratio, anomaly detection, CPI range, schema baseline) and the workflow that calibrates each threshold against real observed distributions rather than guessing. Recalibrated the CPI range check after the first deployment produced 143 false positives.</li>
+              <li><strong>Raw-preserving database design.</strong> Schema design in <code>01-SCHEMA-DESIGN.md</code>: monthly-partitioned raw tables for KOSTAT's high-volume product listings, deduplication-indexed raw tables for ECOS, and SQL-based mart aggregation as a separate stage so the raw data is always preserved and re-aggregatable.</li>
+              <li><strong>Dashboard, monitoring, and operability.</strong> Built the 4-page Streamlit dashboard (Price Trends, Price vs. CPI, Data Quality Health, Pipeline Ops), the cron scheduling layer, Slack webhook alerting, and 23 unit + integration tests.</li>
             </ul>
           </div>
         </section>
 
         <section id="achievements" class="project-section reveal">
           <h3>Key Achievements</h3>
-          <p class="lead-para">[ Headline outcome — the one-line "this is what it delivered." ]</p>
-          <p class="body-para">[ Slightly longer narrative on the most meaningful results. ]</p>
+          <p class="lead-para">
+            An end-to-end pipeline that answers the original question — do product prices track the CPI? — and is honest about its own data quality at every stage.
+          </p>
+          <p class="body-para">
+            The dashboard's Price vs. CPI page shows the empirical gap I started with: for several mapped categories, product prices have shifted meaningfully against the CPI index across the observation window. The findings are descriptive — this is a single-cohort cross-source comparison, not a causal claim about what's wrong with the CPI — but they're the kind of finding that would have been invisible without joining the two government datasets. Beyond the analytical output, the more durable contribution is the engineering pattern itself: a small, well-documented data pipeline where every threshold is justified, every architectural decision is on the record, and the data quality story is told to the operator as plainly as the analytical story is told to the reader. The whole system is 23 tests, 8 ADRs, and a Docker Compose stack that comes up clean from a clone.
+          </p>
           <div class="project-tiles">
-            <div class="tile"><div class="v">—</div><div class="k">metric one</div></div>
-            <div class="tile"><div class="v">—</div><div class="k">metric two</div></div>
-            <div class="tile"><div class="v">—</div><div class="k">metric three</div></div>
+            <div class="tile"><div class="v">143 → 0</div><div class="k">false-positive CPI alerts after threshold recalibration</div></div>
+            <div class="tile"><div class="v">8</div><div class="k">Architecture Decision Records written</div></div>
+            <div class="tile"><div class="v">23</div><div class="k">unit + integration tests passing</div></div>
           </div>
         </section>
 
         <section id="lessons" class="project-section reveal">
           <h3>Lessons Learned</h3>
-          <p class="lead-para">[ The single biggest takeaway from this project. ]</p>
-          <p class="body-para">[ What worked, what didn't, what you'd do differently next time. ]</p>
+          <p class="lead-para">
+            Thresholds need data, not theory. Every quality check I tuned by intuition first and then by observation produced false positives until I rebuilt the threshold against the actual distribution. Looking at the data before choosing the rule is the unglamorous step that decides whether the rule helps or hurts.
+          </p>
+          <p class="body-para">
+            <strong>What worked:</strong> the discipline of writing an ADR for each major decision. It's overkill on a solo project, technically — but it forced me to engage with the <em>why</em> of each choice rather than the <em>what</em>, and it meant that later changes were grounded in prior reasoning rather than reflex.
+          </p>
+          <p class="body-para">
+            <strong>What didn't:</strong> I assumed government API documentation could be trusted. The KOSTAT API in particular diverges from its docs in ways that fail silently — successful responses omit the result code, item codes are 6 characters where docs say 7. A whole class of early bugs came from believing the docs over what the API actually returned. The lesson: a single hour spent inspecting actual API responses before writing the collector would have saved several days of subsequent debugging.
+          </p>
+          <p class="body-para">
+            <strong>What I'd do differently:</strong> I'd start with a small sample of real API responses, not the docs. Specifically, I'd build a "what does this endpoint actually return?" diagnostic step as the very first piece of the pipeline, before any business logic. That diagnostic would also be the natural place to seed the schema drift detection baseline.
+          </p>
         </section>
 
         <section id="future" class="project-section reveal">
           <h3>Where It's Going</h3>
           <p class="lead-para">
-            From a single-country tracker into a reusable inflation-divergence framework.
+            Two well-scoped extensions are documented in <code>01-ROADMAP.md</code>. The first is PPI (producer price index) integration from ECOS stat codes 404Y014–404Y017, which would let the dashboard tell a more complete inflation story — consumer-facing prices vs. wholesale/producer prices vs. official CPI. The second is moving the dashboard from single-machine local Streamlit toward something a small audience could use (authentication, a hosted deployment, cost-analyzed against AWS at ~$35–50/month per the README's existing breakdown).
           </p>
           <p class="body-para">
-            Next: backfill 5 years of historical KOSTAT data, add a forecasting layer for
-            category-level deltas, and open up the pipeline as a public Korean inflation dataset.
-            Longer-term, the same architecture should drop in for any country with split
-            official-vs-retail price sources.
+            The deeper question this project hints at is whether the analytical pattern generalizes — does the same "raw-preserving, quality-validated, schema-drift-aware" pipeline structure apply to other public Korean data sources where the comparison-of-records-vs-aggregates problem exists? Labor statistics, housing data, tax revenue. The price-monitoring pipeline is interesting in itself, but it was also a deliberate exercise in building a template I could re-apply.
           </p>
-          <div class="project-tiles">
-            <div class="tile"><div class="v">5 yr</div><div class="k">historical backfill</div></div>
-            <div class="tile"><div class="v">Forecast</div><div class="k">category-level deltas</div></div>
-            <div class="tile"><div class="v">Public</div><div class="k">open dataset</div></div>
-          </div>
         </section>
 
         <section id="links" class="project-section reveal">
@@ -229,8 +245,8 @@
         </section>
 
         <div style="display: flex; justify-content: space-between; padding: 40px 0 0; border-top: 1px solid var(--line); margin-top: 40px;">
-          <a href="visa-perm-analysis.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">← Prev: Visa PERM Analysis</a>
-          <a href="pheweb-beta-matrix.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">Next: PheWeb β-Matrix Builder →</a>
+          <a href="visa-perm-analysis.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">← Prev: 8M PERM Applications</a>
+          <a href="pheweb-beta-matrix.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">Next: PheWeb Beta Matrix Builder →</a>
         </div>
       </main>
     </div>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real-Time Food Ordering (Web) · Dongeun Kim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <script src="../assets/app.js" defer></script>
+  </head>
+  <body>
+    <div class="cur-ring"></div>
+    <div class="cur-dot"></div>
+
+    <header class="topnav">
+      <a href="../projects.html" class="topnav-home magnetic">
+        <span class="home-dot"></span>
+        <span class="home-arrow">←</span>
+        Projects
+      </a>
+      <nav class="topnav-links">
+        <a href="../about.html" class="magnetic">about</a>
+        <a href="../projects.html" class="magnetic active">projects</a>
+        <a href="../playground.html" class="magnetic">playground</a>
+        <a href="../blog.html" class="magnetic">writing</a>
+        <a href="../contact.html" class="magnetic">contact</a>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="section-tag" style="margin-bottom: 14px;">010 · SWE</div>
+          <h1 class="sidebar-name" style="font-size: 30px;">Pocha<br/>Ordering<br/>Platform</h1>
+          <div class="sidebar-role">Full-stack · pop-up event</div>
+          <div class="sidebar-tagline">
+            A real-time ordering platform for UMich KISA's Pocha pop-up — 150+ concurrent users, 3,000+ orders.
+          </div>
+        </div>
+
+        <div class="subnav">
+          <a href="#overview" class="active">overview</a>
+          <a href="#stack">technologies</a>
+          <a href="#features">what it does</a>
+          <a href="#contribution">my contribution</a>
+        </div>
+      </aside>
+
+      <main class="content">
+        <div class="project-hero reveal">
+          <h2 class="project-title">Real-Time Food Ordering Platform <span style="font-weight: 400; opacity: 0.7;">(Pocha)</span></h2>
+          <p class="project-tagline">
+            A full-stack remote food ordering system built from scratch for UMich KISA's Pocha pop-up events.
+          </p>
+          <div class="project-meta-row">
+            <div class="col"><span class="label">Timeline</span><span class="value">2024</span></div>
+            <div class="col"><span class="label">Company</span><span class="value">UMich KISA (Pocha event)</span></div>
+            <div class="col"><span class="label">Role</span><span class="value">Sole full-stack engineer</span></div>
+            <div class="col"><span class="label">Stack</span><span class="value">Next.js · Flask · Stripe · Socket.io</span></div>
+          </div>
+        </div>
+
+        <section id="overview" class="project-section reveal">
+          <h3>Overview</h3>
+          <p class="lead-para">
+            After observing inefficiencies and human errors in food ordering during student-led pop-up events, I built a full-stack remote ordering system from scratch — tailored for UMich KISA's "Pocha" events, handling 150+ concurrent users and 3,000+ orders.
+          </p>
+          <p class="body-para">
+            The system integrates the Stripe API for multi-platform card payments (including Apple Pay) for a smooth checkout, uses Socket.io for real-time order tracking that reduces manual labor and speeds up food pickup, and includes an admin dashboard that lets the restaurant monitor incoming orders live.
+          </p>
+        </section>
+
+        <section id="stack" class="project-section reveal">
+          <h3>Technologies</h3>
+          <div class="skill-group">
+            <div class="skill-group-name">front-end</div>
+            <div class="pills">
+              <span class="pill">Next.js</span>
+              <span class="pill">React</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">back-end</div>
+            <div class="pills">
+              <span class="pill">Flask</span>
+              <span class="pill">Python</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">payments</div>
+            <div class="pills">
+              <span class="pill">Stripe</span>
+              <span class="pill">Apple Pay</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">real-time</div>
+            <div class="pills"><span class="pill">Socket.io</span></div>
+          </div>
+        </section>
+
+        <section id="features" class="project-section reveal">
+          <h3>What It Does</h3>
+          <ul class="work-list">
+            <li><strong>Scale.</strong> Handles 150+ concurrent users and 3,000+ orders across an event.</li>
+            <li><strong>Payments.</strong> Stripe API integration supporting multi-platform card payments and Apple Pay for a low-friction checkout.</li>
+            <li><strong>Real-time order tracking.</strong> Socket.io pushes order-status updates live to customers, reducing manual labor and speeding up food pickup.</li>
+            <li><strong>Admin dashboard.</strong> Live order-monitoring view for restaurant staff to see incoming orders as they happen.</li>
+          </ul>
+        </section>
+
+        <section id="contribution" class="project-section reveal">
+          <h3>My Contribution</h3>
+          <p class="lead-para">
+            Sole engineer — built the full system end-to-end, from front-end ordering flow to back-end payment processing to the real-time admin dashboard.
+          </p>
+        </section>
+
+        <section id="links" class="project-section reveal">
+          <h3>Links</h3>
+          <div class="project-cta">
+            <a href="https://www.umichkisa.com/pocha" class="cta-btn" target="_blank" rel="noreferrer">Live: umichkisa.com/pocha →</a>
+          </div>
+        </section>
+
+        <div style="display: flex; justify-content: space-between; padding: 40px 0 0; border-top: 1px solid var(--line); margin-top: 40px;">
+          <a href="food-ordering.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">← Prev: Kyareureuk Party</a>
+          <a href="umich-kisa.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">Next: UMich KISA Website →</a>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const subnavLinks = document.querySelectorAll(".subnav a");
+      subnavLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          subnavLinks.forEach((l) => l.classList.toggle("active", l === link));
+        });
+      });
+    </script>
+  </body>
+</html>

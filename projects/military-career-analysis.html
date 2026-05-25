@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Military Career Longitudinal Analysis · Dongeun Kim</title>
+    <title>Veterans and Career Trajectories · Dongeun Kim</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
@@ -34,44 +34,48 @@
     <div class="layout">
       <aside class="sidebar">
         <div class="sidebar-header">
-          <div class="section-tag" style="margin-bottom: 14px;">003 · DA</div>
-          <h1 class="sidebar-name" style="font-size: 30px;">Military<br/>Career<br/>Analysis</h1>
-          <div class="sidebar-role">Data analytics</div>
+          <div class="section-tag" style="margin-bottom: 14px;">002 · DA</div>
+          <h1 class="sidebar-name" style="font-size: 30px;">Veterans &<br/>Career<br/>Trajectories</h1>
+          <div class="sidebar-role">Longitudinal · personal</div>
           <div class="sidebar-tagline">
-            [ Longitudinal analysis of the YP2021 panel on military service and career certainty. ]
+            A 4-year longitudinal test of whether mandatory military service actually shifts career trajectories.
           </div>
         </div>
 
         <div class="subnav">
           <a href="#overview" class="active">overview</a>
           <a href="#stack">technologies</a>
-          <a href="#problem">the problem</a>
-          <a href="#vision">product vision</a>
+          <a href="#problem">the question</a>
+          <a href="#vision">what i wanted to find out</a>
           <a href="#contribution">my contribution</a>
-          <a href="#achievements">key achievements</a>
+          <a href="#achievements">key findings</a>
           <a href="#lessons">lessons learned</a>
-          <a href="#future">where it's going</a>
+          <a href="#future">open questions</a>
         </div>
       </aside>
 
       <main class="content">
         <div class="project-hero reveal">
-          <h2 class="project-title">Military Career Longitudinal Analysis</h2>
+          <h2 class="project-title">Veterans and Career Trajectories</h2>
           <p class="project-tagline">
-            [ How military service shapes career development and certainty over time. ]
+            A longitudinal test of a personal question I had during military service.
           </p>
           <div class="project-meta-row">
-            <div class="col"><span class="label">Timeline</span><span class="value">2026</span></div>
-            <div class="col"><span class="label">Company</span><span class="value">Independent</span></div>
-            <div class="col"><span class="label">Role</span><span class="value">Analyst</span></div>
-            <div class="col"><span class="label">Stack</span><span class="value">Python · pandas · Jupyter</span></div>
+            <div class="col"><span class="label">Timeline</span><span class="value">May 2026</span></div>
+            <div class="col"><span class="label">Company</span><span class="value">Personal project</span></div>
+            <div class="col"><span class="label">Role</span><span class="value">Sole author</span></div>
+            <div class="col"><span class="label">Stack</span><span class="value">Python · pandas · SciPy · Seaborn</span></div>
           </div>
         </div>
 
         <section id="overview" class="project-section reveal">
           <h3>Overview</h3>
-          <p class="lead-para">[ Headline summary of the project. ]</p>
-          <p class="body-para">[ Detailed overview — what was analyzed, why it matters. ]</p>
+          <p class="lead-para">
+            Does mandatory military service actually shift career trajectories? A 4-year longitudinal test on the Korean Education Longitudinal Study (KELS) 2021 panel of ~4,000 participants.
+          </p>
+          <p class="body-para">
+            The folk wisdom I kept hearing during my own military service was that the two years of mandatory service set Korean men back professionally — that time spent away from school or industry would show up as a measurable disadvantage years later. The opposite claim is also common: that the structure, discipline, and time to think shape people in ways that pay off later. Neither claim was supported by the kind of evidence I'd actually accept. So I pulled four years of the KELS 2021 panel — KEDI's government-funded longitudinal survey of ~4,000 participants — tracked career development indicators across waves for veterans and non-veterans, and applied non-parametric tests to see whether the group difference held up under significance testing.
+          </p>
         </section>
 
         <section id="stack" class="project-section reveal">
@@ -81,90 +85,132 @@
             <div class="pills"><span class="pill">Python</span></div>
           </div>
           <div class="skill-group">
-            <div class="skill-group-name">analysis</div>
+            <div class="skill-group-name">statistics</div>
             <div class="pills">
-              <span class="pill">pandas</span>
-              <span class="pill">NumPy</span>
-              <span class="pill">statsmodels</span>
+              <span class="pill">Wilcoxon signed-rank test</span>
+              <span class="pill">Kruskal-Wallis test</span>
+              <span class="pill">Non-parametric longitudinal comparison</span>
             </div>
           </div>
           <div class="skill-group">
-            <div class="skill-group-name">visualization</div>
+            <div class="skill-group-name">data &amp; viz</div>
             <div class="pills">
+              <span class="pill">pandas</span>
+              <span class="pill">SciPy</span>
+              <span class="pill">Seaborn</span>
               <span class="pill">Matplotlib</span>
-              <span class="pill">seaborn</span>
+              <span class="pill">Jupyter Notebook</span>
             </div>
           </div>
           <div class="skill-group">
             <div class="skill-group-name">data source</div>
-            <div class="pills"><span class="pill">YP2021 panel</span></div>
+            <div class="pills"><span class="pill">KELS 2021 panel (KEDI)</span></div>
           </div>
         </section>
 
         <section id="problem" class="project-section reveal">
-          <h3>The Problem</h3>
-          <p class="lead-para">[ Headline problem statement. ]</p>
-          <p class="body-para">[ Detailed problem context. ]</p>
+          <h3>The Question</h3>
+          <p class="lead-para">
+            Everyone has an opinion about military service and careers. Almost nobody has the data.
+          </p>
+          <p class="body-para">
+            Korean men spend roughly two years in mandatory military service in their early twenties. Whether that period sets them back, accelerates them, or has no measurable effect is debated constantly — in family conversations, in policy debates, in HR discussions — almost always on the basis of anecdote rather than longitudinal data. KELS 2021 is a KEDI-administered panel survey that follows the same individuals across years, recording education, employment, and career development indicators. That's exactly the structure needed to test the claim, and the dataset is largely used inside academic publications rather than as a public-facing answer to the question regular people are actually asking.
+          </p>
           <div class="hmw-callout">
             <span class="bulb">💡</span>
             <div class="hmw-body">
-              <div class="hmw-label">How might we</div>
-              <div class="hmw-q">[ Framing question for this project. ]</div>
+              <div class="hmw-label">Research question</div>
+              <div class="hmw-q">
+                Using a real longitudinal panel rather than anecdote, can we measure whether veterans and non-veterans differ in career development over time — and how much of any observed difference is robust to standard non-parametric significance testing?
+              </div>
             </div>
           </div>
         </section>
 
         <section id="vision" class="project-section reveal">
-          <h3>Product Vision</h3>
-          <p class="lead-para">[ The end state we're building toward. ]</p>
-          <p class="body-para">[ Detail on outcome and value. ]</p>
+          <h3>What I Wanted To Find Out</h3>
+          <p class="lead-para">
+            An evidence-based answer to a question I'd been arguing about with friends and family for years, presented clearly enough that someone without a statistics background could see what the data does and doesn't say.
+          </p>
+          <p class="body-para">
+            Korean families make real decisions based on assumed military-service career penalties — timing of grad school applications, internship choices, when to enter the job market. If those decisions are calibrated to an effect that isn't actually there in the data, that's worth knowing. Conversely, if the effect is real, the direction matters: my prior was "service hurts careers." The data ran the other way. Updating publicly on that is the entire point.
+          </p>
           <div class="project-callout">
             <div class="callout-eyebrow">Methodology</div>
-            <h4>[ Methodology title. ]</h4>
-            <p>[ Statistical approach and design. ]</p>
+            <h4>Longitudinal cohort comparison with non-parametric significance testing</h4>
+            <p>
+              Cleaned and harmonized four waves of KELS 2021 across ~4,000 participants. Stratified the sample into veterans (completed mandatory service within the observation window) and non-veterans (had not served by the end of the observation window). Tracked career development indicators across waves, then applied Wilcoxon signed-rank tests for paired within-individual comparisons across time and Kruskal-Wallis tests for between-group comparisons across veteran-status categories. Non-parametric tests were the appropriate choice because the development-score distributions visibly violated normality (skew and ceiling effects). All analysis was done in a single reproducible Jupyter notebook with Seaborn/Matplotlib for the trajectory figures.
+            </p>
             <div class="project-stats">
-              <div class="stat"><div class="v">—</div><div class="k">cohort size</div></div>
-              <div class="stat"><div class="v">—</div><div class="k">waves</div></div>
-              <div class="stat"><div class="v">—</div><div class="k">covariates</div></div>
+              <div class="stat"><div class="v">~4,000</div><div class="k">panel participants</div></div>
+              <div class="stat"><div class="v">4</div><div class="k">survey waves analyzed</div></div>
+              <div class="stat"><div class="v">Non-parametric</div><div class="k">Wilcoxon + Kruskal-Wallis</div></div>
             </div>
           </div>
         </section>
 
         <section id="contribution" class="project-section reveal">
           <h3>My Contribution</h3>
-          <p class="lead-para">[ Headline of your contribution. ]</p>
-          <p class="body-para">[ Detail on what you built and owned. ]</p>
+          <p class="lead-para">
+            Sole author — formulated the question, pulled and cleaned the panel data, ran the statistics, and wrote up the findings.
+          </p>
+          <p class="body-para">
+            This was a one-person project from question to write-up. No advisor, no collaborator, no funding — just a question that had been on my mind during military service and the realization that I had enough evening time to actually answer it from public data.
+          </p>
           <div class="project-callout">
             <h4>What I worked on</h4>
             <ul class="work-list">
-              <li>[ Workstream one ]</li>
-              <li>[ Workstream two ]</li>
-              <li>[ Workstream three ]</li>
+              <li><strong>Data ingestion and harmonization.</strong> Pulled the KELS 2021 panel from the KEDI distribution site, joined waves on participant ID, harmonized variable codings across years (which silently change in some waves), and constructed the veteran vs. non-veteran stratification.</li>
+              <li><strong>Statistical testing.</strong> Chose Wilcoxon and Kruskal-Wallis over parametric alternatives after checking distribution assumptions. Ran paired within-individual tests for trajectory comparisons and group-difference tests for between-cohort effects.</li>
+              <li><strong>Visualization and write-up.</strong> Built Seaborn/Matplotlib figures showing the trajectory differences and tail behavior, and wrote up the analysis in the notebook with enough narrative that it could be read like a short paper.</li>
             </ul>
           </div>
         </section>
 
         <section id="achievements" class="project-section reveal">
-          <h3>Key Achievements</h3>
-          <p class="lead-para">[ Headline outcome. ]</p>
-          <p class="body-para">[ Narrative on results. ]</p>
+          <h3>Key Findings</h3>
+          <p class="lead-para">
+            Veterans showed persistently higher career development scores across the observation window — running opposite to my prior.
+          </p>
+          <p class="body-para">
+            The notebook closes with a finding I didn't expect to write: in this panel, veterans' career development indicators were not just non-worse than non-veterans' — they were systematically higher across multiple waves, and the difference cleared standard non-parametric significance thresholds. This is a correlational finding, not a causal one (more on that in Lessons Learned), but it's a finding strong enough that "military service measurably hurts career outcomes" is harder to defend as a default assumption than I'd thought going in.
+          </p>
           <div class="project-tiles">
-            <div class="tile"><div class="v">—</div><div class="k">metric one</div></div>
-            <div class="tile"><div class="v">—</div><div class="k">metric two</div></div>
-            <div class="tile"><div class="v">—</div><div class="k">metric three</div></div>
+            <div class="tile"><div class="v">~4,000</div><div class="k">panel participants analyzed</div></div>
+            <div class="tile"><div class="v">4 yrs</div><div class="k">of longitudinal data</div></div>
+            <div class="tile"><div class="v">Significant</div><div class="k">Wilcoxon + Kruskal-Wallis</div></div>
           </div>
         </section>
 
         <section id="lessons" class="project-section reveal">
           <h3>Lessons Learned</h3>
-          <p class="lead-para">[ The single biggest takeaway. ]</p>
-          <p class="body-para">[ What worked, what didn't. ]</p>
+          <p class="lead-para">
+            The biggest lesson wasn't statistical — it was that I'd been confidently wrong about the answer. The data ran the opposite direction from my prior, and the right response was to update.
+          </p>
+          <p class="body-para">
+            <strong>What worked:</strong> picking non-parametric tests up front saved me from the parametric-tests-on-non-normal-data trap that a lot of social-science analyses fall into. Looking at distributions before choosing tests is unglamorous and matters a lot.
+          </p>
+          <p class="body-para">
+            <strong>What didn't:</strong> the analysis is honest about what it found, but doesn't fully address <em>why</em>. Selection effects are real — the small fraction of Korean men who don't serve are exempted for medical reasons, family hardship, or other circumstances that themselves correlate with career outcomes. A correlational finding from a non-random comparison group is interesting, not conclusive.
+          </p>
+          <p class="body-para">
+            <strong>What I'd do differently:</strong> I'd use a method actually designed for causal inference — propensity-score matching on pre-service covariates, or a difference-in-differences if the panel has a clean pre/post-service split for the same individuals — rather than relying on group comparisons alone. That's the version that would settle the question rather than just push back against the default assumption.
+          </p>
         </section>
 
         <section id="future" class="project-section reveal">
-          <h3>Where It's Going</h3>
-          <p class="lead-para">[ Next steps. ]</p>
-          <p class="body-para">[ Longer-term direction. ]</p>
+          <h3>Open Questions</h3>
+          <p class="lead-para">
+            No active continuation. This was a one-shot personal analysis answering a question I'd had during my own service.
+          </p>
+          <p class="body-para">
+            If I returned to this, the priorities would be:
+          </p>
+          <ul class="work-list">
+            <li><strong>Causal identification.</strong> Propensity-score matching or difference-in-differences to address selection effects rather than relying on group comparisons.</li>
+            <li><strong>Additional KELS waves.</strong> Extending the analysis as KEDI releases new waves of the panel.</li>
+            <li><strong>Decomposing the headline difference.</strong> Which indicator drives it — wage trajectory, employment stability, self-reported satisfaction, or something else?</li>
+          </ul>
         </section>
 
         <section id="links" class="project-section reveal">
@@ -177,7 +223,7 @@
 
         <div style="display: flex; justify-content: space-between; padding: 40px 0 0; border-top: 1px solid var(--line); margin-top: 40px;">
           <a href="seoul-restaurants.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">← Prev: Seoul Restaurant Survival</a>
-          <a href="visa-perm-analysis.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">Next: Visa PERM Analysis →</a>
+          <a href="visa-perm-analysis.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">Next: 8M PERM Applications →</a>
         </div>
       </main>
     </div>

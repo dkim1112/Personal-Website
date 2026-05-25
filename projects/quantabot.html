@@ -7,8 +7,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../assets/styles.css" />
     <script src="../assets/app.js" defer></script>
   </head>
@@ -34,11 +40,12 @@
     <div class="layout">
       <aside class="sidebar">
         <div class="sidebar-header">
-          <div class="section-tag" style="margin-bottom: 14px;">001 · DA</div>
-          <h1 class="sidebar-name" style="font-size: 30px;">QuantaBot</h1>
+          <div class="section-tag" style="margin-bottom: 14px">008 · SWE</div>
+          <h1 class="sidebar-name" style="font-size: 30px">QuantaBot</h1>
           <div class="sidebar-role">Research × NLP</div>
           <div class="sidebar-tagline">
-            [ LangChain RAG system for source-grounded dermatology literature review. ]
+            [ LangChain RAG system for source-grounded dermatology literature
+            review. ]
           </div>
         </div>
 
@@ -58,20 +65,49 @@
         <div class="project-hero reveal">
           <h2 class="project-title">Quanta</h2>
           <p class="project-tagline">
-            [ A LangChain RAG system for source-grounded dermatology literature review. ]
+            A LangChain RAG system for source-grounded dermatology literature
+            review.
           </p>
           <div class="project-meta-row">
-            <div class="col"><span class="label">Timeline</span><span class="value">2024 – 2025</span></div>
-            <div class="col"><span class="label">Company</span><span class="value">UM Cutaneous Lab</span></div>
-            <div class="col"><span class="label">Role</span><span class="value">Research Engineer</span></div>
-            <div class="col"><span class="label">Stack</span><span class="value">Python · LangChain · GPT-4 · ChromaDB</span></div>
+            <div class="col">
+              <span class="label">Timeline</span
+              ><span class="value">2024 – 2025</span>
+            </div>
+            <div class="col">
+              <span class="label">Company</span
+              ><span class="value">UM Cutaneous Lab</span>
+            </div>
+            <div class="col">
+              <span class="label">Role</span
+              ><span class="value">Research Engineer</span>
+            </div>
+            <div class="col">
+              <span class="label">Stack</span
+              ><span class="value">Python · LangChain · GPT-4 · ChromaDB</span>
+            </div>
           </div>
         </div>
 
         <section id="overview" class="project-section reveal">
           <h3>Overview</h3>
-          <p class="lead-para">[ Headline summary of the project. ]</p>
-          <p class="body-para">[ Detailed overview — what was built, why it matters. ]</p>
+          <p class="lead-para">
+            A retrieval-augmented system that lets clinicians ask grounded
+            questions across long dermatology papers - and cites the exact
+            passages that support every answer.
+          </p>
+          <p class="body-para">
+            Dermatology research is fragmented across long, dense manuscripts,
+            and the LLM tools clinicians reached for first (general-purpose
+            chatbots) hallucinated citations and lost context across multi-page
+            papers. Quanta is a Python application built around a layered
+            LangChain retrieval pipeline — query expansion, hybrid semantic +
+            BM25 search, MMR diversification, cross-encoder reranking, and
+            parent-document context expansion — paired with a Streamlit
+            interface for clinician use. The system was tested with 10+
+            clinicians across 55+ manuscripts, cut literature-review time by
+            ~75%, and produced a preprint on bioRxiv (2025.08.14.670384v1) with
+            abstract accepted at KSID × ISID APAC 2026.
+          </p>
         </section>
 
         <section id="stack" class="project-section reveal">
@@ -87,92 +123,263 @@
               <span class="pill">Sentence-BERT</span>
               <span class="pill">ChromaDB</span>
               <span class="pill">GPT-4</span>
+              <span class="pill">BM25</span>
+              <span class="pill">Cross-encoder reranker</span>
             </div>
           </div>
           <div class="skill-group">
             <div class="skill-group-name">front-end</div>
             <div class="pills"><span class="pill">Streamlit</span></div>
           </div>
+          <div class="skill-group">
+            <div class="skill-group-name">evaluation</div>
+            <div class="pills">
+              <span class="pill">MedQA</span>
+            </div>
+          </div>
         </section>
 
         <section id="problem" class="project-section reveal">
           <h3>The Problem</h3>
-          <p class="lead-para">[ Headline problem statement. ]</p>
-          <p class="body-para">[ Detailed problem context. ]</p>
+          <p class="lead-para">
+            Dermatologists couldn't trust the AI tools they were reaching for
+            first.
+          </p>
+          <p class="body-para">
+            Clinical researchers in dermatology review large collections of
+            long, dense manuscripts to stay current — but the obvious LLM-based
+            shortcuts had two failure modes. General chatbots hallucinated
+            citations (claiming a paper said something it didn't, or inventing
+            references entirely). Naive vector-similarity retrieval also
+            returned passages that sounded topically related but weren't
+            actually evidence for the user's question. For clinical use, "sounds
+            right" isn't enough: every claim needs to point at a real passage,
+            and the retrieval has to surface the actually relevant one, not just
+            the topically similar one.
+          </p>
           <div class="hmw-callout">
             <span class="bulb">💡</span>
             <div class="hmw-body">
               <div class="hmw-label">How might we</div>
-              <div class="hmw-q">[ Framing question for this project. ]</div>
+              <div class="hmw-q">
+                build a retrieval system that's accurate enough for clinical
+                literature review, with every answer traceable to a real passage
+                in a real document?
+              </div>
             </div>
           </div>
         </section>
 
         <section id="vision" class="project-section reveal">
           <h3>Product Vision</h3>
-          <p class="lead-para">[ The end state we're building toward. ]</p>
-          <p class="body-para">[ Detail on user value and outcome. ]</p>
+          <p class="lead-para">
+            A tool a clinician can drop a folder of papers into, ask
+            natural-language questions, and get back answers grounded in
+            specific passages they can verify in one click.
+          </p>
+          <p class="body-para">
+            The target isn't "better than nothing" — it's "good enough that a
+            researcher would actually use it instead of skimming PDFs
+            themselves." That meant grounding every answer in citations,
+            handling long-document context without losing fidelity, and
+            validating against a benchmark that resembles real clinical
+            reasoning (MedQA / USMLE) rather than just retrieval-flavored toy
+            tasks.
+          </p>
           <div class="project-callout">
             <div class="callout-eyebrow">Core architecture</div>
-            <h4>[ Architecture title. ]</h4>
-            <p>[ Technical description of the architecture. ]</p>
+            <h4>
+              Layered Retrieval Pipeline with Document-Size-Adaptive Branching
+            </h4>
+            <p>
+              Documents are chunked and embedded with Sentence-BERT (MPNet by
+              default, BGE configurable via env var). At query time,
+              MultiQueryRetriever uses GPT-4 to expand the user's question into
+              multiple sub-queries. The pipeline then branches by document size:
+              small corpora (~20 chunks) use ContextualCompressionRetriever;
+              larger ones use EnsembleRetriever combining vector similarity with
+              BM25 keyword search. Results pass through MMR diversification and
+              a cross-encoder reranker, then ParentDocumentRetriever expands the
+              top chunks back into their parent context windows before being
+              passed to GPT-4 for generation. The README explicitly separates
+              retrieval from generation as a design principle, which lets the
+              system diagnose whether failures are retrieval or LLM bottlenecks.
+            </p>
             <div class="project-stats">
-              <div class="stat"><div class="v">—</div><div class="k">metric one</div></div>
-              <div class="stat"><div class="v">—</div><div class="k">metric two</div></div>
-              <div class="stat"><div class="v">—</div><div class="k">metric three</div></div>
+              <div class="stat">
+                <div class="v">p=0.0165</div>
+                <div class="k">F1 vs. vector-similarity baseline</div>
+              </div>
+              <div class="stat">
+                <div class="v">p=0.004</div>
+                <div class="k">NDCG vs. vector-similarity baseline</div>
+              </div>
+              <div class="stat">
+                <div class="v">~97%</div>
+                <div class="k">Memory reduction vs. baseline</div>
+              </div>
             </div>
           </div>
         </section>
 
         <section id="contribution" class="project-section reveal">
           <h3>My Contribution</h3>
-          <p class="lead-para">[ Headline of your contribution. ]</p>
-          <p class="body-para">[ Detail on what you built and owned. ]</p>
+          <p class="lead-para">
+            Sole engineer and first author — built the retrieval architecture,
+            validated it statistically, and shipped the clinician-facing app.
+          </p>
+          <p class="body-para">
+            I owned the full system end-to-end: choosing retrieval components
+            and the order they compose in, deciding the document-size branching
+            threshold, designing the evaluation framework (including the
+            retrieval-contains-answer diagnostic that disambiguates retrieval
+            vs. generation failures), and building the Streamlit interface
+            clinicians actually used. Dr. Lam Tsoi's group provided clinical
+            guidance and access to the dermatology manuscript corpus; the system
+            design was mine.
+          </p>
           <div class="project-callout">
             <h4>What I worked on</h4>
             <ul class="work-list">
-              <li>[ Workstream one ]</li>
-              <li>[ Workstream two ]</li>
-              <li>[ Workstream three ]</li>
-              <li>[ Workstream four ]</li>
+              <li>
+                Retrieval architecture. Designed and implemented the layered
+                pipeline (multi-query expansion → hybrid semantic + BM25 → MMR →
+                cross-encoder reranking → parent-document expansion). Chose the
+                document-size branching threshold based on empirical chunk-count
+                distribution across the corpus.
+              </li>
+              <li>
+                Evaluation framework. Built the MedQA (USMLE) benchmark
+                integration and a retrieval-contains-answer diagnostic that
+                separates "the retriever missed it" from "the LLM saw the right
+                context but answered wrong." Archived earlier TF-IDF vs. SBERT
+                and BEIR/NFCorpus experiments for reproducibility.
+              </li>
+              <li>
+                Hallucination guardrails. Engineered the citation-grounding flow
+                so every generated answer surfaces the specific passages it
+                pulled from — making clinical verification a one-click action.
+              </li>
+              <li>
+                Clinician-facing app and preprint. Built the Streamlit interface
+                (handling uploads, multi-document context, conversation memory),
+                tested it with 10+ clinicians across 55+ manuscripts, and wrote
+                the bioRxiv preprint (first author).
+              </li>
             </ul>
           </div>
         </section>
 
         <section id="achievements" class="project-section reveal">
           <h3>Key Achievements</h3>
-          <p class="lead-para">[ Headline outcome — the one-line "this is what it delivered." ]</p>
-          <p class="body-para">[ Slightly longer narrative on the most meaningful results. ]</p>
+          <p class="lead-para">
+            A clinically grounded RAG system that statistically outperforms the
+            vector-similarity baseline and runs at ~97% lower memory cost.
+          </p>
+          <p class="body-para">
+            The statistical validation matters more than the headline numbers.
+            Many RAG papers report that their system "performs better" without
+            statistical significance testing; Quanta's F1 (p = 0.0165) and NDCG
+            (p = 0.004) gains over a vector-similarity baseline were tested on a
+            55+ manuscript dermatology corpus and held up under significance
+            testing. The clinician feedback from 10+ users showed a ~75%
+            reduction in literature-review time, and the system has been adopted
+            as a working tool inside the Cutaneous Lab. The work led to a
+            bioRxiv preprint and an accepted abstract at KSID × ISID APAC 2026.
+          </p>
           <div class="project-tiles">
-            <div class="tile"><div class="v">—</div><div class="k">metric one</div></div>
-            <div class="tile"><div class="v">—</div><div class="k">metric two</div></div>
-            <div class="tile"><div class="v">—</div><div class="k">metric three</div></div>
+            <div class="tile">
+              <div class="v">~75%</div>
+              <div class="k">reduction in literature-review time</div>
+            </div>
+            <div class="tile">
+              <div class="v">55+</div>
+              <div class="k">manuscripts tested</div>
+            </div>
+            <div class="tile">
+              <div class="v">10+</div>
+              <div class="k">clinicians tested</div>
+            </div>
           </div>
         </section>
 
         <section id="lessons" class="project-section reveal">
           <h3>Lessons Learned</h3>
-          <p class="lead-para">[ The single biggest takeaway from this project. ]</p>
-          <p class="body-para">[ What worked, what didn't, what you'd do differently next time. ]</p>
+          <p class="lead-para">
+            Separating retrieval from generation is the single decision that
+            made the whole system debuggable.
+          </p>
+          <p class="body-para">
+            Most early failures in RAG systems look the same from the outside —
+            wrong answer, vague citation — and you can spend weeks tuning
+            prompts when the real problem is that the retriever never surfaced
+            the relevant chunk. Building the retrieval-contains-answer
+            diagnostic was the unlock: I could see immediately whether the
+            bottleneck was retrieval (improve search) or generation (improve
+            prompts), and stop tuning one when the other was the actual cause.
+            What I'd do differently: I'd build the evaluation harness before the
+            retrieval pipeline, not after. Several weeks of early work tuning
+            chunk sizes and embedding models would have been redirected if I'd
+            had MedQA-style benchmarks running from day one. I'd also be more
+            aggressive about archiving earlier experiments (TF-IDF,
+            BEIR/NFCorpus) into a structured comparison from the start rather
+            than retroactively.
+          </p>
         </section>
 
         <section id="future" class="project-section reveal">
           <h3>Where It's Going</h3>
-          <p class="lead-para">[ The forward path — next steps. ]</p>
-          <p class="body-para">[ Longer-term direction and plans. ]</p>
+          <p class="lead-para">
+            Forward Path: Manuscript submission to a peer-reviewed venue, and
+            expansion of the evaluation scope.
+          </p>
+          <p class="body-para">
+            Longer Term: The bioRxiv preprint is being revised for journal
+            submission with expanded clinician evaluation. On the technical
+            side, the next priorities are (1) adding citation-faithfulness
+            benchmarks (not just whether the answer is correct, but whether the
+            cited passage actually supports it), (2) testing newer retrievers
+            and rerankers as the LangChain ecosystem updates, and (3)
+            generalizing beyond dermatology to other clinical domains where the
+            same retrieval-vs-generation diagnostic would apply.
+          </p>
         </section>
 
         <section id="links" class="project-section reveal">
           <h3>Links</h3>
           <div class="project-cta">
-            <a href="https://github.com/dkim1112/QuantaBot" class="cta-btn" target="_blank" rel="noreferrer">GitHub →</a>
+            <a
+              href="https://github.com/dkim1112/QuantaBot"
+              class="cta-btn"
+              target="_blank"
+              rel="noreferrer"
+              >GitHub →</a
+            >
             <a href="#" class="cta-btn outline">Preprint →</a>
           </div>
         </section>
 
-        <div style="display: flex; justify-content: space-between; padding: 40px 0 0; border-top: 1px solid var(--line); margin-top: 40px;">
-          <a href="../projects.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">← All projects</a>
-          <a href="seoul-restaurants.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">Next: Seoul Restaurant Survival →</a>
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            padding: 40px 0 0;
+            border-top: 1px solid var(--line);
+            margin-top: 40px;
+          "
+        >
+          <a
+            href="linkedin-scraper.html"
+            class="ulink magnetic"
+            style="font-family: var(--mono); font-size: 12px"
+            >← Prev: LinkedIn Scraper</a
+          >
+          <a
+            href="food-ordering.html"
+            class="ulink magnetic"
+            style="font-family: var(--mono); font-size: 12px"
+            >Next: Kyareureuk Party →</a
+          >
         </div>
       </main>
     </div>

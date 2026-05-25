@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LinkedIn Scraper · Dongeun Kim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <script src="../assets/app.js" defer></script>
+  </head>
+  <body>
+    <div class="cur-ring"></div>
+    <div class="cur-dot"></div>
+
+    <header class="topnav">
+      <a href="../projects.html" class="topnav-home magnetic">
+        <span class="home-dot"></span>
+        <span class="home-arrow">←</span>
+        Projects
+      </a>
+      <nav class="topnav-links">
+        <a href="../about.html" class="magnetic">about</a>
+        <a href="../projects.html" class="magnetic active">projects</a>
+        <a href="../playground.html" class="magnetic">playground</a>
+        <a href="../blog.html" class="magnetic">writing</a>
+        <a href="../contact.html" class="magnetic">contact</a>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="section-tag" style="margin-bottom: 14px;">007 · DE</div>
+          <h1 class="sidebar-name" style="font-size: 30px;">LinkedIn<br/>Scraper</h1>
+          <div class="sidebar-role">Data engineering · intern</div>
+          <div class="sidebar-tagline">
+            Profile and post extraction to power persona capture inside Maetel's product.
+          </div>
+        </div>
+
+        <div class="subnav">
+          <a href="#overview" class="active">overview</a>
+          <a href="#stack">technologies</a>
+          <a href="#features">what it does</a>
+          <a href="#contribution">my contribution</a>
+          <a href="#decisions">key decisions</a>
+        </div>
+      </aside>
+
+      <main class="content">
+        <div class="project-hero reveal">
+          <h2 class="project-title">LinkedIn Scraper</h2>
+          <p class="project-tagline">
+            Profile and post extraction to power persona capture inside Maetel's product.
+          </p>
+          <div class="project-meta-row">
+            <div class="col"><span class="label">Timeline</span><span class="value">May 2025 – Sep 2025</span></div>
+            <div class="col"><span class="label">Company</span><span class="value">Maetel</span></div>
+            <div class="col"><span class="label">Role</span><span class="value">Data Engineer Intern</span></div>
+            <div class="col"><span class="label">Stack</span><span class="value">Python · Playwright · PostgreSQL</span></div>
+          </div>
+        </div>
+
+        <section id="overview" class="project-section reveal">
+          <h3>Overview</h3>
+          <p class="lead-para">
+            A Python scraper that extracts LinkedIn profile data and up to 30 original posts per creator — built to support <mark class="hl">Maetel</mark>'s persona-capture product, where the model needs a creator's actual writing voice and history to produce on-brand outputs.
+          </p>
+          <p class="body-para">
+            Maetel's product captures a target user's "persona" from their LinkedIn presence so the system can generate content in their voice. That requires three things the LinkedIn UI doesn't expose cleanly: a structured profile snapshot, a representative sample of their original (non-reposted) writing, and metadata like engagement and timing. The scraper handles all three — Playwright with a persistent Chrome session for login, HTML extractors for profile and post content, snowflake-ID decoding for upload dates, and a normalized PostgreSQL schema (<code>users</code> and <code>posts</code>) with CSV fallback. It runs against a JSON list of target creators and dedupes on unique media IDs across runs.
+          </p>
+        </section>
+
+        <section id="stack" class="project-section reveal">
+          <h3>Technologies</h3>
+          <div class="skill-group">
+            <div class="skill-group-name">language</div>
+            <div class="pills"><span class="pill">Python 3.8+</span></div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">scraping</div>
+            <div class="pills">
+              <span class="pill">Playwright (Chromium)</span>
+              <span class="pill">persistent Chrome profile</span>
+              <span class="pill">HTML extractors</span>
+              <span class="pill">snowflake-ID decoding</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">storage</div>
+            <div class="pills">
+              <span class="pill">PostgreSQL (normalized)</span>
+              <span class="pill">unique-ID deduplication</span>
+              <span class="pill">CSV export (per-creator)</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="features" class="project-section reveal">
+          <h3>What It Does</h3>
+          <ul class="work-list">
+            <li><strong>Profile extraction.</strong> Follower count, headline, up to 5 experience entries, up to 5 education entries.</li>
+            <li><strong>Post collection.</strong> Up to 30 original posts per creator (reposts detected and labeled separately), with content (preserved line breaks), likes, comments, media URLs, and decoded upload dates.</li>
+            <li><strong>Data persistence.</strong> PostgreSQL with normalized schema and CSV fallback; duplicate prevention via unique media IDs across runs.</li>
+            <li><strong>Session management.</strong> Persistent Chrome profile so login happens once and is reused across runs; configurable scroll behavior and delays.</li>
+          </ul>
+        </section>
+
+        <section id="contribution" class="project-section reveal">
+          <h3>My Contribution</h3>
+          <p class="lead-para">
+            Sole engineer — built the scraper end-to-end to feed Maetel's persona-capture pipeline.
+          </p>
+          <p class="body-para">
+            Owned the full build: extractor logic, session handling, database schema, deduplication, and the configurable post/profile collection limits. The scraper sits upstream of the prompt-engineering and lead-scoring work I did at Maetel — the persona data it captured was what made the downstream generation product viable.
+          </p>
+        </section>
+
+        <section id="decisions" class="project-section reveal">
+          <h3>Key Decisions</h3>
+          <ul class="work-list">
+            <li><strong>Playwright over raw HTTP.</strong> LinkedIn's content is rendered client-side and gated behind authentication; a browser-based approach with a logged-in session was the realistic option.</li>
+            <li><strong>Persistent Chrome profile, not credential storage.</strong> The scraper never handles passwords. Login happens once, manually, in a visible browser; the session cookie is reused across subsequent runs.</li>
+            <li><strong>Normalized schema with CSV fallback.</strong> PostgreSQL is the primary store for production use; CSV mode supports development and small one-off collections without DB setup.</li>
+          </ul>
+        </section>
+
+        <section id="links" class="project-section reveal">
+          <h3>Links</h3>
+          <div class="project-cta">
+            <a href="https://github.com/dkim1112/linkedin-scraper" class="cta-btn" target="_blank" rel="noreferrer">GitHub →</a>
+          </div>
+        </section>
+
+        <div style="display: flex; justify-content: space-between; padding: 40px 0 0; border-top: 1px solid var(--line); margin-top: 40px;">
+          <a href="cdc-event-pipeline.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">← Prev: CDC Event Sourcing Pipeline</a>
+          <a href="quantabot.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">Next: Quanta →</a>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const subnavLinks = document.querySelectorAll(".subnav a");
+      subnavLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          subnavLinks.forEach((l) => l.classList.toggle("active", l === link));
+        });
+      });
+    </script>
+  </body>
+</html>
