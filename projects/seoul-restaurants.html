@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seoul Restaurant Survival · Dongeun Kim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <script src="../assets/app.js" defer></script>
+  </head>
+  <body>
+    <div class="cur-ring"></div>
+    <div class="cur-dot"></div>
+
+    <header class="topnav">
+      <a href="../projects.html" class="topnav-home magnetic">
+        <span class="home-dot"></span>
+        <span class="home-arrow">←</span>
+        Projects
+      </a>
+      <nav class="topnav-links">
+        <a href="../index.html" class="magnetic">about</a>
+        <a href="../projects.html" class="magnetic active">projects</a>
+        <a href="../playground.html" class="magnetic">playground</a>
+        <a href="../blog.html" class="magnetic">writing</a>
+        <a href="../contact.html" class="magnetic">contact</a>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="section-tag" style="margin-bottom: 14px;">002 · DA</div>
+          <h1 class="sidebar-name" style="font-size: 30px;">seoul_restau<br/>rants.ipynb</h1>
+          <div class="sidebar-role">Data analytics</div>
+          <div class="sidebar-tagline">
+            Survival analysis of 528K Seoul restaurant licenses across 25 districts.
+          </div>
+        </div>
+
+        <div class="subnav">
+          <a href="#overview" class="active">overview</a>
+          <a href="#stack">technologies</a>
+          <a href="#problem">the problem</a>
+          <a href="#vision">product vision</a>
+          <a href="#contribution">my contribution</a>
+          <a href="#achievements">key achievements</a>
+          <a href="#lessons">lessons learned</a>
+          <a href="#future">where it's going</a>
+        </div>
+      </aside>
+
+      <main class="content">
+        <div class="project-hero reveal">
+          <h2 class="project-title">Seoul Restaurant Survival</h2>
+          <p class="project-tagline">
+            Of 528,000+ Seoul restaurants, only 35% reach 10 years. Where you open matters more than what you cook.
+          </p>
+          <div class="project-meta-row">
+            <div class="col"><span class="label">Timeline</span><span class="value">2024</span></div>
+            <div class="col"><span class="label">Company</span><span class="value">Independent</span></div>
+            <div class="col"><span class="label">Role</span><span class="value">Analyst</span></div>
+            <div class="col"><span class="label">Stack</span><span class="value">Python · pandas · lifelines · Matplotlib</span></div>
+          </div>
+        </div>
+
+        <section id="overview" class="project-section reveal">
+          <h3>Overview</h3>
+          <p class="lead-para">
+            Median Seoul restaurant lifespan is 6.1 years. Jongno-gu reaches 10. Yangcheon-gu hits 4.7.
+          </p>
+          <p class="body-para">
+            I pulled <mark class="hl">528,000+</mark> restaurant license records from Seoul's
+            open-data portal and treated business lifespan as a survival problem. Kaplan-Meier
+            curves, log-rank tests, and Cox proportional hazards regression isolated which
+            covariates actually predict survival — and the answer wasn't cuisine.
+          </p>
+        </section>
+
+        <section id="stack" class="project-section reveal">
+          <h3>Technologies</h3>
+          <div class="skill-group">
+            <div class="skill-group-name">language</div>
+            <div class="pills">
+              <span class="pill">Python</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">analysis</div>
+            <div class="pills">
+              <span class="pill">pandas</span>
+              <span class="pill">lifelines</span>
+              <span class="pill">NumPy</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">visualization</div>
+            <div class="pills">
+              <span class="pill">Matplotlib</span>
+              <span class="pill">seaborn</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">data source</div>
+            <div class="pills">
+              <span class="pill">Seoul Open Data</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="problem" class="project-section reveal">
+          <h3>The Problem</h3>
+          <p class="lead-para">
+            "Don't open a Korean place in Gangnam, the market's saturated" — except is it?
+          </p>
+          <p class="body-para">
+            Restaurant survival advice in Korea is mostly folklore: cuisine choice, neighborhood
+            buzz, foot traffic. None of it is grounded in a long-tail dataset of actual
+            openings and closures. Without survival analysis (which handles right-censoring
+            properly), you can't separate "still open" from "lived a long life."
+          </p>
+          <div class="hmw-callout">
+            <span class="bulb">💡</span>
+            <div class="hmw-body">
+              <div class="hmw-label">How might we</div>
+              <div class="hmw-q">
+                treat 528K Seoul restaurants as a survival cohort — and rank what actually
+                predicts longevity, with statistical rigor instead of intuition?
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="vision" class="project-section reveal">
+          <h3>Product Vision</h3>
+          <p class="lead-para">
+            A district-and-cuisine survival explorer for anyone deciding where to open.
+          </p>
+          <p class="body-para">
+            The end state is a public tool: pick a district + cuisine combination, see the
+            Kaplan-Meier curve, the median life, and how the hazard compares to alternatives.
+          </p>
+          <div class="project-callout">
+            <div class="callout-eyebrow">Core architecture</div>
+            <h4>Censoring-aware survival analysis on 528K licenses</h4>
+            <p>
+              Records are right-censored at the dataset cutoff (active restaurants). The pipeline
+              fits Kaplan-Meier per stratum (district × cuisine), runs log-rank tests for
+              between-group differences, and uses a Cox PH model to quantify hazard ratios while
+              controlling for confounders.
+            </p>
+            <div class="project-stats">
+              <div class="stat"><div class="v">528K+</div><div class="k">license records</div></div>
+              <div class="stat"><div class="v">25</div><div class="k">districts stratified</div></div>
+              <div class="stat"><div class="v">6.1 yr</div><div class="k">median lifespan</div></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contribution" class="project-section reveal">
+          <h3>My Contribution</h3>
+          <p class="lead-para">
+            End-to-end: data acquisition through statistical write-up.
+          </p>
+          <p class="body-para">
+            Built the entire pipeline solo — from pulling raw open-data CSVs to fitting models
+            to producing the figures. The interesting work wasn't running the model; it was
+            cleaning license records that had inconsistent district codes, then designing
+            comparisons that actually answered the "where should I open" question.
+          </p>
+          <div class="project-callout">
+            <h4>What I worked on</h4>
+            <ul class="work-list">
+              <li>Cleaning 528K license records with inconsistent district codes and date formats</li>
+              <li>Stratified Kaplan-Meier fits across district × cuisine combinations</li>
+              <li>Pairwise log-rank tests with Bonferroni correction across 25 districts</li>
+              <li>Cox proportional hazards regression controlling for cuisine, size, and opening year</li>
+              <li>Matplotlib visualizations of survival curves with confidence bands</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="achievements" class="project-section reveal">
+          <h3>Key Achievements</h3>
+          <p class="lead-para">[ Headline outcome — the one-line "this is what it delivered." ]</p>
+          <p class="body-para">[ Slightly longer narrative on the most meaningful results. ]</p>
+          <div class="project-tiles">
+            <div class="tile"><div class="v">—</div><div class="k">metric one</div></div>
+            <div class="tile"><div class="v">—</div><div class="k">metric two</div></div>
+            <div class="tile"><div class="v">—</div><div class="k">metric three</div></div>
+          </div>
+        </section>
+
+        <section id="lessons" class="project-section reveal">
+          <h3>Lessons Learned</h3>
+          <p class="lead-para">[ The single biggest takeaway from this project. ]</p>
+          <p class="body-para">[ What worked, what didn't, what you'd do differently next time. ]</p>
+        </section>
+
+        <section id="future" class="project-section reveal">
+          <h3>Where It's Going</h3>
+          <p class="lead-para">
+            From a static notebook into an interactive survival explorer.
+          </p>
+          <p class="body-para">
+            Next: a Streamlit front-end where users pick district + cuisine and get the curve.
+            Past that: extend the methodology to other Korean metros and to non-restaurant
+            small-business categories — the survival framework generalizes.
+          </p>
+          <div class="project-tiles">
+            <div class="tile"><div class="v">Interactive</div><div class="k">Streamlit explorer</div></div>
+            <div class="tile"><div class="v">Multi-city</div><div class="k">extend beyond Seoul</div></div>
+            <div class="tile"><div class="v">Generalize</div><div class="k">other SMB categories</div></div>
+          </div>
+        </section>
+
+        <section id="links" class="project-section reveal">
+          <h3>Links</h3>
+          <div class="project-cta">
+            <a href="https://github.com/dkim1112/Seoul-Restaurant-Survival-Analysis" class="cta-btn" target="_blank" rel="noreferrer">GitHub →</a>
+            <a href="#" class="cta-btn outline">Notebook →</a>
+            <a href="#" class="cta-btn outline">Write-up →</a>
+          </div>
+        </section>
+
+        <div style="display: flex; justify-content: space-between; padding: 40px 0 0; border-top: 1px solid var(--line); margin-top: 40px;">
+          <a href="quantabot.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">← Prev: Quanta</a>
+          <a href="military-career-analysis.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">Next: Military Career Analysis →</a>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      // Page-specific only — shared cursor / theme / magnetic / reveal live in app.js.
+      const subnavLinks = document.querySelectorAll(".subnav a");
+      subnavLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          subnavLinks.forEach((l) => l.classList.toggle("active", l === link));
+        });
+      });
+    </script>
+  </body>
+</html>

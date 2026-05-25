@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CDC Event Pipeline · Dongeun Kim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <script src="../assets/app.js" defer></script>
+  </head>
+  <body>
+    <div class="cur-ring"></div>
+    <div class="cur-dot"></div>
+
+    <header class="topnav">
+      <a href="../projects.html" class="topnav-home magnetic">
+        <span class="home-dot"></span>
+        <span class="home-arrow">←</span>
+        Projects
+      </a>
+      <nav class="topnav-links">
+        <a href="../index.html" class="magnetic">about</a>
+        <a href="../projects.html" class="magnetic active">projects</a>
+        <a href="../playground.html" class="magnetic">playground</a>
+        <a href="../blog.html" class="magnetic">writing</a>
+        <a href="../contact.html" class="magnetic">contact</a>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="section-tag" style="margin-bottom: 14px;">007 · DE</div>
+          <h1 class="sidebar-name" style="font-size: 30px;">CDC Event<br/>Pipeline</h1>
+          <div class="sidebar-role">Data engineering</div>
+          <div class="sidebar-tagline">
+            [ Change Data Capture event streaming pipeline with Kafka and multi-database analytics. ]
+          </div>
+        </div>
+
+        <div class="subnav">
+          <a href="#overview" class="active">overview</a>
+          <a href="#stack">technologies</a>
+          <a href="#problem">the problem</a>
+          <a href="#vision">product vision</a>
+          <a href="#contribution">my contribution</a>
+          <a href="#achievements">key achievements</a>
+          <a href="#lessons">lessons learned</a>
+          <a href="#future">where it's going</a>
+        </div>
+      </aside>
+
+      <main class="content">
+        <div class="project-hero reveal">
+          <h2 class="project-title">CDC Event Pipeline</h2>
+          <p class="project-tagline">
+            [ Real-time data synchronization across multiple databases with Kafka CDC. ]
+          </p>
+          <div class="project-meta-row">
+            <div class="col"><span class="label">Timeline</span><span class="value">2026</span></div>
+            <div class="col"><span class="label">Company</span><span class="value">Independent</span></div>
+            <div class="col"><span class="label">Role</span><span class="value">Data Engineer</span></div>
+            <div class="col"><span class="label">Stack</span><span class="value">Python · Kafka · PostgreSQL</span></div>
+          </div>
+        </div>
+
+        <section id="overview" class="project-section reveal">
+          <h3>Overview</h3>
+          <p class="lead-para">[ Headline summary. ]</p>
+          <p class="body-para">[ Detailed overview — what was built, why. ]</p>
+        </section>
+
+        <section id="stack" class="project-section reveal">
+          <h3>Technologies</h3>
+          <div class="skill-group">
+            <div class="skill-group-name">language</div>
+            <div class="pills"><span class="pill">Python</span></div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">streaming</div>
+            <div class="pills">
+              <span class="pill">Kafka</span>
+              <span class="pill">Debezium</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">databases</div>
+            <div class="pills">
+              <span class="pill">PostgreSQL</span>
+              <span class="pill">MongoDB</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">infrastructure</div>
+            <div class="pills">
+              <span class="pill">Docker</span>
+              <span class="pill">docker-compose</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="problem" class="project-section reveal">
+          <h3>The Problem</h3>
+          <p class="lead-para">[ Headline problem statement. ]</p>
+          <p class="body-para">[ Detailed problem context. ]</p>
+          <div class="hmw-callout">
+            <span class="bulb">💡</span>
+            <div class="hmw-body">
+              <div class="hmw-label">How might we</div>
+              <div class="hmw-q">[ Framing question for this project. ]</div>
+            </div>
+          </div>
+        </section>
+
+        <section id="vision" class="project-section reveal">
+          <h3>Product Vision</h3>
+          <p class="lead-para">[ The end state. ]</p>
+          <p class="body-para">[ Detail on outcome. ]</p>
+          <div class="project-callout">
+            <div class="callout-eyebrow">Core architecture</div>
+            <h4>[ Architecture title. ]</h4>
+            <p>[ CDC source → Kafka topics → consumers → multi-DB sinks. ]</p>
+            <div class="project-stats">
+              <div class="stat"><div class="v">—</div><div class="k">events/sec</div></div>
+              <div class="stat"><div class="v">—</div><div class="k">topics</div></div>
+              <div class="stat"><div class="v">—</div><div class="k">sinks</div></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contribution" class="project-section reveal">
+          <h3>My Contribution</h3>
+          <p class="lead-para">[ Headline of your contribution. ]</p>
+          <p class="body-para">[ Detail on what you built and owned. ]</p>
+          <div class="project-callout">
+            <h4>What I worked on</h4>
+            <ul class="work-list">
+              <li>[ Workstream one ]</li>
+              <li>[ Workstream two ]</li>
+              <li>[ Workstream three ]</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="achievements" class="project-section reveal">
+          <h3>Key Achievements</h3>
+          <p class="lead-para">[ Headline outcome. ]</p>
+          <p class="body-para">[ Narrative on results. ]</p>
+          <div class="project-tiles">
+            <div class="tile"><div class="v">—</div><div class="k">metric one</div></div>
+            <div class="tile"><div class="v">—</div><div class="k">metric two</div></div>
+            <div class="tile"><div class="v">—</div><div class="k">metric three</div></div>
+          </div>
+        </section>
+
+        <section id="lessons" class="project-section reveal">
+          <h3>Lessons Learned</h3>
+          <p class="lead-para">[ The single biggest takeaway. ]</p>
+          <p class="body-para">[ What worked, what didn't. ]</p>
+        </section>
+
+        <section id="future" class="project-section reveal">
+          <h3>Where It's Going</h3>
+          <p class="lead-para">[ Next steps. ]</p>
+          <p class="body-para">[ Longer-term direction. ]</p>
+        </section>
+
+        <section id="links" class="project-section reveal">
+          <h3>Links</h3>
+          <div class="project-cta">
+            <a href="https://github.com/dkim1112/CDC-Event-Pipeline" class="cta-btn" target="_blank" rel="noreferrer">GitHub →</a>
+          </div>
+        </section>
+
+        <div style="display: flex; justify-content: space-between; padding: 40px 0 0; border-top: 1px solid var(--line); margin-top: 40px;">
+          <a href="pheweb-beta-matrix.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">← Prev: PheWeb β-Matrix Builder</a>
+          <a href="food-ordering.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">Next: Food Ordering →</a>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const subnavLinks = document.querySelectorAll(".subnav a");
+      subnavLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          subnavLinks.forEach((l) => l.classList.toggle("active", l === link));
+        });
+      });
+    </script>
+  </body>
+</html>

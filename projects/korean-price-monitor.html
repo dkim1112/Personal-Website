@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Korean Price Monitor · Dongeun Kim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <script src="../assets/app.js" defer></script>
+  </head>
+  <body>
+    <div class="cur-ring"></div>
+    <div class="cur-dot"></div>
+
+    <header class="topnav">
+      <a href="../projects.html" class="topnav-home magnetic">
+        <span class="home-dot"></span>
+        <span class="home-arrow">←</span>
+        Projects
+      </a>
+      <nav class="topnav-links">
+        <a href="../index.html" class="magnetic">about</a>
+        <a href="../projects.html" class="magnetic active">projects</a>
+        <a href="../playground.html" class="magnetic">playground</a>
+        <a href="../blog.html" class="magnetic">writing</a>
+        <a href="../contact.html" class="magnetic">contact</a>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="section-tag" style="margin-bottom: 14px;">005 · DE</div>
+          <h1 class="sidebar-name" style="font-size: 30px;">korean_price<br/>_monitor.py</h1>
+          <div class="sidebar-role">Data engineering</div>
+          <div class="sidebar-tagline">
+            Ingestion pipeline comparing what Korean consumers actually pay vs. official CPI.
+          </div>
+        </div>
+
+        <div class="subnav">
+          <a href="#overview" class="active">overview</a>
+          <a href="#stack">technologies</a>
+          <a href="#problem">the problem</a>
+          <a href="#vision">product vision</a>
+          <a href="#contribution">my contribution</a>
+          <a href="#achievements">key achievements</a>
+          <a href="#lessons">lessons learned</a>
+          <a href="#future">where it's going</a>
+        </div>
+      </aside>
+
+      <main class="content">
+        <div class="project-hero reveal">
+          <h2 class="project-title">Korean Price Monitor</h2>
+          <p class="project-tagline">
+            What Korean consumers actually pay vs. what the official inflation index reports.
+          </p>
+          <div class="project-meta-row">
+            <div class="col"><span class="label">Timeline</span><span class="value">2025 – Present</span></div>
+            <div class="col"><span class="label">Company</span><span class="value">Independent</span></div>
+            <div class="col"><span class="label">Role</span><span class="value">Data Engineer</span></div>
+            <div class="col"><span class="label">Stack</span><span class="value">Python · Docker · cron · Streamlit</span></div>
+          </div>
+        </div>
+
+        <section id="overview" class="project-section reveal">
+          <h3>Overview</h3>
+          <p class="lead-para">
+            CPI is a national average. It hides what households actually pay at the checkout.
+          </p>
+          <p class="body-para">
+            Korean Price Monitor is a unified ingestion pipeline that pulls
+            <mark class="hl">KOSTAT</mark> retail prices (weekly XML) and
+            <mark class="hl">ECOS</mark> CPI (monthly JSON) into a single, comparable store. It
+            runs 6 quality checks per run, detects schema drift, and preserves raw payloads
+            so historical analyses stay reproducible.
+          </p>
+        </section>
+
+        <section id="stack" class="project-section reveal">
+          <h3>Technologies</h3>
+          <div class="skill-group">
+            <div class="skill-group-name">language</div>
+            <div class="pills">
+              <span class="pill">Python</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">infrastructure</div>
+            <div class="pills">
+              <span class="pill">Docker</span>
+              <span class="pill">cron</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">front-end</div>
+            <div class="pills">
+              <span class="pill">Streamlit</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">data sources</div>
+            <div class="pills">
+              <span class="pill">KOSTAT API</span>
+              <span class="pill">ECOS API</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="problem" class="project-section reveal">
+          <h3>The Problem</h3>
+          <p class="lead-para">
+            Official inflation numbers don't match what's on the receipt.
+          </p>
+          <p class="body-para">
+            CPI smooths over category-level shocks (eggs, gasoline, fresh produce) by basket
+            weighting. Households experience inflation at the product level, where weekly price
+            volatility is much larger. There's no public, low-friction way to compare the two —
+            so the gap stays invisible.
+          </p>
+          <div class="hmw-callout">
+            <span class="bulb">💡</span>
+            <div class="hmw-body">
+              <div class="hmw-label">How might we</div>
+              <div class="hmw-q">
+                build a pipeline that surfaces the gap between official CPI and real consumer prices,
+                weekly, at the category level — and keeps it honest enough to trust?
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="vision" class="project-section reveal">
+          <h3>Product Vision</h3>
+          <p class="lead-para">
+            Inflation, but visible at the basket level — refreshed weekly.
+          </p>
+          <p class="body-para">
+            Anyone curious about why their grocery bill keeps climbing should be able to see the
+            answer in two clicks: a per-category trend, a CPI overlay, and a clear delta.
+          </p>
+          <div class="project-callout">
+            <div class="callout-eyebrow">Core architecture</div>
+            <h4>A reproducible 2-source pipeline with QC as a first-class citizen</h4>
+            <p>
+              Schema-validated ingestion of KOSTAT XML and ECOS JSON, normalized into a single
+              category × week schema. Raw payloads are preserved by hash. 6 quality checks run
+              per execution (row counts, schema fingerprints, allele/category coverage, null
+              ratios, monotonicity, source-source reconciliation) and any failure halts the
+              downstream warehouse write.
+            </p>
+            <div class="project-stats">
+              <div class="stat"><div class="v">~600K</div><div class="k">products / run</div></div>
+              <div class="stat"><div class="v">124</div><div class="k">categories tracked</div></div>
+              <div class="stat"><div class="v">6</div><div class="k">QC checks per run</div></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contribution" class="project-section reveal">
+          <h3>My Contribution</h3>
+          <p class="lead-para">
+            Built end-to-end as a solo engineer — from API contracts to dashboard.
+          </p>
+          <p class="body-para">
+            I owned every layer: schema design, ingestion, validation, storage, and the
+            Streamlit front-end. The challenge wasn't any single component — it was making the
+            seams between KOSTAT and ECOS honest, so a comparison between them is actually
+            apples-to-apples.
+          </p>
+          <div class="project-callout">
+            <h4>What I work on</h4>
+            <ul class="work-list">
+              <li>Schema design for a sign-consistent, source-agnostic category × week store</li>
+              <li>Dockerized ingestion + cron scheduling for KOSTAT (weekly) and ECOS (monthly)</li>
+              <li>Quality-check suite: 6 invariants that block bad data from reaching the warehouse</li>
+              <li>Raw-payload preservation so any historical run can be reproduced from disk</li>
+              <li>Streamlit dashboard exposing per-category CPI-vs-retail deltas</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="achievements" class="project-section reveal">
+          <h3>Key Achievements</h3>
+          <p class="lead-para">[ Headline outcome — the one-line "this is what it delivered." ]</p>
+          <p class="body-para">[ Slightly longer narrative on the most meaningful results. ]</p>
+          <div class="project-tiles">
+            <div class="tile"><div class="v">—</div><div class="k">metric one</div></div>
+            <div class="tile"><div class="v">—</div><div class="k">metric two</div></div>
+            <div class="tile"><div class="v">—</div><div class="k">metric three</div></div>
+          </div>
+        </section>
+
+        <section id="lessons" class="project-section reveal">
+          <h3>Lessons Learned</h3>
+          <p class="lead-para">[ The single biggest takeaway from this project. ]</p>
+          <p class="body-para">[ What worked, what didn't, what you'd do differently next time. ]</p>
+        </section>
+
+        <section id="future" class="project-section reveal">
+          <h3>Where It's Going</h3>
+          <p class="lead-para">
+            From a single-country tracker into a reusable inflation-divergence framework.
+          </p>
+          <p class="body-para">
+            Next: backfill 5 years of historical KOSTAT data, add a forecasting layer for
+            category-level deltas, and open up the pipeline as a public Korean inflation dataset.
+            Longer-term, the same architecture should drop in for any country with split
+            official-vs-retail price sources.
+          </p>
+          <div class="project-tiles">
+            <div class="tile"><div class="v">5 yr</div><div class="k">historical backfill</div></div>
+            <div class="tile"><div class="v">Forecast</div><div class="k">category-level deltas</div></div>
+            <div class="tile"><div class="v">Public</div><div class="k">open dataset</div></div>
+          </div>
+        </section>
+
+        <section id="links" class="project-section reveal">
+          <h3>Links</h3>
+          <div class="project-cta">
+            <a href="https://github.com/dkim1112/Price-Monitor-Pipeline" class="cta-btn" target="_blank" rel="noreferrer">GitHub →</a>
+            <a href="#" class="cta-btn outline">Live dashboard →</a>
+          </div>
+        </section>
+
+        <div style="display: flex; justify-content: space-between; padding: 40px 0 0; border-top: 1px solid var(--line); margin-top: 40px;">
+          <a href="visa-perm-analysis.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">← Prev: Visa PERM Analysis</a>
+          <a href="pheweb-beta-matrix.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">Next: PheWeb β-Matrix Builder →</a>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      // Page-specific only — shared cursor / theme / magnetic / reveal live in app.js.
+      const subnavLinks = document.querySelectorAll(".subnav a");
+      subnavLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          subnavLinks.forEach((l) => l.classList.toggle("active", l === link));
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,292 +1,509 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Me · Dongeun Kim</title>
-<link rel="stylesheet" href="styles.css">
-</head>
-<body>
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About · Dongeun Kim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script src="assets/app.js" defer></script>
+  </head>
+  <body>
+    <div class="cur-ring"></div>
+    <div class="cur-dot"></div>
 
-<nav class="topnav">
-  <div class="topnav-links">
-    <a href="index.html" class="active">About Me</a>
-    <a href="playground.html">Playground</a>
-    <a href="blog.html">Blog</a>
-    <a href="contact.html">Contact Me</a>
-  </div>
-</nav>
+    <header class="topnav">
+      <a href="home.html" class="topnav-home magnetic">
+        <span class="home-dot"></span>
+        <span class="home-arrow">←</span>
+        Home
+      </a>
+      <nav class="topnav-links">
+        <a href="index.html" class="magnetic active">about</a>
+        <a href="projects.html" class="magnetic">projects</a>
+        <a href="playground.html" class="magnetic">playground</a>
+        <a href="blog.html" class="magnetic">writing</a>
+        <a href="contact.html" class="magnetic">contact</a>
+      </nav>
+    </header>
 
-<div class="layout">
-  <aside class="sidebar">
-    <div class="sidebar-header">
-      <h1 class="sidebar-name">Dongeun Kim</h1>
-      <div class="sidebar-role">Data Analyst &amp; Engineer</div>
-      <div class="sidebar-tagline">Pipelines, queries, and the questions worth asking</div>
-      <div class="status-pill amber"><span class="status-dot"></span>currently serving in military</div>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h1 class="sidebar-name">About</h1>
+          <div class="sidebar-role">Summary of myself</div>
+          <div class="sidebar-tagline">
+            Engineer who appreciates a cup of coffee.
+          </div>
+          <div class="status-pill">
+            <span class="status-dot"></span>serving · discharge 2027.04
+          </div>
+        </div>
+
+        <nav class="dag-nav" aria-label="Section navigation">
+          <span class="dag-nav-label">// architecture</span>
+          <svg
+            class="dag-nav-svg"
+            viewBox="0 0 240 320"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <marker
+                id="arr-mini"
+                viewBox="0 0 10 10"
+                refX="9"
+                refY="5"
+                markerWidth="4"
+                markerHeight="4"
+                orient="auto"
+              >
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor" />
+              </marker>
+            </defs>
+            <line
+              class="dag-edge"
+              x1="120"
+              y1="52"
+              x2="120"
+              y2="80"
+              marker-end="url(#arr-mini)"
+            />
+            <line
+              class="dag-edge"
+              x1="120"
+              y1="112"
+              x2="60"
+              y2="160"
+              marker-end="url(#arr-mini)"
+            />
+            <line
+              class="dag-edge"
+              x1="120"
+              y1="112"
+              x2="180"
+              y2="160"
+              marker-end="url(#arr-mini)"
+            />
+            <line
+              class="dag-edge"
+              x1="60"
+              y1="192"
+              x2="120"
+              y2="240"
+              marker-end="url(#arr-mini)"
+            />
+            <line
+              class="dag-edge"
+              x1="180"
+              y1="192"
+              x2="120"
+              y2="240"
+              marker-end="url(#arr-mini)"
+            />
+            <g class="dag-node active" data-target="about">
+              <rect
+                class="dag-node-rect"
+                x="70"
+                y="20"
+                width="100"
+                height="32"
+                rx="4"
+              />
+              <text class="dag-node-label" x="120" y="40" text-anchor="middle">
+                About
+              </text>
+            </g>
+            <g class="dag-node" data-target="background">
+              <rect
+                class="dag-node-rect"
+                x="70"
+                y="80"
+                width="100"
+                height="32"
+                rx="4"
+              />
+              <text class="dag-node-label" x="120" y="100" text-anchor="middle">
+                Background
+              </text>
+            </g>
+            <g class="dag-node" data-target="skills">
+              <rect
+                class="dag-node-rect"
+                x="10"
+                y="160"
+                width="100"
+                height="32"
+                rx="4"
+              />
+              <text class="dag-node-label" x="60" y="180" text-anchor="middle">
+                Skills
+              </text>
+            </g>
+            <g class="dag-node" data-target="experience">
+              <rect
+                class="dag-node-rect"
+                x="130"
+                y="160"
+                width="100"
+                height="32"
+                rx="4"
+              />
+              <text class="dag-node-label" x="180" y="180" text-anchor="middle">
+                Experience
+              </text>
+            </g>
+            <g class="dag-node" data-target="projects">
+              <rect
+                class="dag-node-rect"
+                x="70"
+                y="240"
+                width="100"
+                height="32"
+                rx="4"
+              />
+              <text class="dag-node-label" x="120" y="260" text-anchor="middle">
+                Projects
+              </text>
+            </g>
+          </svg>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <section id="about" class="reveal">
+          <div class="section-tag">about.py</div>
+          <h2 class="section-title">A few paragraphs.</h2>
+
+          <p class="lead">
+            As a 2nd year <strong>Data Science &amp; Statistics</strong> student
+            at <span class="org-um">University of Michigan</span>, few of things
+            I've shipped include a RAG system for dermatology literature, a CDC
+            pipeline streaming Postgres changes through Kafka, a B2C AI
+            copywriting product, and full-stack tools used by my own student
+            community. Most of these started from a problem I'd actually run
+            into: a gap in a tool I needed, a workflow that felt unnecessarily
+            painful, etc. I build to figure out the answer, and I care about
+            getting it right rather than just shipping something that looks
+            right.
+          </p>
+
+          <p class="lead">
+            I treat working with AI as a <strong>system to design</strong>, not
+            just a tool to prompt. That means tracking what changes when new
+            primitives land - MCP servers, agent skills, hooks, context
+            engineering - and adjusting how I work rather. I believe the
+            interesting frontier isn't writing better prompts, but deciding what
+            context the model sees, what tools it can reach, and where human
+            judgment stays in the loop.
+          </p>
+
+          <p class="lead">
+            Right now, I'm splitting time between a research lab at
+            <span class="org-snu">Seoul National University</span> - working on
+            <strong>network propagation score cutoffs</strong> in genetic
+            comorbidity analysis, and a handful of
+            <strong>independent projects</strong> on questions I'd like answered
+            (most recently, whether mandatory military service measurably shifts
+            career trajectories); both gives the room to chase for questions.
+            Beyond that, I try to stay close to the broader community -
+            <strong>attending conferences</strong> (ex. ICML, KSID, Coex STK,
+            etc.) and <strong>joining groups</strong> where I can share what I'm
+            learning and pick up perspectives from people working on different
+            problems.
+          </p>
+        </section>
+
+        <section id="background" class="reveal">
+          <div class="section-tag">background.py</div>
+          <h2 class="section-title">Background.</h2>
+          <p class="lead">
+            <strong>B.S. Data Science &amp; Statistics</strong> @
+            <span class="org-um">University of Michigan</span>, Ann Arbor (C/O
+            2030)
+          </p>
+          <p class="lead">
+            F-1 student & CPT/OPT-authorized for US internships. Open to
+            relocate.
+          </p>
+        </section>
+
+        <section id="skills" class="reveal">
+          <div class="section-tag">skills.py</div>
+          <h2 class="section-title">Skills.</h2>
+
+          <div class="skill-group">
+            <div class="skill-group-name">languages</div>
+            <div class="pills">
+              <span class="pill">Python</span>
+              <span class="pill">C++</span>
+              <span class="pill">JavaScript</span>
+              <span class="pill">TypeScript</span>
+              <span class="pill">SQL</span>
+              <span class="pill">HTML/CSS</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-group-name">data &amp; ml</div>
+            <div class="pills">
+              <span class="pill">pandas</span>
+              <span class="pill">scikit-learn</span>
+              <span class="pill">NumPy</span>
+              <span class="pill">Jupyter</span>
+              <span class="pill">Matplotlib</span>
+              <span class="pill">Seaborn</span>
+              <span class="pill">LangChain</span>
+              <span class="pill">ChromaDB</span>
+              <span class="pill">Kafka</span>
+              <span class="pill">Debezium</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-group-name">infra</div>
+            <div class="pills">
+              <span class="pill">Docker</span>
+              <span class="pill">AWS</span>
+              <span class="pill">Firebase</span>
+              <span class="pill">Git</span>
+              <span class="pill">Vercel</span>
+              <span class="pill">PostgreSQL</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-group-name">apps &amp; viz</div>
+            <div class="pills">
+              <span class="pill">Streamlit</span>
+              <span class="pill">Next.js</span>
+              <span class="pill">React</span>
+              <span class="pill">TailwindCSS</span>
+              <span class="pill">Amplitude</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-group-name">other</div>
+            <div class="pills">
+              <span class="pill">Excel</span>
+              <span class="pill">LaTeX</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="experience" class="reveal">
+          <div class="section-tag">experience.py</div>
+          <h2 class="section-title">Experience.</h2>
+
+          <div class="exp-item">
+            <div class="exp-row">
+              <div class="exp-role">
+                Undergraduate Researcher
+                <span class="company org-snu"
+                  >· Seoul National University (BH)</span
+                >
+              </div>
+              <div class="exp-meta">5.2026 — Present · Seoul, KR</div>
+            </div>
+            <div class="pills">
+              <span class="pill">Network Propagation</span>
+              <span class="pill">Genetic Comorbidity</span>
+              <span class="pill">Statistical Genetics</span>
+            </div>
+            <ul class="exp-bullets">
+              <li>Will be updated soon.</li>
+            </ul>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-row">
+              <div class="exp-role">
+                Undergraduate Researcher
+                <span class="company org-um">· UM Medical School</span>
+              </div>
+              <div class="exp-meta">6.2025 — Present · Remote</div>
+            </div>
+            <div class="pills">
+              <span class="pill">Python</span>
+              <span class="pill">Matrix Factorization</span>
+              <span class="pill">ETL</span>
+            </div>
+            <ul class="exp-bullets">
+              <li>
+                Built a parallel ETL pulling <strong>PheWAS</strong> GWAS data
+                from multiple PheWeb instances (MGI-BioVU, UKB-TOPMed, MGI);
+                schema normalization and allele orientation alignment to keep
+                β-signs consistent across sources.
+              </li>
+              <li>
+                Constructed a sign-consistent variant × phenotype
+                <strong>β-matrix</strong> (~1M rows × ~1.4K cols).
+              </li>
+              <li>
+                Applied truncated SVD (k = 50, ~96% variance retained) for a
+                shared 50-dim latent space; validated against
+                <strong>200+ known comorbidity pairs</strong>.
+              </li>
+            </ul>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-row">
+              <div class="exp-role">
+                Undergraduate Researcher
+                <span class="company org-um">· UM Cutaneous Lab</span>
+              </div>
+              <div class="exp-meta">9.2024 — 12.2025 · Ann Arbor, MI</div>
+            </div>
+            <div class="pills">
+              <span class="pill">LangChain</span>
+              <span class="pill">Sentence-BERT</span>
+              <span class="pill">ChromaDB</span>
+              <span class="pill">RAG</span>
+            </div>
+            <ul class="exp-bullets">
+              <li>
+                Built <strong>Quanta</strong>, an advanced LangChain RAG system
+                for source-grounded dermatology literature review (Python,
+                Sentence-BERT, GPT-4, ChromaDB, Streamlit).
+              </li>
+              <li>
+                Designed a layered retrieval pipeline (query expansion →
+                semantic + BM25 → MMR → cross-encoder reranking → parent-doc) —
+                <strong>F1 (p = 0.0165)</strong> and
+                <strong>NDCG (p = 0.004)</strong> gains over the
+                vector-similarity baseline; ~97% memory reduction.
+              </li>
+              <li>
+                Tested across <strong>55+ manuscripts</strong> and 10+
+                clinicians; cut literature-review time by ~75%.
+              </li>
+              <li>
+                <strong>Preprint on bioRxiv</strong> (2025.08.14.670384v1);
+                abstract accepted at <strong>KSID × ISID APAC 2026</strong> —
+                Young Investigator Selection.
+              </li>
+            </ul>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-row">
+              <div class="exp-role">
+                Data Engineer / Analyst Intern
+                <span class="company org-maetel">· Maetel</span>
+              </div>
+              <div class="exp-meta">5.2025 — 9.2025 · Seoul, KR</div>
+            </div>
+            <div class="pills">
+              <span class="pill">Funnel Analysis</span>
+              <span class="pill">Data Analytics</span>
+              <span class="pill">Amplitude</span>
+            </div>
+            <ul class="exp-bullets">
+              <li>
+                Built <strong>Syndy.ai</strong>, an AI-native LinkedIn
+                copywriting assistant — drove
+                <strong>500+ signups in 48h</strong> via Product Hunt;
+                integrated LLM APIs and few-shot prompt engineering to capture
+                user persona.
+              </li>
+              <li>
+                Mined behavioral data from
+                <strong>3,000+ user sessions</strong> via Amplitude; identified
+                note-creation friction points and features most correlated with
+                retention and informed product changes that lifted
+                <strong>activation-to-retention</strong> by 22%.
+              </li>
+              <li>
+                Designed a 3-layer document ingestion architecture with
+                auto-diff for schema-level persona detection (Persona Chat), and
+                an LLM-prompted lead scoring engine ranking prospects against
+                client ICP criteria.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="projects" class="reveal">
+          <div class="section-tag">projects.py</div>
+          <h2 class="section-title">Projects.</h2>
+
+          <div class="lead-grid">
+            <div class="lead-preview" id="leadPreview">
+              <img
+                src="images/projects/pick-me.png"
+                alt="pick me pepe meme"
+                class="preview-img"
+              />
+            </div>
+
+            <div class="lead-list" id="leadList">
+              <a href="projects.html#da" class="lead-item active" data-key="da">
+                <span class="lead-item-name">data analyst</span>
+                <span class="lead-item-cat">analytics</span>
+              </a>
+              <a href="projects.html#de" class="lead-item" data-key="de">
+                <span class="lead-item-name">data engineer</span>
+                <span class="lead-item-cat">pipelines</span>
+              </a>
+              <a href="projects.html#swe" class="lead-item" data-key="swe">
+                <span class="lead-item-name">software engineer</span>
+                <span class="lead-item-cat">apps</span>
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
 
-    <nav class="dag-nav" aria-label="Section navigation">
-      <span class="dag-nav-label">// pipeline</span>
-      <svg class="dag-nav-svg" viewBox="0 0 240 320" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="arr-mini" viewBox="0 0 10 10" refX="9" refY="5"
-                  markerWidth="4" markerHeight="4" orient="auto">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="#9ca3af" />
-          </marker>
-        </defs>
+    <script>
+      // Page-specific only — shared cursor / theme / magnetic / reveal live in app.js.
 
-        <!-- Edges -->
-        <line class="dag-edge" x1="120" y1="52"  x2="120" y2="80"  marker-end="url(#arr-mini)" />
-        <line class="dag-edge" x1="120" y1="112" x2="60"  y2="160" marker-end="url(#arr-mini)" />
-        <line class="dag-edge" x1="120" y1="112" x2="180" y2="160" marker-end="url(#arr-mini)" />
-        <line class="dag-edge" x1="60"  y1="192" x2="120" y2="240" marker-end="url(#arr-mini)" />
-        <line class="dag-edge" x1="180" y1="192" x2="120" y2="240" marker-end="url(#arr-mini)" />
+      // DAG click -> scroll
+      const dagNodes = document.querySelectorAll(".dag-node");
+      dagNodes.forEach((node) => {
+        node.addEventListener("click", () => {
+          const id = node.dataset.target;
+          document
+            .getElementById(id)
+            ?.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
 
-        <!-- Nodes -->
-        <g class="dag-node active" data-target="about">
-          <rect class="dag-node-rect" x="70"  y="20"  width="100" height="32" rx="6" />
-          <text class="dag-node-label" x="120" y="40"  text-anchor="middle">About</text>
-        </g>
-        <g class="dag-node" data-target="background">
-          <rect class="dag-node-rect" x="70"  y="80"  width="100" height="32" rx="6" />
-          <text class="dag-node-label" x="120" y="100" text-anchor="middle">Background</text>
-        </g>
-        <g class="dag-node" data-target="skills">
-          <rect class="dag-node-rect" x="10"  y="160" width="100" height="32" rx="6" />
-          <text class="dag-node-label" x="60"  y="180" text-anchor="middle">Skills</text>
-        </g>
-        <g class="dag-node" data-target="experience">
-          <rect class="dag-node-rect" x="130" y="160" width="100" height="32" rx="6" />
-          <text class="dag-node-label" x="180" y="180" text-anchor="middle">Experience</text>
-        </g>
-        <g class="dag-node" data-target="projects">
-          <rect class="dag-node-rect" x="70"  y="240" width="100" height="32" rx="6" />
-          <text class="dag-node-label" x="120" y="260" text-anchor="middle">Projects</text>
-        </g>
-      </svg>
-    </nav>
+      // Active node on scroll
+      const sections = document.querySelectorAll(".content section[id]");
+      const navObs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              const id = e.target.id;
+              dagNodes.forEach((n) =>
+                n.classList.toggle("active", n.dataset.target === id),
+              );
+            }
+          });
+        },
+        { rootMargin: "-30% 0px -55% 0px" },
+      );
+      sections.forEach((s) => navObs.observe(s));
 
-    <div class="sidebar-socials">
-      <a href="https://github.com/" target="_blank" rel="noreferrer" aria-label="GitHub">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-1.96c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.05 11.05 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
-      </a>
-      <a href="https://linkedin.com/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
-      </a>
-      <a href="mailto:de7danielkim@gmail.com" aria-label="Email">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-      </a>
-    </div>
-
-  </aside>
-
-  <main class="content">
-
-    <section id="about">
-      <div class="section-tag"># source.py</div>
-      <h2 class="section-title">About</h2>
-      <p class="lead">
-        I'm a <strong>Data Analyst &amp; Engineer</strong> drawn to the messy middle of a problem — the part where the data is noisy, the question is half-formed, and someone needs to make a decision. I focus on building <strong>reliable pipelines</strong> and <strong>clear analyses</strong> that turn raw rows into things people can act on. I studied at <span class="accent-blue">[ University ]</span> and have worked across <span class="accent-blue">[ industries / contexts ]</span>. Right now I'm focused on <strong>[ what you're focused on ]</strong>.
-      </p>
-      <p class="lead">
-        [ Optional second paragraph: a bit more on what you've built recently, or what you're learning, or where you're headed. Keep it short — recruiters skim. ]
-      </p>
-      <p class="persona">
-        I find the question worth asking before I touch the data.
-      </p>
-    </section>
-
-    <section id="background">
-      <div class="section-tag"># extract.py</div>
-      <h2 class="section-title">Background</h2>
-      <p class="lead">
-        <strong>[ Degree ]</strong> from <span class="accent-blue">[ University ]</span>, [ year ]. Coursework in <strong>[ relevant courses — databases, statistics, ML, etc. ]</strong>.
-      </p>
-      <p class="lead">
-        Certifications: <strong>[ e.g. Google Data Analytics, dbt Fundamentals, AWS Cloud Practitioner ]</strong>.
-      </p>
-      <p class="placeholder">[ frame this as raw inputs that shaped your toolkit, not a CV dump ]</p>
-    </section>
-
-    <section id="skills">
-      <div class="section-tag"># transform/skills.py</div>
-      <h2 class="section-title">Skills</h2>
-      <div class="skill-group">
-        <div class="skill-group-name">storage</div>
-        <div class="pills">
-          <span class="pill">PostgreSQL</span>
-          <span class="pill">Snowflake</span>
-          <span class="pill">BigQuery</span>
-          <span class="pill">Redshift</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-name">processing</div>
-        <div class="pills">
-          <span class="pill">Python</span>
-          <span class="pill">SQL</span>
-          <span class="pill">dbt</span>
-          <span class="pill">Spark</span>
-          <span class="pill">pandas</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-name">orchestration</div>
-        <div class="pills">
-          <span class="pill">Airflow</span>
-          <span class="pill">Prefect</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-name">visualization</div>
-        <div class="pills">
-          <span class="pill">Tableau</span>
-          <span class="pill">Looker</span>
-          <span class="pill">Power BI</span>
-        </div>
-      </div>
-      <p class="placeholder" style="margin-top:12px;">[ replace with what you actually use — grouping by layer signals you understand the stack ]</p>
-    </section>
-
-    <section id="experience">
-      <div class="section-tag"># transform/experience.py</div>
-      <h2 class="section-title">Experience</h2>
-
-      <div class="exp-item">
-        <div class="exp-row">
-          <div class="exp-role">[ Role ] <span class="company">· [ Company ]</span></div>
-          <div class="exp-meta">2024 – Present · [ Location ]</div>
-        </div>
-        <ul class="exp-bullets">
-          <li class="placeholder">[ outcome with a number — e.g. "cut report latency 6h → 12min for 40 stakeholders" ]</li>
-          <li class="placeholder">[ outcome — what data, what method, what changed ]</li>
-        </ul>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-row">
-          <div class="exp-role">[ Role ] <span class="company">· [ Company ]</span></div>
-          <div class="exp-meta">2023 – 2024 · [ Location ]</div>
-        </div>
-        <ul class="exp-bullets">
-          <li class="placeholder">[ same shape — concrete and outcome-led ]</li>
-          <li class="placeholder">[ another bullet ]</li>
-        </ul>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-row">
-          <div class="exp-role">[ Role ] <span class="company">· [ Company ]</span></div>
-          <div class="exp-meta">2022 – 2023 · [ Location ]</div>
-        </div>
-        <ul class="exp-bullets">
-          <li class="placeholder">[ outcome ]</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="projects">
-      <div class="section-tag"># load.py</div>
-      <h2 class="section-title">Projects</h2>
-
-      <div class="cell">
-        <div class="cell-header">
-          <span># project_one.ipynb</span>
-          <span>In [1]</span>
-        </div>
-        <div class="cell-body">
-          <strong>[ Project name ]</strong>
-          <div class="stack-pills">
-            <span class="stack-pill">Python</span>
-            <span class="stack-pill">dbt</span>
-            <span class="stack-pill">Snowflake</span>
-            <span class="stack-pill">Airflow</span>
-          </div>
-          <span class="placeholder">[ One sentence: what data, what question, what method. Link to repo + writeup. ]</span>
-        </div>
-        <div class="cell-output">
-          Out [1]:
-          <div class="bar-chart">
-            <div class="bar" style="height: 30%"></div>
-            <div class="bar" style="height: 55%"></div>
-            <div class="bar" style="height: 72%"></div>
-            <div class="bar" style="height: 45%"></div>
-            <div class="bar" style="height: 88%"></div>
-            <div class="bar" style="height: 60%"></div>
-            <div class="bar" style="height: 78%"></div>
-            <div class="bar" style="height: 50%"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="cell">
-        <div class="cell-header">
-          <span># project_two.ipynb</span>
-          <span>In [2]</span>
-        </div>
-        <div class="cell-body">
-          <strong>[ Project name ]</strong>
-          <div class="stack-pills">
-            <span class="stack-pill">SQL</span>
-            <span class="stack-pill">Tableau</span>
-            <span class="stack-pill">BigQuery</span>
-          </div>
-          <span class="placeholder">[ Same shape: data → question → method → result. ]</span>
-        </div>
-        <div class="cell-output">
-          Out [2]:
-          <div class="metric-row">
-            <div class="metric"><div class="v">1.2M</div><div class="k">rows processed</div></div>
-            <div class="metric"><div class="v">94%</div><div class="k">f1 score</div></div>
-            <div class="metric"><div class="v">12m</div><div class="k">runtime</div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="cell">
-        <div class="cell-header">
-          <span># project_three.ipynb</span>
-          <span>In [3]</span>
-        </div>
-        <div class="cell-body">
-          <strong>[ Project name ]</strong>
-          <div class="stack-pills">
-            <span class="stack-pill">Python</span>
-            <span class="stack-pill">pandas</span>
-            <span class="stack-pill">scikit-learn</span>
-          </div>
-          <span class="placeholder">[ description ]</span>
-        </div>
-      </div>
-    </section>
-
-  </main>
-</div>
-
-<script>
-  // Click DAG node -> scroll to section
-  const dagNodes = document.querySelectorAll('.dag-node');
-  dagNodes.forEach(node => {
-    node.addEventListener('click', () => {
-      const id = node.dataset.target;
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  });
-
-  // Active node highlight on scroll
-  const sections = document.querySelectorAll('.content section[id]');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.id;
-        dagNodes.forEach(n => n.classList.toggle('active', n.dataset.target === id));
-      }
-    });
-  }, { rootMargin: '-30% 0px -55% 0px' });
-
-  sections.forEach(s => observer.observe(s));
-</script>
-
-</body>
+      // Projects lead-in: track active item (preview is now a single image)
+      const leadItems = document.querySelectorAll("#leadList .lead-item");
+      leadItems.forEach((item) => {
+        item.addEventListener("mouseenter", () => {
+          leadItems.forEach((i) => i.classList.toggle("active", i === item));
+        });
+      });
+    </script>
+  </body>
 </html>

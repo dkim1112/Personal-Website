@@ -1,0 +1,941 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dongeun Kim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="assets/app.js" defer></script>
+    <style>
+      :root {
+        --bg: #e6e6e6;
+        --ink: #1a1a1a;
+        --soft: #4a4a4a;
+        --muted: #7a7a7a;
+        --dim: #b3b3b3;
+        --line: #c8c8c8;
+        --sans: "General Sans", system-ui, -apple-system, sans-serif;
+        --mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
+        --pad: 28px;
+      }
+      [data-theme="dark"] {
+        --bg: #0d0d0d;
+        --ink: #f2f2f2;
+        --soft: #c8c8c8;
+        --muted: #8a8a8a;
+        --dim: #4a4a4a;
+        --line: #2a2a2a;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        font-family: var(--sans);
+        background: var(--bg);
+        color: var(--ink);
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 1.5;
+        overflow: hidden;
+        cursor: none;
+        -webkit-font-smoothing: antialiased;
+        font-feature-settings: "ss01", "ss02", "cv11";
+        transition:
+          background 0.6s ease,
+          color 0.6s ease;
+      }
+      ::selection {
+        background: var(--ink);
+        color: var(--bg);
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+        cursor: none;
+      }
+      button {
+        font: inherit;
+        background: none;
+        border: 0;
+        color: inherit;
+        cursor: none;
+      }
+
+      /* Canvas */
+      #bg {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      /* Hairline viewport frame */
+      .frame {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 30;
+      }
+      .frame::before,
+      .frame::after,
+      .frame > span:nth-child(1),
+      .frame > span:nth-child(2) {
+        content: "";
+        position: absolute;
+        background: var(--ink);
+        opacity: 0.85;
+      }
+      .frame::before {
+        top: var(--pad);
+        left: var(--pad);
+        right: var(--pad);
+        height: 1px;
+      }
+      .frame::after {
+        bottom: var(--pad);
+        left: var(--pad);
+        right: var(--pad);
+        height: 1px;
+      }
+      .frame > span:nth-child(1) {
+        left: var(--pad);
+        top: var(--pad);
+        bottom: var(--pad);
+        width: 1px;
+      }
+      .frame > span:nth-child(2) {
+        right: var(--pad);
+        top: var(--pad);
+        bottom: var(--pad);
+        width: 1px;
+      }
+
+      /* Custom cursor */
+      .cur-ring,
+      .cur-dot {
+        position: fixed;
+        left: 0;
+        top: 0;
+        pointer-events: none;
+        z-index: 50;
+        border-radius: 50%;
+        mix-blend-mode: difference;
+      }
+      .cur-ring {
+        width: 26px;
+        height: 26px;
+        border: 1px solid #fff;
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.28s,
+          height 0.28s,
+          opacity 0.2s;
+      }
+      .cur-dot {
+        width: 3px;
+        height: 3px;
+        background: #fff;
+        transform: translate(-50%, -50%);
+      }
+      .cur-ring.big {
+        width: 56px;
+        height: 56px;
+      }
+      .cur-ring.hidden {
+        opacity: 0;
+      }
+      @media (hover: none) {
+        .cur-ring,
+        .cur-dot {
+          display: none;
+        }
+        body,
+        a,
+        button {
+          cursor: auto;
+        }
+      }
+
+      /* Layout */
+      .stage {
+        position: relative;
+        z-index: 10;
+        height: 100vh;
+        padding: calc(var(--pad) + 30px) calc(var(--pad) + 38px);
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        grid-template-rows: auto 1fr auto;
+        gap: 24px 96px;
+      }
+
+      /* Top strip */
+      .top-strip {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: lowercase;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .brand .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--ink);
+        display: inline-block;
+      }
+      .brand b {
+        font-weight: 500;
+      }
+      .brand .sep {
+        color: var(--muted);
+        margin: 0 6px;
+      }
+      .brand .slash {
+        color: var(--muted);
+      }
+
+      /* Light / Dark toggle (segmented pill, sliding thumb) */
+      .theme-toggle {
+        display: inline-flex;
+        align-items: center;
+        padding: 0;
+        border: 0;
+        background: none;
+        cursor: none;
+      }
+      .theme-toggle-track {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid var(--muted);
+        border-radius: 999px;
+        padding: 3px;
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.06em;
+      }
+      .theme-toggle-opt {
+        position: relative;
+        z-index: 2;
+        padding: 4px 14px;
+        color: var(--muted);
+        transition: color 0.35s;
+      }
+      .theme-toggle-thumb {
+        position: absolute;
+        top: 3px;
+        bottom: 3px;
+        left: 3px;
+        width: calc(50% - 3px);
+        background: var(--ink);
+        border-radius: 999px;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1;
+      }
+      html[data-theme="light"] .theme-toggle-opt.is-light { color: var(--bg); }
+      html[data-theme="dark"]  .theme-toggle-opt.is-dark  { color: var(--bg); }
+      html[data-theme="dark"]  .theme-toggle-thumb { transform: translateX(100%); }
+
+      /* Menu */
+      .menu {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        align-self: start;
+        padding-top: 80px;
+      }
+      .menu-eyebrow {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        color: var(--muted);
+        text-transform: uppercase;
+        margin-bottom: 22px;
+      }
+      .menu-item {
+        display: grid;
+        grid-template-columns: 14px 38px 1fr 16px;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 0;
+        text-align: left;
+        font-family: var(--sans);
+        font-size: 19px;
+        font-weight: 400;
+        color: var(--soft);
+        border-top: 1px solid var(--line);
+        transition:
+          color 0.25s,
+          padding-left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+      }
+      .menu-item:last-child {
+        border-bottom: 1px solid var(--line);
+      }
+      .menu-item .b-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--dim);
+        transition:
+          background 0.25s,
+          transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        justify-self: center;
+      }
+      .menu-item .num {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--muted);
+        letter-spacing: 0.06em;
+      }
+      .menu-item .arr {
+        font-family: var(--mono);
+        font-size: 14px;
+        color: var(--muted);
+        opacity: 0;
+        transform: translateX(-6px);
+        transition:
+          opacity 0.3s,
+          transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .menu-item:hover {
+        color: var(--ink);
+        padding-left: 6px;
+      }
+      .menu-item:hover .b-dot {
+        background: var(--ink);
+        transform: scale(1.5);
+      }
+      .menu-item:hover .arr {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .menu-item[aria-current="true"] {
+        color: var(--ink);
+      }
+      .menu-item[aria-current="true"] .b-dot {
+        background: var(--ink);
+      }
+      .menu-item[aria-current="true"] .label {
+        font-style: italic;
+        font-size: 20px;
+        font-weight: 500;
+      }
+
+      /* Stage right — main content */
+      .canvas-area {
+        position: relative;
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 60px;
+        min-width: 0;
+      }
+      .eyebrow {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        color: var(--muted);
+        text-transform: uppercase;
+        margin-bottom: 26px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .eyebrow::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--line);
+        max-width: 120px;
+      }
+      .hero-name {
+        font-family: var(--sans);
+        font-weight: 500;
+        font-size: clamp(64px, 9.4vw, 156px);
+        line-height: 0.94;
+        letter-spacing: -0.04em;
+        color: var(--ink);
+        margin-bottom: 22px;
+      }
+      .hero-name .reveal-word {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.9s ease,
+          transform 0.95s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .hero-name .reveal-word.in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .hero-tagline {
+        font-family: var(--sans);
+        font-style: normal;
+        font-weight: 300;
+        font-size: clamp(20px, 2.2vw, 32px);
+        line-height: 1.15;
+        letter-spacing: -0.015em;
+        color: var(--soft);
+        white-space: nowrap;
+        opacity: 0;
+        transform: translateY(14px);
+        transition:
+          opacity 0.9s ease 0.5s,
+          transform 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.5s;
+      }
+      .hero-tagline.in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Bottom row */
+      .bottom-row {
+        grid-column: 1 / -1;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        color: var(--muted);
+        text-transform: uppercase;
+      }
+      .bottom-row .left {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .pulse {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--ink);
+        animation: pulse 2.4s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.3;
+          transform: scale(0.6);
+        }
+      }
+
+      /* Info card — bottom right */
+      .info-card {
+        position: fixed;
+        right: calc(var(--pad) + 32px);
+        bottom: calc(var(--pad) + 18px);
+        z-index: 12;
+        width: 280px;
+        padding: 18px 0 0;
+        border-top: 1px solid var(--ink);
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--soft);
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1),
+          transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none;
+      }
+      .info-card.in {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      .info-card-title {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.16em;
+        color: var(--muted);
+        text-transform: uppercase;
+        margin-bottom: 14px;
+      }
+      .info-line {
+        display: grid;
+        grid-template-columns: 50px 1fr;
+        gap: 14px;
+        padding: 5px 0;
+        align-items: baseline;
+      }
+      .info-line span {
+        color: var(--muted);
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .info-line b {
+        font-weight: 400;
+        color: var(--ink);
+        font-family: var(--sans);
+        font-size: 13px;
+      }
+      .role-cycle {
+        position: relative;
+        display: inline-block;
+        height: 1.7em;
+        line-height: 1.7;
+        overflow: hidden;
+        vertical-align: top;
+        width: 100%;
+        min-width: 22ch;
+        font-family: var(--sans);
+        font-size: 13px;
+        font-weight: 400;
+        color: var(--ink);
+      }
+      .role-cycle span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        white-space: nowrap;
+        font-family: var(--sans);
+        font-size: 13px;
+        font-weight: 400;
+        color: var(--ink);
+        line-height: 1.7;
+        opacity: 0;
+        transform: translateY(100%);
+        transition:
+          opacity 0.5s ease,
+          transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .role-cycle span.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .role-cycle span.exit {
+        opacity: 0;
+        transform: translateY(-100%);
+      }
+      .info-links {
+        display: flex;
+        gap: 10px;
+        margin-top: 18px;
+        padding-top: 16px;
+        border-top: 1px solid var(--line);
+      }
+      .info-links a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        color: var(--ink);
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        transition:
+          color 0.25s,
+          border-color 0.25s,
+          background 0.25s,
+          transform 0.25s;
+      }
+      .info-links a:hover {
+        background: var(--ink);
+        color: var(--bg);
+        border-color: var(--ink);
+        transform: translateY(-2px);
+      }
+      .info-links a svg {
+        width: 13px;
+        height: 13px;
+        display: block;
+      }
+
+      /* Sliding mask on load */
+      .mask {
+        position: fixed;
+        inset: 0;
+        z-index: 40;
+        background: var(--ink);
+        transform-origin: top;
+        animation: maskOut 1s cubic-bezier(0.7, 0, 0.2, 1) 0.1s forwards;
+        pointer-events: none;
+      }
+      @keyframes maskOut {
+        to {
+          transform: scaleY(0);
+        }
+      }
+
+      /* Mobile fallback */
+      @media (max-width: 820px) {
+        body {
+          overflow-y: auto;
+        }
+        .stage {
+          height: auto;
+          min-height: 100vh;
+          grid-template-columns: 1fr;
+          gap: 32px;
+          padding: 60px 22px 40px;
+        }
+        .menu {
+          padding-top: 30px;
+        }
+        .canvas-area {
+          padding-top: 10px;
+        }
+        .info-card {
+          position: static;
+          width: 100%;
+          opacity: 1;
+          transform: none;
+          margin-top: 40px;
+        }
+        .frame::before,
+        .frame::after,
+        .frame > span:nth-child(1),
+        .frame > span:nth-child(2) {
+          --pad: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="bg"></canvas>
+    <div class="frame"><span></span><span></span></div>
+    <div class="cur-ring"></div>
+    <div class="cur-dot"></div>
+    <div class="mask"></div>
+
+    <div class="stage">
+      <!-- Top strip -->
+      <header class="top-strip">
+        <a href="home.html" class="brand magnetic">
+          <span class="dot"></span>
+          <b>Dongeun Kim</b>
+          <span class="slash">/</span>
+          <span style="color: var(--muted)">home</span>
+        </a>
+        <button id="themeToggle" class="theme-toggle magnetic" type="button" aria-label="Toggle theme">
+          <span class="theme-toggle-track">
+            <span class="theme-toggle-thumb"></span>
+            <span class="theme-toggle-opt is-light">Light</span>
+            <span class="theme-toggle-opt is-dark">Dark</span>
+          </span>
+        </button>
+      </header>
+
+      <!-- Left menu -->
+      <nav class="menu" aria-label="Primary">
+        <div class="menu-eyebrow">// index</div>
+        <button class="menu-item" data-action="beginning" aria-current="true">
+          <span class="b-dot"></span>
+          <span class="num">00</span>
+          <span class="label">The beginning</span>
+          <span class="arr">→</span>
+        </button>
+        <a class="menu-item" href="index.html">
+          <span class="b-dot"></span>
+          <span class="num">01</span>
+          <span class="label">About</span>
+          <span class="arr">↗</span>
+        </a>
+        <a class="menu-item" href="projects.html">
+          <span class="b-dot"></span>
+          <span class="num">02</span>
+          <span class="label">Projects</span>
+          <span class="arr">↗</span>
+        </a>
+        <a class="menu-item" href="playground.html">
+          <span class="b-dot"></span>
+          <span class="num">03</span>
+          <span class="label">Playground</span>
+          <span class="arr">↗</span>
+        </a>
+        <a class="menu-item" href="blog.html">
+          <span class="b-dot"></span>
+          <span class="num">04</span>
+          <span class="label">Writing</span>
+          <span class="arr">↗</span>
+        </a>
+        <a class="menu-item" href="contact.html">
+          <span class="b-dot"></span>
+          <span class="num">05</span>
+          <span class="label">Contact</span>
+          <span class="arr">↗</span>
+        </a>
+      </nav>
+
+      <!-- Right content -->
+      <section class="canvas-area">
+        <div class="eyebrow">— entry / 00</div>
+        <h1 class="hero-name" id="heroName">
+          <span class="reveal-word">Dongeun&nbsp;</span
+          ><span class="reveal-word">Kim.</span>
+        </h1>
+        <p class="hero-tagline" id="heroTagline">
+          Translating complexity into clarity.
+        </p>
+      </section>
+    </div>
+
+    <!-- Info card -->
+    <aside class="info-card" id="infoCard">
+      <div class="info-card-title">— who's this</div>
+      <div class="info-line">
+        <span>school</span><b>University of Michigan</b>
+      </div>
+      <div class="info-line">
+        <span>major</span><b>Data Science &amp; Statistics</b>
+      </div>
+      <div class="info-line">
+        <span>role</span
+        ><b
+          ><span class="role-cycle" id="roleCycle"
+            ><span class="active">Data Analyst</span><span>Data Engineer</span
+            ><span>Software Engineer</span><span>Product Manager</span></span
+          ></b
+        >
+      </div>
+      <div class="info-line"><span>loc</span><b>Seoul · Ann Arbor</b></div>
+      <div class="info-line"><span>lang</span><b>EN / KR</b></div>
+      <div class="info-links">
+        <a
+          href="https://github.com/dkim1112"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="GitHub"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-1.96c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.05 11.05 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"
+            />
+          </svg>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/kimdongeun/"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="LinkedIn"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"
+            />
+          </svg>
+        </a>
+        <a href="mailto:dkldk4912@gmail.com" aria-label="Email">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <path d="m3 7 9 6 9-6" />
+          </svg>
+        </a>
+      </div>
+    </aside>
+
+    <script>
+      // Page-specific only — shared cursor / magnetic / reveal live in app.js.
+
+      // ---------- Light / Dark toggle ----------
+      const themeToggle = document.getElementById("themeToggle");
+      themeToggle.addEventListener("click", () => {
+        const current = document.documentElement.getAttribute("data-theme") || "light";
+        const next = current === "light" ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+      });
+
+      // ---------- Canvas particle field ----------
+      const canvas = document.getElementById("bg");
+      const ctx = canvas.getContext("2d");
+      let W,
+        H,
+        dpr = Math.min(devicePixelRatio || 1, 2);
+      const particles = [];
+      const N = 90;
+
+      function resize() {
+        W = canvas.width = innerWidth * dpr;
+        H = canvas.height = innerHeight * dpr;
+        canvas.style.width = innerWidth + "px";
+        canvas.style.height = innerHeight + "px";
+      }
+      resize();
+      addEventListener("resize", resize);
+
+      for (let i = 0; i < N; i++) {
+        particles.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          vx: (Math.random() - 0.5) * 0.18 * dpr,
+          vy: (Math.random() - 0.5) * 0.18 * dpr,
+          r: (Math.random() * 1.2 + 0.4) * dpr,
+        });
+      }
+
+      let mouseX = -9999,
+        mouseY = -9999;
+      addEventListener("mousemove", (e) => {
+        mouseX = e.clientX * dpr;
+        mouseY = e.clientY * dpr;
+      });
+      addEventListener("mouseleave", () => {
+        mouseX = -9999;
+        mouseY = -9999;
+      });
+
+      function getInk() {
+        return (
+          getComputedStyle(document.documentElement)
+            .getPropertyValue("--ink")
+            .trim() || "#1a1a1a"
+        );
+      }
+      function getDim() {
+        return (
+          getComputedStyle(document.documentElement)
+            .getPropertyValue("--dim")
+            .trim() || "#b3b3b3"
+        );
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        const ink = getInk();
+        const dim = getDim();
+        const linkDist = 130 * dpr;
+
+        // mouse repel + update
+        for (const p of particles) {
+          const dx = p.x - mouseX,
+            dy = p.y - mouseY;
+          const d2 = dx * dx + dy * dy;
+          const range = 140 * dpr;
+          if (d2 < range * range && d2 > 0.1) {
+            const d = Math.sqrt(d2);
+            const force = (1 - d / range) * 0.6;
+            p.vx += (dx / d) * force;
+            p.vy += (dy / d) * force;
+          }
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vx *= 0.96;
+          p.vy *= 0.96;
+          // gentle drift
+          p.vx += (Math.random() - 0.5) * 0.01 * dpr;
+          p.vy += (Math.random() - 0.5) * 0.01 * dpr;
+
+          if (p.x < 0) p.x = W;
+          if (p.x > W) p.x = 0;
+          if (p.y < 0) p.y = H;
+          if (p.y > H) p.y = 0;
+        }
+
+        // links
+        ctx.strokeStyle = dim;
+        ctx.lineWidth = 0.6 * dpr;
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const a = particles[i],
+              b = particles[j];
+            const dx = a.x - b.x,
+              dy = a.y - b.y;
+            const d2 = dx * dx + dy * dy;
+            if (d2 < linkDist * linkDist) {
+              const alpha = 1 - Math.sqrt(d2) / linkDist;
+              ctx.globalAlpha = alpha * 0.35;
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.stroke();
+            }
+          }
+        }
+
+        // dots
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = ink;
+        for (const p of particles) {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+
+      // ---------- The beginning trigger ----------
+      const heroName = document.getElementById("heroName");
+      const heroTagline = document.getElementById("heroTagline");
+      const card = document.getElementById("infoCard");
+      const beginBtn = document.querySelector('[data-action="beginning"]');
+
+      function reveal() {
+        const words = heroName.querySelectorAll(".reveal-word");
+        words.forEach((w, i) => {
+          w.classList.remove("in");
+          setTimeout(() => w.classList.add("in"), 120 + i * 130);
+        });
+        heroTagline.classList.remove("in");
+        setTimeout(() => heroTagline.classList.add("in"), 580);
+        card.classList.remove("in");
+        setTimeout(() => card.classList.add("in"), 900);
+      }
+
+      setTimeout(reveal, 700);
+      beginBtn.addEventListener("click", () => {
+        heroName
+          .querySelectorAll(".reveal-word")
+          .forEach((w) => w.classList.remove("in"));
+        heroTagline.classList.remove("in");
+        card.classList.remove("in");
+        setTimeout(reveal, 60);
+      });
+
+      // ---------- Role cycle in info card ----------
+      const roleOpts = document.querySelectorAll("#roleCycle span");
+      let roleIdx = 0;
+      setInterval(() => {
+        roleOpts[roleIdx].classList.add("exit");
+        roleOpts[roleIdx].classList.remove("active");
+        roleIdx = (roleIdx + 1) % roleOpts.length;
+        setTimeout(() => {
+          roleOpts.forEach((o) => o.classList.remove("exit"));
+          roleOpts[roleIdx].classList.add("active");
+        }, 280);
+      }, 2800);
+    </script>
+  </body>
+</html>

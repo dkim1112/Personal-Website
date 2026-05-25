@@ -1,37 +1,57 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog · Dongeun Kim</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Writing · Dongeun Kim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script src="assets/app.js" defer></script>
   </head>
   <body>
-    <nav class="topnav">
-      <div class="topnav-links">
-        <a href="index.html">About Me</a>
-        <a href="playground.html">Playground</a>
-        <a href="blog.html" class="active">Blog</a>
-        <a href="contact.html">Contact Me</a>
-      </div>
-    </nav>
+    <div class="cur-ring"></div>
+    <div class="cur-dot"></div>
+
+    <header class="topnav">
+      <a href="home.html" class="topnav-home magnetic">
+        <span class="home-dot"></span>
+        <span class="home-arrow">←</span>
+        Home
+      </a>
+      <nav class="topnav-links">
+        <a href="index.html" class="magnetic">about</a>
+        <a href="projects.html" class="magnetic">projects</a>
+        <a href="playground.html" class="magnetic">playground</a>
+        <a href="blog.html" class="magnetic active">writing</a>
+        <a href="contact.html" class="magnetic">contact</a>
+      </nav>
+    </header>
 
     <div class="layout">
       <aside class="sidebar">
         <div class="sidebar-header">
           <h1 class="sidebar-name">Blog</h1>
-          <div class="sidebar-role">Notes &amp; Notion</div>
-          <div class="sidebar-tagline">
-            Half-formed thoughts on data, tools, and the work.
-          </div>
+          <div class="sidebar-role">Learning Journey</div>
+          <div class="sidebar-tagline">The world moves fast.</div>
         </div>
 
         <div class="sidebar-socials">
           <a
-            href="https://github.com/"
+            href="https://github.com/dkim1112"
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub"
+            1
           >
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path
@@ -40,7 +60,7 @@
             </svg>
           </a>
           <a
-            href="https://linkedin.com/"
+            href="https://www.linkedin.com/in/kimdongeun/"
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
@@ -51,7 +71,7 @@
               />
             </svg>
           </a>
-          <a href="mailto:de7danielkim@gmail.com" aria-label="Email">
+          <a href="mailto:dkldk4912@gmail.com" aria-label="Email">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -68,22 +88,26 @@
       </aside>
 
       <main class="content">
-        <section>
-          <div class="section-tag"># blog/</div>
-          <h2 class="section-title">Blog</h2>
-          <p class="lead">
-            Keeping in touch with the world, tracking my learning journey.
-          </p>
-
-          <div class="empty-state">
-            <h3># empty</h3>
-            <p>
-              Notion integration to be wired up. For now, this page is a
-              placeholder.
-            </p>
-          </div>
-        </section>
+        <div class="notion-embed full-content">
+          <iframe
+            src="https://fifth-key-2ea.notion.site/ebd/17db739d3a378012ac57e4d4c1bc3046?v=compact"
+            width="100%"
+            height="100vh"
+            frameborder="0"
+            allowfullscreen
+            style="
+              border-radius: 8px;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            "
+          >
+          </iframe>
+        </div>
       </main>
     </div>
+
+    <script>
+      // Page-specific only — shared cursor / theme / magnetic / reveal live in app.js.
+      // (blog has no other page-specific behavior currently.)
+    </script>
   </body>
 </html>

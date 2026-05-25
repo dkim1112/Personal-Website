@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real-Time Food Ordering · Dongeun Kim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <script src="../assets/app.js" defer></script>
+  </head>
+  <body>
+    <div class="cur-ring"></div>
+    <div class="cur-dot"></div>
+
+    <header class="topnav">
+      <a href="../projects.html" class="topnav-home magnetic">
+        <span class="home-dot"></span>
+        <span class="home-arrow">←</span>
+        Projects
+      </a>
+      <nav class="topnav-links">
+        <a href="../index.html" class="magnetic">about</a>
+        <a href="../projects.html" class="magnetic active">projects</a>
+        <a href="../playground.html" class="magnetic">playground</a>
+        <a href="../blog.html" class="magnetic">writing</a>
+        <a href="../contact.html" class="magnetic">contact</a>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="section-tag" style="margin-bottom: 14px;">008 · SWE</div>
+          <h1 class="sidebar-name" style="font-size: 30px;">food_ordering<br/>_platform.tsx</h1>
+          <div class="sidebar-role">Full-stack engineering</div>
+          <div class="sidebar-tagline">
+            Real-time ordering system for pop-up events, built from scratch.
+          </div>
+        </div>
+
+        <div class="subnav">
+          <a href="#overview" class="active">overview</a>
+          <a href="#stack">technologies</a>
+          <a href="#problem">the problem</a>
+          <a href="#vision">product vision</a>
+          <a href="#contribution">my contribution</a>
+          <a href="#achievements">key achievements</a>
+          <a href="#lessons">lessons learned</a>
+          <a href="#future">where it's going</a>
+        </div>
+      </aside>
+
+      <main class="content">
+        <div class="project-hero reveal">
+          <h2 class="project-title">Real-Time Food Ordering</h2>
+          <p class="project-tagline">
+            From order to kitchen to pickup, live. Built solo for pop-up events that couldn't afford a 5-figure POS.
+          </p>
+          <div class="project-meta-row">
+            <div class="col"><span class="label">Timeline</span><span class="value">2024</span></div>
+            <div class="col"><span class="label">Company</span><span class="value">Pop-up event</span></div>
+            <div class="col"><span class="label">Role</span><span class="value">Full-stack Engineer</span></div>
+            <div class="col"><span class="label">Stack</span><span class="value">Next.js · Flask · Stripe · Socket.io</span></div>
+          </div>
+        </div>
+
+        <section id="overview" class="project-section reveal">
+          <h3>Overview</h3>
+          <p class="lead-para">
+            150+ concurrent users. 3,000+ orders. 600+ live Stripe transactions. Zero downtime.
+          </p>
+          <p class="body-para">
+            A full-stack ordering platform built from scratch for pop-up food events — Next.js
+            front-end, Flask back-end, Stripe for payments, Socket.io for real-time order status
+            from kitchen to customer. Cut manual labor on the operations side ~50%.
+          </p>
+        </section>
+
+        <section id="stack" class="project-section reveal">
+          <h3>Technologies</h3>
+          <div class="skill-group">
+            <div class="skill-group-name">front-end</div>
+            <div class="pills">
+              <span class="pill">Next.js</span>
+              <span class="pill">React</span>
+              <span class="pill">TypeScript</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">back-end</div>
+            <div class="pills">
+              <span class="pill">Flask</span>
+              <span class="pill">Python</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">payments</div>
+            <div class="pills">
+              <span class="pill">Stripe</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">real-time</div>
+            <div class="pills">
+              <span class="pill">Socket.io</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">database</div>
+            <div class="pills">
+              <span class="pill">PostgreSQL</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">deployment</div>
+            <div class="pills">
+              <span class="pill">Vercel</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="problem" class="project-section reveal">
+          <h3>The Problem</h3>
+          <p class="lead-para">
+            Pop-up events can't afford an enterprise POS. So they run on paper tickets and chaos.
+          </p>
+          <p class="body-para">
+            Existing POS systems start at hundreds of dollars per terminal per month and assume a
+            permanent storefront. Pop-ups are 1–3 day events with 100+ peak-hour orders. Most
+            run on paper tickets, runners shouting between counter and kitchen, and a single
+            Square reader — which means lost orders, slow service, and money left on the table.
+          </p>
+          <div class="hmw-callout">
+            <span class="bulb">💡</span>
+            <div class="hmw-body">
+              <div class="hmw-label">How might we</div>
+              <div class="hmw-q">
+                build a real-time ordering and kitchen-coordination system that stands up in a
+                day, costs near-zero, and handles a 150-person rush without losing a ticket?
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="vision" class="project-section reveal">
+          <h3>Product Vision</h3>
+          <p class="lead-para">
+            A self-serve POS for events that exist for 48 hours.
+          </p>
+          <p class="body-para">
+            Order from your phone. Pay with Apple Pay. See your spot in the queue in real time.
+            The kitchen sees the same queue, marks orders ready, and customers get pinged
+            automatically. No paper, no shouting, no lost tickets.
+          </p>
+          <div class="project-callout">
+            <div class="callout-eyebrow">Core architecture</div>
+            <h4>Stateless front-end, Socket.io-backed queue, Stripe-managed payments</h4>
+            <p>
+              Next.js serves the ordering UI and the kitchen display. Flask handles order
+              creation and payment confirmation via Stripe webhooks. Socket.io broadcasts queue
+              updates so every connected client (customer, kitchen, counter) sees the same state
+              within 100ms. Postgres is the source of truth; Socket.io is the delivery channel.
+            </p>
+            <div class="project-stats">
+              <div class="stat"><div class="v">150+</div><div class="k">concurrent users</div></div>
+              <div class="stat"><div class="v">3,000+</div><div class="k">orders processed</div></div>
+              <div class="stat"><div class="v">600+</div><div class="k">Stripe transactions</div></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contribution" class="project-section reveal">
+          <h3>My Contribution</h3>
+          <p class="lead-para">
+            Built solo end-to-end, then ran ops at the event itself.
+          </p>
+          <p class="body-para">
+            I wrote every line — front-end, back-end, infra, Stripe integration, the kitchen
+            display — and was on-site during the rush to debug live. The system held up; the
+            kitchen freed a runner; ~50% of manual labor on the operations side went away.
+          </p>
+          <div class="project-callout">
+            <h4>What I worked on</h4>
+            <ul class="work-list">
+              <li>Next.js customer-facing order flow with Stripe Apple Pay / card integration</li>
+              <li>Flask order service with webhook reconciliation against Stripe payment intents</li>
+              <li>Socket.io queue layer broadcasting order-status updates to all connected clients</li>
+              <li>Kitchen display app — separate Next.js view consuming the same socket stream</li>
+              <li>Live ops on event day — monitoring, hot-fixing edge cases, supporting the team</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="achievements" class="project-section reveal">
+          <h3>Key Achievements</h3>
+          <p class="lead-para">[ Headline outcome — the one-line "this is what it delivered." ]</p>
+          <p class="body-para">[ Slightly longer narrative on the most meaningful results. ]</p>
+          <div class="project-tiles">
+            <div class="tile"><div class="v">—</div><div class="k">metric one</div></div>
+            <div class="tile"><div class="v">—</div><div class="k">metric two</div></div>
+            <div class="tile"><div class="v">—</div><div class="k">metric three</div></div>
+          </div>
+        </section>
+
+        <section id="lessons" class="project-section reveal">
+          <h3>Lessons Learned</h3>
+          <p class="lead-para">[ The single biggest takeaway from this project. ]</p>
+          <p class="body-para">[ What worked, what didn't, what you'd do differently next time. ]</p>
+        </section>
+
+        <section id="future" class="project-section reveal">
+          <h3>Where It's Going</h3>
+          <p class="lead-para">
+            From one-off event tool to repeatable pop-up platform.
+          </p>
+          <p class="body-para">
+            Next: extract the event-specific config into a tenant model so a new pop-up can spin
+            up in 5 minutes. Add inventory cutoffs (so items disappear when sold out), SMS
+            pickup notifications, and a post-event sales report.
+          </p>
+          <div class="project-tiles">
+            <div class="tile"><div class="v">Multi-tenant</div><div class="k">5-min event setup</div></div>
+            <div class="tile"><div class="v">SMS</div><div class="k">pickup notifications</div></div>
+            <div class="tile"><div class="v">Reports</div><div class="k">post-event analytics</div></div>
+          </div>
+        </section>
+
+        <section id="links" class="project-section reveal">
+          <h3>Links</h3>
+          <div class="project-cta">
+            <a href="https://github.com/dkim1112/Party-Organizer" class="cta-btn" target="_blank" rel="noreferrer">GitHub →</a>
+            <a href="#" class="cta-btn outline">Demo →</a>
+          </div>
+        </section>
+
+        <div style="display: flex; justify-content: space-between; padding: 40px 0 0; border-top: 1px solid var(--line); margin-top: 40px;">
+          <a href="cdc-event-pipeline.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">← Prev: CDC Event Pipeline</a>
+          <a href="subway-route-optimization.html" class="ulink magnetic" style="font-family: var(--mono); font-size: 12px;">Next: Subway Route Optimization →</a>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      // Page-specific only — shared cursor / theme / magnetic / reveal live in app.js.
+      const subnavLinks = document.querySelectorAll(".subnav a");
+      subnavLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          subnavLinks.forEach((l) => l.classList.toggle("active", l === link));
+        });
+      });
+    </script>
+  </body>
+</html>

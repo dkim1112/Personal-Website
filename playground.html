@@ -1,229 +1,699 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Playground · Dongeun Kim</title>
-<link rel="stylesheet" href="styles.css">
-</head>
-<body>
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Playground · Dongeun Kim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script src="assets/app.js" defer></script>
+  </head>
+  <body>
+    <div class="cur-ring"></div>
+    <div class="cur-dot"></div>
 
-<nav class="topnav">
-  <div class="topnav-links">
-    <a href="index.html">About Me</a>
-    <a href="playground.html" class="active">Playground</a>
-    <a href="blog.html">Blog</a>
-    <a href="contact.html">Contact Me</a>
-  </div>
-</nav>
+    <header class="topnav">
+      <a href="home.html" class="topnav-home magnetic">
+        <span class="home-dot"></span>
+        <span class="home-arrow">←</span>
+        Home
+      </a>
+      <nav class="topnav-links">
+        <a href="index.html" class="magnetic">about</a>
+        <a href="projects.html" class="magnetic">projects</a>
+        <a href="playground.html" class="magnetic active">playground</a>
+        <a href="blog.html" class="magnetic">writing</a>
+        <a href="contact.html" class="magnetic">contact</a>
+      </nav>
+    </header>
 
-<div class="layout">
-  <aside class="sidebar">
-    <div class="sidebar-header">
-      <h1 class="sidebar-name">Playground</h1>
-      <div class="sidebar-role">Off-the-clock</div>
-      <div class="sidebar-tagline">A small catalog of things I love outside of work.</div>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h1 class="sidebar-name">Playground</h1>
+          <div class="sidebar-role">Off-the-clock</div>
+          <div class="sidebar-tagline">
+            Catalog of things I love outside of work.
+          </div>
+        </div>
+
+        <nav class="subnav">
+          <a href="#photo" class="active">Photo</a>
+          <a href="#book">Book</a>
+          <a href="#cook">Cook</a>
+        </nav>
+
+        <div class="sidebar-socials">
+          <a
+            href="https://github.com/dkim1112"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="GitHub"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-1.96c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.05 11.05 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"
+              />
+            </svg>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/kimdongeun/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"
+              />
+            </svg>
+          </a>
+          <a href="mailto:dkldk4912@gmail.com" aria-label="Email">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <path d="m3 7 9 6 9-6" />
+            </svg>
+          </a>
+        </div>
+      </aside>
+
+      <main class="content">
+        <section id="photo">
+          <div class="section-tag"># photo/</div>
+          <h2 class="section-title">Photo.</h2>
+          <p class="placeholder" style="margin-bottom: 14px">
+            capturing the vibes i love.
+          </p>
+          <div class="photo-grid">
+            <div
+              class="photo"
+              data-src="images/playground/img-12.jpg"
+              style="
+                background-image: url(&quot;images/playground/img-12-thumb.jpg&quot;);
+                background-size: cover;
+                background-position: center;
+              "
+            >
+              <div class="photo-exif">[ location ]</div>
+            </div>
+            <div
+              class="photo"
+              data-src="images/playground/img-11.jpg"
+              style="
+                background-image: url(&quot;images/playground/img-11-thumb.jpg&quot;);
+                background-size: cover;
+                background-position: center;
+              "
+            >
+              <div class="photo-exif">[ location ]</div>
+            </div>
+            <div
+              class="photo"
+              data-src="images/playground/img-10.jpg"
+              style="
+                background-image: url(&quot;images/playground/img-10-thumb.jpg&quot;);
+                background-size: cover;
+                background-position: center;
+              "
+            >
+              <div class="photo-exif">[ location ]</div>
+            </div>
+            <div
+              class="photo"
+              data-src="images/playground/img-9.jpg"
+              style="
+                background-image: url(&quot;images/playground/img-9-thumb.jpg&quot;);
+                background-size: cover;
+                background-position: center;
+              "
+            >
+              <div class="photo-exif">[ location ]</div>
+            </div>
+            <div
+              class="photo"
+              data-src="images/playground/img-8.jpg"
+              style="
+                background-image: url(&quot;images/playground/img-8-thumb.jpg&quot;);
+                background-size: cover;
+                background-position: center;
+              "
+            >
+              <div class="photo-exif">[ location ]</div>
+            </div>
+            <div
+              class="photo"
+              data-src="images/playground/img-7.jpg"
+              style="
+                background-image: url(&quot;images/playground/img-7-thumb.jpg&quot;);
+                background-size: cover;
+                background-position: center;
+              "
+            >
+              <div class="photo-exif">[ location ]</div>
+            </div>
+            <div
+              class="photo"
+              data-src="images/playground/img-6.jpg"
+              style="
+                background-image: url(&quot;images/playground/img-6-thumb.jpg&quot;);
+                background-size: cover;
+                background-position: center;
+              "
+            >
+              <div class="photo-exif">[ location ]</div>
+            </div>
+            <div
+              class="photo"
+              data-src="images/playground/img-5.jpg"
+              style="
+                background-image: url(&quot;images/playground/img-5-thumb.jpg&quot;);
+                background-size: cover;
+                background-position: center;
+              "
+            >
+              <div class="photo-exif">[ location ]</div>
+            </div>
+            <div
+              class="photo"
+              data-src="images/playground/img-4.jpg"
+              style="
+                background-image: url(&quot;images/playground/img-4-thumb.jpg&quot;);
+                background-size: cover;
+                background-position: center;
+              "
+            >
+              <div class="photo-exif">[ location ]</div>
+            </div>
+            <div
+              class="photo"
+              data-src="images/playground/img-3.jpg"
+              style="
+                background-image: url(&quot;images/playground/img-3-thumb.jpg&quot;);
+                background-size: cover;
+                background-position: center;
+              "
+            >
+              <div class="photo-exif">[ location ]</div>
+            </div>
+            <div
+              class="photo"
+              data-src="images/playground/img-2.jpg"
+              style="
+                background-image: url(&quot;images/playground/img-2-thumb.jpg&quot;);
+                background-size: cover;
+                background-position: center;
+              "
+            >
+              <div class="photo-exif">[ location ]</div>
+            </div>
+            <div
+              class="photo"
+              data-src="images/playground/img-1.jpg"
+              style="
+                background-image: url(&quot;images/playground/img-1-thumb.jpg&quot;);
+                background-size: cover;
+                background-position: center;
+              "
+            >
+              <div class="photo-exif">[ location ]</div>
+            </div>
+          </div>
+        </section>
+
+        <section id="book">
+          <div class="section-tag"># book/</div>
+          <h2 class="section-title">Book.</h2>
+          <p class="placeholder" style="margin-bottom: 16px">
+            click a book to read what it left me with.
+          </p>
+          <div class="bookshelf">
+            <div class="book" data-book="0">
+              <div>육각형 개발자</div>
+              <div class="book-author">최범균</div>
+            </div>
+            <div class="book" data-book="1">
+              <div>멀티패러다임 프로그래밍</div>
+              <div class="book-author">유인동</div>
+            </div>
+            <div class="book" data-book="2">
+              <div>왜 당신은 죽어가는 자신을 방치하고 있는가</div>
+              <div class="book-author">고윤</div>
+            </div>
+            <div class="book" data-book="3">
+              <div>Essential Math for Data Science</div>
+              <div class="book-author">Thomas Nield</div>
+            </div>
+            <div class="book" data-book="4">
+              <div>소년이 온다</div>
+              <div class="book-author">한강</div>
+            </div>
+          </div>
+        </section>
+
+        <section id="cook">
+          <div class="section-tag"># cook/</div>
+          <h2 class="section-title">Cook.</h2>
+          <p class="placeholder" style="margin-bottom: 16px">
+            my mom once told me men who cook are attractive.
+          </p>
+          <div class="card-grid">
+            <div class="card recipe-card-1" data-recipe="0">
+              <div class="card-img"></div>
+              <div class="card-body">
+                <div class="card-title">순두부 참치 김치찌개</div>
+                <div class="card-meta">
+                  <span>30 min</span><span>serves 3</span><span>dinner</span
+                  ><span>korean</span>
+                </div>
+                <div class="card-teaser">따뜻하고 얼큰한 집밥의 정석</div>
+              </div>
+            </div>
+            <div class="card recipe-card-2" data-recipe="1">
+              <div class="card-img"></div>
+              <div class="card-body">
+                <div class="card-title">스팸 황금 볶음밥</div>
+                <div class="card-meta">
+                  <span>20 min</span><span>serves 4</span><span>lunch</span
+                  ><span>korean</span>
+                </div>
+                <div class="card-teaser">계란으로 만드는 황금빛 볶음밥</div>
+              </div>
+            </div>
+            <div class="card recipe-card-3" data-recipe="2">
+              <div class="card-img"></div>
+              <div class="card-body">
+                <div class="card-title">쏘야</div>
+                <div class="card-meta">
+                  <span>20 min</span><span>serves 2</span><span>dinner</span
+                  ><span>korean</span>
+                </div>
+                <div class="card-teaser">마늘과 소시지의 환상적인 조합</div>
+              </div>
+            </div>
+            <div class="card recipe-card-4" data-recipe="3">
+              <div class="card-img"></div>
+              <div class="card-body">
+                <div class="card-title">감바스 알 아히요</div>
+                <div class="card-meta">
+                  <span>30 min</span><span>serves 2-3</span><span>dinner</span
+                  ><span>spanish</span>
+                </div>
+                <div class="card-teaser">마늘과 올리브유의 환상적인 조합</div>
+              </div>
+            </div>
+            <div class="card recipe-card-5" data-recipe="4">
+              <div class="card-img"></div>
+              <div class="card-body">
+                <div class="card-title">소시지 볶음밥</div>
+                <div class="card-meta">
+                  <span>15 min</span><span>serves 2</span><span>lunch</span
+                  ><span>korean</span>
+                </div>
+                <div class="card-teaser">간편하고 맛있는 한그릇 요리</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
 
-    <nav class="subnav">
-      <a href="#photo" class="active">Photo</a>
-      <a href="#book">Book</a>
-      <a href="#cook">Cook</a>
-    </nav>
-
-    <div class="sidebar-socials">
-      <a href="https://github.com/" target="_blank" rel="noreferrer" aria-label="GitHub">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-1.96c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.05 11.05 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
-      </a>
-      <a href="https://linkedin.com/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
-      </a>
-      <a href="mailto:de7danielkim@gmail.com" aria-label="Email">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-      </a>
+    <!-- Book modal -->
+    <div class="modal-backdrop" id="modal">
+      <div class="modal">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <div class="modal-meta" id="modal-meta">
+          2024 · 320 pages · read mar 2026
+        </div>
+        <div class="modal-title" id="modal-title">[ book title ]</div>
+        <div class="modal-author" id="modal-author">[ author ]</div>
+        <div class="modal-summary" id="modal-summary">[ your summary ]</div>
+      </div>
     </div>
-  </aside>
 
-  <main class="content">
-
-    <section id="photo">
-      <div class="section-tag"># photo/</div>
-      <h2 class="section-title">Photo</h2>
-      <p class="placeholder" style="margin-bottom:14px;">hover for EXIF — replace gradients with your real photos.</p>
-      <div class="photo-grid">
-        <div class="photo"><div class="photo-exif">f/2.8 · 1/250 · ISO 200 · Tokyo</div></div>
-        <div class="photo"><div class="photo-exif">f/4 · 1/500 · ISO 100 · Seoul</div></div>
-        <div class="photo"><div class="photo-exif">f/1.8 · 1/60 · ISO 800 · NYC</div></div>
-        <div class="photo"><div class="photo-exif">f/5.6 · 1/1000 · ISO 200 · Kyoto</div></div>
-        <div class="photo"><div class="photo-exif">f/2.4 · 1/125 · ISO 400 · Boston</div></div>
-        <div class="photo"><div class="photo-exif">f/8 · 1/250 · ISO 100 · Yosemite</div></div>
-        <div class="photo"><div class="photo-exif">f/2.8 · 1/30 · ISO 1600 · Paris</div></div>
-        <div class="photo"><div class="photo-exif">f/4 · 1/500 · ISO 200 · LA</div></div>
-      </div>
-    </section>
-
-    <section id="book">
-      <div class="section-tag"># book/</div>
-      <h2 class="section-title">Book</h2>
-      <p class="placeholder" style="margin-bottom: 16px;">click a book to read what it left me with.</p>
-      <div class="bookshelf">
-        <div class="book" data-book="0">
-          <div>The Pragmatic Programmer</div>
-          <div class="book-author">Hunt &amp; Thomas</div>
+    <!-- Recipe modal -->
+    <div class="modal-backdrop" id="recipe-modal">
+      <div class="modal recipe-modal">
+        <button class="modal-close" onclick="closeRecipeModal()">×</button>
+        <div class="recipe-image" id="recipe-image">
+          <img src="" alt="" id="recipe-img" />
         </div>
-        <div class="book" data-book="1">
-          <div>Designing Data-Intensive Applications</div>
-          <div class="book-author">Kleppmann</div>
-        </div>
-        <div class="book" data-book="2">
-          <div>The Lean Startup</div>
-          <div class="book-author">Ries</div>
-        </div>
-        <div class="book" data-book="3">
-          <div>Storytelling with Data</div>
-          <div class="book-author">Knaflic</div>
-        </div>
-        <div class="book" data-book="4">
-          <div>Atomic Habits</div>
-          <div class="book-author">Clear</div>
-        </div>
-        <div class="book" data-book="5">
-          <div>Thinking in Systems</div>
-          <div class="book-author">Meadows</div>
-        </div>
-        <div class="book" data-book="6">
-          <div>Sapiens</div>
-          <div class="book-author">Harari</div>
-        </div>
-        <div class="book" data-book="7">
-          <div>Show Your Work</div>
-          <div class="book-author">Kleon</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="cook">
-      <div class="section-tag"># cook/</div>
-      <h2 class="section-title">Cook</h2>
-      <div class="card-grid">
-        <div class="card recipe-card-1">
-          <div class="card-img"></div>
-          <div class="card-body">
-            <div class="card-title">[ recipe name ]</div>
-            <div class="card-meta">
-              <span>30 min</span><span>serves 4</span><span>weeknight</span><span>korean</span>
-            </div>
-            <div class="card-teaser">[ 1-line teaser about the dish ]</div>
+        <div class="recipe-content">
+          <div class="modal-meta" id="recipe-meta">
+            30 min · serves 4 · korean
           </div>
-        </div>
-        <div class="card recipe-card-2">
-          <div class="card-img"></div>
-          <div class="card-body">
-            <div class="card-title">[ recipe name ]</div>
-            <div class="card-meta">
-              <span>1h 15m</span><span>serves 6</span><span>weekend</span><span>italian</span>
-            </div>
-            <div class="card-teaser">[ teaser ]</div>
+          <div class="modal-title" id="recipe-title">[ recipe name ]</div>
+          <div class="recipe-section">
+            <h4>Ingredients</h4>
+            <div id="recipe-ingredients">[ ingredients list ]</div>
           </div>
-        </div>
-        <div class="card recipe-card-3">
-          <div class="card-img"></div>
-          <div class="card-body">
-            <div class="card-title">[ recipe name ]</div>
-            <div class="card-meta">
-              <span>20 min</span><span>serves 2</span><span>quick</span><span>thai</span>
-            </div>
-            <div class="card-teaser">[ teaser ]</div>
-          </div>
-        </div>
-        <div class="card recipe-card-4">
-          <div class="card-img"></div>
-          <div class="card-body">
-            <div class="card-title">[ recipe name ]</div>
-            <div class="card-meta">
-              <span>45 min</span><span>serves 4</span><span>baking</span><span>dessert</span>
-            </div>
-            <div class="card-teaser">[ teaser ]</div>
+          <div class="recipe-section">
+            <h4>Instructions</h4>
+            <div id="recipe-instructions">[ step by step instructions ]</div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
 
-  </main>
-</div>
+    <!-- Photo lightbox -->
+    <div class="modal-backdrop photo-lightbox" id="photo-modal">
+      <button class="modal-close" id="photo-close" aria-label="Close">×</button>
+      <img id="photo-modal-img" src="" alt="" />
+    </div>
 
-<!-- Book modal -->
-<div class="modal-backdrop" id="modal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">×</button>
-    <div class="modal-meta" id="modal-meta">2024 · 320 pages · read mar 2026</div>
-    <div class="modal-title" id="modal-title">[ book title ]</div>
-    <div class="modal-author" id="modal-author">[ author ]</div>
-    <div class="modal-summary" id="modal-summary">[ your summary ]</div>
-  </div>
-</div>
-
-<script>
-  // Sub-nav scroll-spy
-  const subnavLinks = document.querySelectorAll('.subnav a');
-  const sections = document.querySelectorAll('.content section[id]');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.id;
-        subnavLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+    <script>
+      // Photo lightbox
+      const photoModal = document.getElementById("photo-modal");
+      const photoModalImg = document.getElementById("photo-modal-img");
+      document.querySelectorAll(".photo[data-src]").forEach((p) => {
+        p.addEventListener("click", () => {
+          photoModalImg.src = p.dataset.src;
+          photoModal.classList.add("open");
+        });
+      });
+      function closePhotoModal() {
+        photoModal.classList.remove("open");
+        // give the transition a beat before clearing src
+        setTimeout(() => {
+          photoModalImg.src = "";
+        }, 200);
       }
-    });
-  }, { rootMargin: '-30% 0px -55% 0px' });
-  sections.forEach(s => observer.observe(s));
+      document
+        .getElementById("photo-close")
+        .addEventListener("click", closePhotoModal);
+      photoModal.addEventListener("click", (e) => {
+        if (e.target.id === "photo-modal") closePhotoModal();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && photoModal.classList.contains("open"))
+          closePhotoModal();
+      });
 
-  // Book modal
-  const books = [
-    { title: 'The Pragmatic Programmer', author: 'Hunt & Thomas',
-      meta: '1999 · 352 pages · re-read 2025',
-      summary: '[ what you took from it — write 2-3 honest sentences. what you took, what you would skip. ]' },
-    { title: 'Designing Data-Intensive Applications', author: 'Martin Kleppmann',
-      meta: '2017 · 616 pages · read 2024',
-      summary: '[ summary ]' },
-    { title: 'The Lean Startup', author: 'Eric Ries',
-      meta: '2011 · 336 pages · read 2023',
-      summary: '[ summary ]' },
-    { title: 'Storytelling with Data', author: 'Cole Nussbaumer Knaflic',
-      meta: '2015 · 288 pages · read 2024',
-      summary: '[ summary ]' },
-    { title: 'Atomic Habits', author: 'James Clear',
-      meta: '2018 · 320 pages · read 2023',
-      summary: '[ summary ]' },
-    { title: 'Thinking in Systems', author: 'Donella Meadows',
-      meta: '2008 · 240 pages · read 2025',
-      summary: '[ summary ]' },
-    { title: 'Sapiens', author: 'Yuval Noah Harari',
-      meta: '2011 · 464 pages · read 2022',
-      summary: '[ summary ]' },
-    { title: 'Show Your Work', author: 'Austin Kleon',
-      meta: '2014 · 224 pages · read 2024',
-      summary: '[ summary ]' }
-  ];
+      // Sub-nav scroll-spy
+      const subnavLinks = document.querySelectorAll(".subnav a");
+      const sections = document.querySelectorAll(".content section[id]");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const id = entry.target.id;
+              subnavLinks.forEach((a) =>
+                a.classList.toggle(
+                  "active",
+                  a.getAttribute("href") === "#" + id,
+                ),
+              );
+            }
+          });
+        },
+        { rootMargin: "-30% 0px -55% 0px" },
+      );
+      sections.forEach((s) => observer.observe(s));
 
-  document.querySelectorAll('.book').forEach(book => {
-    book.addEventListener('click', () => {
-      const idx = parseInt(book.dataset.book);
-      const b = books[idx];
-      document.getElementById('modal-title').textContent = b.title;
-      document.getElementById('modal-author').textContent = b.author;
-      document.getElementById('modal-meta').textContent = b.meta;
-      document.getElementById('modal-summary').textContent = b.summary;
-      document.getElementById('modal').classList.add('open');
-    });
-  });
+      // Book modal
+      const books = [
+        {
+          title: "육각형 개발자",
+          author: "최범균",
+          meta: "2024 · 320 pages · read 2025",
+          summary:
+            "Reading 육각형 개발자 (Hexagonal Developer) by 최범균 broadened my understanding of what it truly means to grow as a software professional. Unlike many technical books that focus narrowly on coding skills, this book takes a holistic view of a developer's career, comparing an ideal engineer to a hexagon. Just as a hexagon athlete needs balanced physical abilities to perform well, a developer must cultivate a mix of technical and non-technical competencies to remain effective over the long term.\n\nThe book begins by challenging a common misconception among junior developers: that coding alone defines growth. The author emphasizes that understanding technologies and writing code is only part of development work. Real mastery includes evaluating software value, balancing maintenance costs, and appreciating that the lifecycle of software extends far beyond initial delivery. These insights made me rethink my own focus, reminding me that code is just one part of delivering meaningful outcomes in real projects.\n\nOne of the most practical parts of the book discusses learning strategies and software quality. It highlights the danger of chasing every new technology trend without considering context and long-term benefits. Instead, the author suggests prioritizing skills that solve real problems and that will have enduring value, while still keeping an eye on broader industry trends. I found this particularly valuable as I plan my own learning path: rather than jumping between the latest tools, I now see the importance of depth in core competencies alongside exploratory learning.\n\nThe sections on code understanding, refactoring, testing, architecture, and design patterns were equally insightful. These chapters underscore that good software is not just correct but maintainable and comprehensible. The book encourages developers to write code that others can easily read and improve. Techniques such as refactoring and automated testing are not merely best practices; they are essential habits that elevate the reliability of systems over time.\n\nFinally, the book focuses on soft skills: such as task management, effective communication, documentation, and leadership. Learning to share knowledge through writing, presentations, or mentorship strengthens both individual capability and organizational resilience. Understanding how to lead and how to follow with humility is a powerful lesson I will carry forward in my career.\n\nHexagonal Developer reinforced for me that being a skilled developer means much more than writing elegant functions. It is about balancing technical depth with strategic thinking, self-direction with collaboration, and efficiency with long-term value. As I grow as a data engineer and analyst, I will draw on these lessons not just to solve problems, but to communicate clearly, manage complexity, and contribute responsibly to my teams and users.",
+        },
+        {
+          title: "멀티패러다임 프로그래밍",
+          author: "유인동",
+          meta: "2024 · 400 pages · read 2024",
+          summary:
+            "Reading 멀티패러다임 프로그래밍 (Multi-Paradigm Programming) by 유인동 opened my eyes to how the boundaries between programming paradigms can blur in modern software development. Instead of seeing paradigms such as object-oriented, functional, and imperative programming as isolated approaches, the book emphasizes their complementary strengths and how integrating them leads to more robust, flexible code. The central message that \"good code knows no paradigm boundaries\" resonated deeply with me, especially as I reflect on how rigid thinking can limit both personal growth and the design of solutions that need to adapt to real-world complexity.\n\nOne of the most valuable aspects of the book was how it demonstrates the practical value of different paradigms using TypeScript as a unifying platform. By exploring iterator patterns, generators, and high-order functions, the author shows how concepts traditionally associated with functional programming can coexist with object-oriented design, and how this coexistence can enhance code expressiveness and maintainability. For someone like me, who works with data structures and pipelines, this perspective helps me rethink traditional algorithm implementations by prioritizing both clarity and flexibility.\n\nThe book's deep dive into type systems and higher-order functions further solidified my understanding of why multi-paradigm languages are becoming the norm. Learning about how modern languages support generic types, type inference, and meta-programming, drawing inspiration from languages like Lisp, broadened my appreciation for the theoretical foundations that make practical software engineering more powerful and predictable. These lessons are particularly relevant in data engineering, where type safety and abstraction often influence data model design and transformation logic.\n\nOne of the most striking takeaways for me was how multi-paradigm thinking encourages a problem-first mindset instead of a paradigm-first mindset. In practice, some problems are best solved with immutable, pure functions for safety, while others require the encapsulation and modularity of object orientation. The ability to fluidly choose the best approach and even combine them within a single solution feels like a critical skill for building real-world systems that must handle evolving requirements and complex workflows.\n\nOverall, Multi-Paradigm Programming not only expanded my technical vocabulary but also shifted how I think about code design and problem decomposition. As I continue to grow as a data engineer/analyst, the book's lessons will help me write solutions that are not only correct but also elegant, maintainable, and adaptable. It reaffirmed for me that understanding why and when to leverage different paradigms is as important as knowing how to implement them.",
+        },
+        {
+          title: "왜 당신은 죽어가는 자신을 방치하고 있는가",
+          author: "고윤",
+          meta: "2024 · 280 pages · read 2025",
+          summary:
+            '고윤\'s Why Are You Neglecting Your Dying Self? is a psychology-and-humanities ("심리 인문학") book that treats modern emotional breakdown not as a sudden tragedy, but as something that quietly accumulates through everyday neglect. The book\'s central challenge is simple but unsettling. It\'s that many people are not "fine"; they are simply functioning. By framing today\'s exhaustion as a form of "neglect," the author pushes the reader to stop normalizing chronic stress, emotional numbness, and self-erasure.\n\nOne of the book\'s defining features is its structure. Rather than building one long argument, it curates 43 psychological syndromes/phenomena that contemporary people commonly experience, using each as a lens for self-checking and reflection. The intention is to give them language for what they are living through - so they can recognize patterns (burnout, trauma-related stress, over-adaptation, etc.) and begin recovery with awareness.\n\nA particularly memorable thread is the book\'s treatment of burnout. Instead of reducing burnout to "working too much," the discussion emphasizes the experience of being unable to exit work mentally: even after the workday ends, unresolved tasks, relationships, and decisions keep occupying the mind, so rest becomes physically present but psychologically unavailable. The book\'s description of burnout as a gradual erosion: motivation fading, emotions wearing down, self-efficacy quietly shrinking, which captures why many people discover burnout late.\n\nWhat\'s most persuasive about this framing is the claim that burnout is not fully solved by sleep or short breaks alone. The problem is not just tiredness; it is the loss of a clear answer to "Why am I doing this?" In that sense, the book implicitly argues that recovery requires more than "recharging"; it requires reconnecting to personal standards and values that have been overwritten by external expectations.\n\nThe book doesn\'t simply say "take care of yourself"; it tries to explain how people lose the ability to care for themselves in the first place, and why noticing that pattern is already the first step toward repair. Maybe I should also start referring back to the contents in this book later when I\'m going through hard times…',
+        },
+        {
+          title: "Essential Math for Data Science",
+          author: "Thomas Nield",
+          meta: "2022 · 350 pages · read 2024",
+          summary:
+            "Reading Essential Math for Data Science made me realize that mathematics is not merely a set of tools for computation, but a fundamental language for thinking clearly about data. As someone aspiring to become a data engineer and analyst, I have often relied on libraries and frameworks to produce results efficiently. However, this book emphasized that without understanding the mathematical foundations behind those results, it is difficult to reason about their validity, limitations, or implications. The book reframed math as a way to structure intuition rather than as an obstacle to practical work.\n\nThe sections on probability and statistics were particularly impactful. The distinction between probability and likelihood, as well as between probability and statistics, clarified how data science fundamentally operates: we use observed data from the past to infer and predict uncertainty about the future. Concepts such as conditional probability and Bayes' Theorem highlighted how crucial it is to define problems precisely, since changing conditions or assumptions can lead to very different interpretations. This reinforced the idea that good analysis starts not with models, but with well-posed questions.\n\nIn the discussion of descriptive and inferential statistics, the book repeatedly stressed that data is never perfectly objective. Bias, missing variables, and unrepresentative samples can all distort conclusions, and computers themselves are incapable of recognizing these issues without human intervention. This perspective resonated strongly with me, as it reframed the role of a data professional: rather than blindly optimizing metrics, we must critically evaluate where data comes from, what it fails to capture, and how confidently we can generalize from it.\n\nThe chapters on linear algebra and regression connected abstract mathematical concepts to real-world machine learning applications. Viewing vectors and matrices as representations and transformations of data helped demystify techniques such as linear regression, gradient descent, and regularization. Understanding ideas like overfitting, bias–variance tradeoffs, and loss minimization made it clear that model training is fundamentally an optimization problem grounded in mathematical structure, not just trial-and-error with parameters.\n\nOverall, this book strengthened my motivation to build a solid mathematical foundation as I continue developing as a data engineer and analyst. Rather than memorizing formulas, I learned the importance of understanding why these concepts exist and what problems they are designed to solve. Moving forward, I hope to apply this probabilistic and mathematical way of thinking when designing data pipelines, analyzing results, and making decisions under uncertainty, using math not as a barrier, but as a guide.",
+        },
+        {
+          title: "소년이 온다",
+          author: "한강 (Han Kang)",
+          meta: "2014 · 216 pages · read 2025",
+          summary:
+            'One of the most striking formal choices in "Human Acts" is how Han Kang breaks the narrative across multiple perspectives and verb tenses: most notably, the second person. When she addresses Dong-ho directly as "you," the reader is pulled into uncomfortable closeness; we are no longer safe observers of historical tragedy but something closer to witnesses, even participants. Han Kang seems to be arguing that the Gwangju Uprising cannot be kept at the clean distance of third-person historical fiction. The way the novel is written refuses to let the violence feel safely buried in the past.\n\nHan Kang also describes decomposition in precise, unflinching detail: the smell, the swelling, the physical reality of the bodies Dong-ho helps catalog in the gymnasium not to shock the reader, but to insist that each of these deaths was real and violent. In a political context that tried to erase these lives by labeling them criminal, she does the opposite: she makes the flesh impossible to ignore.\n\nWhat the novel keeps returning to is whether the human sense of shame can survive what happened in Gwangju. The later chapters follow survivors years after the uprising, and Han Kang portrays their suffering not simply as psychological trauma but as a fracture in the basic belief that people look out for one another. Han Kang returns to a particular question throughout the novel, though she never fully resolves it. Can a person truly survive the act of witnessing an atrocity, not just physically, but inwardly? And if they do survive it, what happens to them over the years that follow? Does carrying that memory decade after decade become its own form of damage?\n\n"Human Acts" asks the reader to sit with that discomfort rather than look away, and in doing so, it achieves something that the most honest literature always does: it refuses to make history easier than it was.',
+        },
+      ];
 
-  function closeModal() {
-    document.getElementById('modal').classList.remove('open');
-  }
-  document.getElementById('modal').addEventListener('click', (e) => {
-    if (e.target.id === 'modal') closeModal();
-  });
-</script>
+      document.querySelectorAll(".book").forEach((book) => {
+        book.addEventListener("click", () => {
+          const idx = parseInt(book.dataset.book);
+          const b = books[idx];
+          document.getElementById("modal-title").textContent = b.title;
+          document.getElementById("modal-author").textContent = b.author;
+          document.getElementById("modal-meta").textContent = b.meta;
+          document.getElementById("modal-summary").textContent = b.summary;
+          document.getElementById("modal").classList.add("open");
+        });
+      });
 
-</body>
+      function closeModal() {
+        document.getElementById("modal").classList.remove("open");
+      }
+      document.getElementById("modal").addEventListener("click", (e) => {
+        if (e.target.id === "modal") closeModal();
+      });
+
+      // Recipe modal
+      const recipes = [
+        {
+          title: "순두부 참치 김치찌개",
+          meta: "30 min · serves 3 · dinner · korean",
+          image: "images/recipes/food1.png",
+          ingredients: [
+            "청양고추 1개",
+            "홍고추 1/2개",
+            "표고버석 1개",
+            "대파 1개",
+            "큰 양파 1/2개",
+            "국간장 1T",
+            "참치액 1T",
+            "다진마늘 1/2T",
+            "김치 (국물포함) 500g",
+            "순두부 1봉지 (약 300g)",
+            "설탕 1/3T",
+            "고춧가루 1T",
+            "통조림 참치 1캔",
+            "물 500ml",
+          ],
+          instructions: [
+            "[재료 손질] 대파, 양파, 고추는 얆게 송송. 버섯은 가로로 얇게 송송.",
+            "참치캔에서 나오는 기름을 모두 다 사용하여 냄비에 부어주기 (참치 기름 + 김치 국물이 키 포인트)",
+            "파 넣어서 참치 기름에 파를 볶아준다",
+            "파가 어느 정도 볶아지면 그때 양파도 넣는다",
+            "양파가 숨이 죽으면 준비 된 김치 다 넣어준다 (김치를 조금 센불에 계속 볶아줘야 맛이 좋음)",
+            "설탕 넣기 (조금만), 고춧가루 넣어준다",
+            "청양고추 넣어주면서 다 잘 볶아준다",
+            "고춧가루가 조금 붙는다 싶으면 김치국물로 풍미를 더해준다",
+            "물 250ml 단위로 2번 - 조금씩 넣어준다",
+            "버섯 넣어준다",
+            "간을 본다 - 국간장, 참치액, 다진 마늘로 조절 (조금 짜면 물 더 넣기)",
+            "다 잘 저어주다가 맛이 괜찮으면 홍고추 넣어주기 (맨 마지막에 아삭한 감을 살려주기 위해서)",
+            "김치를 계속 가위질 해주면서 골고루 익게 해준다",
+            "참치 넣어준다",
+            "순두부 이쁘게 썰어서 마지막에 플레이팅 완성",
+            "*참치, 순두부, 홍고추는 요리 다 되고 나서 넣어주기!",
+          ],
+        },
+        {
+          title: "스팸 황금 볶음밥",
+          meta: "20 min · serves 4 · lunch · korean",
+          image: "images/recipes/food2.png",
+          ingredients: [
+            "스팸 1/2개",
+            "밥 2~3인분",
+            "당근 1개",
+            "계란 4개",
+            "큰 양파 1개",
+            "대파 1개",
+            "식용유",
+            "굴소스",
+            "후추",
+            "소금",
+          ],
+          instructions: [
+            "[재료 손질] 대파는 세로로 가르고 얇게 송송, 양파는 사선 칼집 후 반대방향으로 썰기",
+            "[재료 손질] 당근은 한쪽을 평평하게 자르고 얇게 채썰어서 네모로 다지기",
+            "[재료 손질] 스팸은 뜨거운 물에 행궈서 당근과 비슷한 크기로 썰기",
+            "후라이팬에 기름을 붓고 스팸을 넣어준다",
+            "당근도 넣어준다",
+            "불을 올려주며 천천히 볶으면 된다 (스팸 기름과 향으로 맛있어짐, 당근 수분 날리기)",
+            "스팸의 익은 색과 당근이 주황색이 탁해지면 양파 넣고 약불에 볶기",
+            "다른 통에 계란 4개 + 식용유 1큰술 + 소금 + 굴소스 1/4작은술 넣고 잘 풀기",
+            "계란 믹스쳐에 밥을 넣어서 잘 풀어준다 (= 황금 쌀알)",
+            "새로운 후라이팬에 계란 믹스쳐를 넣고 중불에서 달라붙지 않게 계속 볶기 (수분 날리기, 쌀 분리하기)",
+            "한 후라이팬에 황금쌀알과 스팸 볶음을 합친다",
+            "대파는 마지막에 넣어준다 (식감을 살려주기 위해서) - 강불에서 잘 볶기",
+            "간 보고 맛이 괜찮으면 공기밥 통에 담아서 모양 잡기",
+            "플레이팅 이쁘게 하고, 위에다가 후추 + 통깨가루 조금 뿌리기",
+          ],
+        },
+        {
+          title: "쏘야",
+          meta: "20 min · serves 2 · dinner · korean",
+          image: "images/recipes/food3.png",
+          ingredients: [
+            "통마늘 10개",
+            "양파 1/2개",
+            "대파 1/3개",
+            "당근 1/3개 (먹기좋은 크기)",
+            "버섯 적당량 (먹기좋은 크기)",
+            "비엔나소시지 1봉 (350g, 칼집내기)",
+            "식용유",
+            "돈까스소스 4숟갈",
+            "케찹 2숟갈",
+            "후추 넉넉히",
+            "참깨",
+          ],
+          instructions: [
+            "[재료 손질] 마늘 꼭지 따주기",
+            "[재료 손질] 양파는 큼지막하게 6등분",
+            "[재료 손질] 대파 굵직하게 길게 썰기",
+            "[재료 손질] 당근 먹기좋은 크기 썰기",
+            "[재료 손질] 버섯도 먹기좋은 크기 썰기",
+            "[재료 손질] 소시지 칼집내기",
+            "식용유 두바퀴정도 돌리고 마늘 10개를 노릇하게 구워줌",
+            "마늘 색감이 노릇해지면 손질한 비엔나소시지 모두 넣고 볶기 (칼집 모양이 벌어질때까지)",
+            "모든 채소 + 돈까스소스 4숟갈 + 케찹 2숟갈, 후추 넉넉하게 뿌려주기",
+            "중간불에서 빠르게 볶다가 색이 잘 입혀지면 계속 볶다가 마지막에 참깨로 마무리",
+          ],
+        },
+        {
+          title: "감바스 알 아히요",
+          meta: "30 min · serves 2-3 · dinner · spanish",
+          image: "images/recipes/food4.png",
+          ingredients: [
+            "칵테일새우 대 사이즈 10마리",
+            "통마늘 20개 (칼로 한번씩 으깨기)",
+            "양송이버섯 4개 (깍두기 썰기)",
+            "방울토마토 6개 (1/2등분)",
+            "베트남고추 5개",
+            "올리브유 180ml (종이컵 하나)",
+            "맛소금 5g",
+            "후춧가루",
+            "식빵 1봉지 (1장당 6등분)",
+          ],
+          instructions: [
+            "[재료 손질] 식빵 1장당 6등분해서 총 4장",
+            "[재료 손질] 새우 세척 + 물기 휴지로 빼기",
+            "[재료 손질] 통마늘 칼로 한번씩 으깨기 (치기만, 다지지 말고)",
+            "[재료 손질] 양송이 버섯 깍두기 썰기",
+            "[재료 손질] 방울 토마토 1/2등분",
+            "잘라둔 식빵을 에어프라이기에 구워줌",
+            "새우 밑간하기: 해동 + 물기 제거 + 소금 + 후추 약간 + 올리브오일 2큰술 = 주물럭",
+            "약불에서 으깬 마늘 + 올리브유 180ml 볶아주기 (올리브유가 자작하게 차있어야 함)",
+            "이때 소금도 넣어주면서 간을 줌",
+            "이때 고추도 뿌져서 넣어줌",
+            "마늘이 많이 노릇해지면 (탔다 싶은 정도), 새우, 토마토, 버섯 모두 투입",
+            "새우 색 바뀔때까지만 볶기",
+            "마지막에 소금과 후추로 다시 한번 간 맞추기",
+            "💡 먹는법: 빵을 기름에도 찍어먹고, 새우랑도 먹고, 마늘 올려서도 먹기",
+          ],
+        },
+        {
+          title: "소시지 볶음밥",
+          meta: "15 min · serves 2 · lunch · korean",
+          image: "images/recipes/food5.png",
+          ingredients: [
+            "밥 1.5공기",
+            "비엔나 소시지 12개 (동전모양으로 조그만하게)",
+            "계란 3알 (풀어놓기)",
+            "대파 1대 (얇게 송송, 라면에 넣듯이)",
+            "양파 1개 (먹기 좋은 크기)",
+            "참치 1캔",
+            "김가루",
+            "굴소스",
+            "케찹",
+            "식용유",
+            "마요네즈",
+            "참깨",
+          ],
+          instructions: [
+            "[재료 준비] 대파 얇게 송송 (라면에 넣듯이)",
+            "[재료 준비] 양파 먹기 좋은 크기로 썰기",
+            "[재료 준비] 소시지 동전모양으로 조그만하게 썰기",
+            "[재료 준비] 계란 2개 풀어놓기",
+            "식용유 두른팬에 대파, 양파, 소시지 넣고 볶기 (소시지 노릇해질때까지 우선 볶기)",
+            "다 되면 이걸 팬 한쪽으로 몰아두고, 남은 공간에 계란 2개 풀어서 스크램블",
+            "계란 넣고 바로 준비한 밥, 굴소스 1.5스푼, 케찹 1스푼 넣어주기 (계란 눌러붙지 않게 주의)",
+            "볶음밥처럼 이걸 다 볶아주기",
+            "마지막에 참치, 마요네즈 넣고 최종 볶기",
+            "간보고 싱거우면 굴소스 더 넣기, 짜면 밥 더 넣기",
+            "다 되면 접시에 옮겨서 데코로 김가루 + 참깨",
+          ],
+        },
+      ];
+
+      document.querySelectorAll(".card[data-recipe]").forEach((card) => {
+        card.addEventListener("click", () => {
+          const idx = parseInt(card.dataset.recipe);
+          const recipe = recipes[idx];
+          document.getElementById("recipe-title").textContent = recipe.title;
+          document.getElementById("recipe-meta").textContent = recipe.meta;
+
+          // Set recipe image
+          document.getElementById("recipe-img").src = recipe.image || "";
+          document.getElementById("recipe-img").alt = recipe.title;
+
+          // Format ingredients list
+          const ingredientsList = recipe.ingredients
+            .map((ing) => `<div class="ingredient-item">• ${ing}</div>`)
+            .join("");
+          document.getElementById("recipe-ingredients").innerHTML =
+            ingredientsList;
+
+          // Format instructions list
+          const instructionsList = recipe.instructions
+            .map(
+              (inst, i) =>
+                `<div class="instruction-step"><span class="step-number">${i + 1}.</span> ${inst}</div>`,
+            )
+            .join("");
+          document.getElementById("recipe-instructions").innerHTML =
+            instructionsList;
+
+          document.getElementById("recipe-modal").classList.add("open");
+        });
+      });
+
+      function closeRecipeModal() {
+        document.getElementById("recipe-modal").classList.remove("open");
+      }
+      document.getElementById("recipe-modal").addEventListener("click", (e) => {
+        if (e.target.id === "recipe-modal") closeRecipeModal();
+      });
+
+      // Page-specific only — shared cursor / theme / magnetic / reveal live in app.js.
+    </script>
+  </body>
 </html>
